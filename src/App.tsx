@@ -85,7 +85,7 @@ function Nav({
   );
 }
 
-const SECRET_PASSWORD = "changeme";
+const SECRET_PASSWORD = "ezv203";
 
 function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   const [input, setInput] = useState("");
