@@ -6,17 +6,18 @@ import mountDrewPhoto from "@/imports/mount_drew.jpg";
 import mtTantalusPhoto from "@/imports/mt_tantalus.jpeg";
 import mountChurchillPhoto from "@/imports/mount_churchill.jpg";
 import penguinArt from "@/imports/Untitled_Artwork.png";
+import { VEINS } from "./marbleVeins";
 
 const NAV_LINKS = [
   { label: "Home" },
   { label: "Ezra Tracker" },
   { label: "Future Dreams" },
   { label: "Quotes" },
+  { label: "Socials" },
 ];
 
-const FACTS = [
-  { label: "Favorite ice cream", value: "The Tonight Dough", note: "Ben & Jerry's" },
-  { label: "Color of the day", value: "green" },
+const FACTS: { label: string; value: string; note?: string; href?: string }[] = [
+  { label: "Favorite ice cream", value: "The Tonight Dough", note: "Ben & Jerry's", href: "https://www.benjerry.com/flavors/the-tonight-dough-ice-cream" },
   { label: "All-time favorite color", value: "Tourquise" },
   { label: "Second biggest fear", value: "Darkness" },
 ];
@@ -178,28 +179,28 @@ function HomePage({ onSecretClick }: { onSecretClick: () => void }) {
       />
 
       {/* Hero */}
-      <section className="relative z-10 text-center px-6 min-h-screen">
+      <section className="relative z-10 text-center px-6 min-h-[85vh]">
         <div className="flex flex-col items-center pt-[18vh]" style={{ opacity: titleOpacity, transform: `translateY(${titleTranslate}px)`, willChange: "opacity, transform" }}>
           <h1 style={{ fontFamily: "'Fraunces', serif", fontSize: "38px" }} className="font-bold tracking-tight text-white">
             Ezra Vernon
           </h1>
         </div>
-        <div className="flex flex-col items-center mt-6" style={{ opacity: artOpacity, transform: `translateY(${artTranslate}px)`, willChange: "opacity, transform" }}>
+        <div className="flex flex-col items-center mt-10" style={{ opacity: artOpacity, transform: `translateY(${artTranslate}px)`, willChange: "opacity, transform" }}>
           <img src={penguinArt} alt="Penguin on a surfboard illustration" className="object-contain" style={{ width: "151px", height: "151px" }} />
         </div>
         <p
-          className="absolute left-0 right-0 mx-auto max-w-xl text-white/60 text-lg leading-relaxed px-6"
-          style={{ bottom: "18vh", opacity: textOpacity, transform: `translateY(${textTranslate}px)`, willChange: "opacity, transform" }}
+          className="mx-auto mt-10 max-w-xl text-white/60 text-lg leading-relaxed px-6"
+          style={{ opacity: textOpacity, transform: `translateY(${textTranslate}px)`, willChange: "opacity, transform" }}
         >
           Welcome to my page! Keep scrolling to learn more about me!
         </p>
       </section>
 
       {/* About */}
-      <section className="relative z-10 max-w-2xl mx-auto px-6 pb-24 mt-[60vh]">
+      <section className="relative z-10 max-w-2xl mx-auto px-6 pb-40 mt-[15vh]">
         <div className="p-8">
           <h2 style={{ fontFamily: "'Fraunces', serif" }} className="text-2xl font-bold text-teal-300 mb-5">about me</h2>
-          <p className="text-white/70 leading-relaxed text-base mb-4">
+          <p className="text-white/70 leading-relaxed text-base mb-8">
             I love getting outside, exploring, making new friends, and stepping out of my comfort zone!
           </p>
           <p className="text-white/70 leading-relaxed text-base">
@@ -209,13 +210,26 @@ function HomePage({ onSecretClick }: { onSecretClick: () => void }) {
       </section>
 
       {/* Facts */}
-      <section className="relative z-10 max-w-2xl mx-auto px-6 pb-24">
-        <ul className="space-y-4">
+      <section className="relative z-10 max-w-2xl mx-auto px-6 pb-40">
+        <ul className="space-y-12">
           {FACTS.map((fact) => (
             <li key={fact.label} className="flex items-start gap-4 px-6 py-10">
               <div className="flex-1">
                 <p className="text-white/40 text-xs uppercase tracking-widest font-medium mb-0.5">{fact.label}</p>
-                <p className="text-white text-base font-medium">{fact.value}</p>
+                <p className="text-white text-base font-medium">
+                  {fact.href ? (
+                    <a
+                      href={fact.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-4 decoration-teal-300/60 hover:text-teal-300 transition-colors duration-200"
+                    >
+                      {fact.value}
+                    </a>
+                  ) : (
+                    fact.value
+                  )}
+                </p>
                 {fact.note && <p className="text-white/40 text-xs mt-0.5">{fact.note}</p>}
               </div>
             </li>
@@ -224,7 +238,7 @@ function HomePage({ onSecretClick }: { onSecretClick: () => void }) {
       </section>
 
       {/* Mantra */}
-      <section className="relative z-10 max-w-2xl mx-auto px-6 pb-28 text-center">
+      <section className="relative z-10 max-w-2xl mx-auto px-6 pb-44 text-center">
         <div className="relative p-10">
           <p className="text-white/30 text-xs uppercase tracking-widest mb-4 font-medium">Life Mantra</p>
           <blockquote style={{ fontFamily: "'Fraunces', serif", fontStyle: "italic" }} className="text-2xl md:text-3xl font-light text-white leading-snug">
@@ -234,7 +248,7 @@ function HomePage({ onSecretClick }: { onSecretClick: () => void }) {
       </section>
 
       {/* Closing */}
-      <section className="relative z-10 text-center px-6 pb-24">
+      <section className="relative z-10 text-center px-6 pb-32">
         <p style={{ fontFamily: "'Fraunces', serif", fontStyle: "italic" }} className="text-white/30 text-lg mb-12">
           The End!
         </p>
@@ -356,16 +370,6 @@ function FutureDreamsPage() {
         Future Dreams
       </h1>
 
-      {/* University */}
-      <section className="mb-8 rounded-2xl px-7 py-6" style={{ background: "rgba(20, 40, 50, 0.6)", backdropFilter: "blur(8px)" }}>
-        <h2 style={{ fontFamily: "'Fraunces', serif" }} className="text-2xl font-bold text-teal-300 mb-3">
-          UVic!
-        </h2>
-        <p className="text-white/70 leading-relaxed">
-          Attending the University of Victoria for Business (BCom) starting September.
-        </p>
-      </section>
-
       {/* Climbing Goals title */}
       <div className="mb-4 px-2">
         <h2 style={{ fontFamily: "'Fraunces', serif" }} className="text-2xl font-bold text-teal-300">
@@ -450,6 +454,65 @@ function FutureDreamsPage() {
   );
 }
 
+const SOCIALS = [
+  { name: "Instagram", handle: "@ezrav_insta", href: "https://www.instagram.com/ezrav_insta" },
+  { name: "LinkedIn", handle: "Ezra Vernon", href: "https://www.linkedin.com/in/ezra-vernon-a98a40343/" },
+  { name: "Strava", handle: "Follow my activities", href: "https://strava.app.link/lBou8jZCg7b" },
+];
+
+const NEON = "#ffb3d9";
+
+function SocialsPage() {
+  return (
+    <>
+      {/* Black marble with neon pink veins */}
+      <div className="fixed inset-0 pointer-events-none bg-black" style={{ zIndex: 0 }}>
+        <svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" className="w-full h-full" aria-hidden="true">
+          <defs>
+            <filter id="veinGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" />
+            </filter>
+          </defs>
+          <g fill="none" strokeLinejoin="round" strokeLinecap="round" stroke={NEON} filter="url(#veinGlow)" opacity="0.55">
+            {VEINS.map((v, i) => <path key={i} d={v.d} strokeWidth={v.w * 2.5} />)}
+          </g>
+          <g fill="none" strokeLinejoin="round" strokeLinecap="round" stroke={NEON}>
+            {VEINS.map((v, i) => <path key={i} d={v.d} strokeWidth={v.w} opacity={v.o} />)}
+          </g>
+        </svg>
+      </div>
+      <div className="fixed inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 70%)", zIndex: 1 }} />
+
+      <div className="relative z-10 max-w-md mx-auto px-6 pt-16 pb-32">
+        <h1
+          style={{ fontFamily: "'Fraunces', serif", color: "#ffe3f1", textShadow: `0 0 8px ${NEON}, 0 0 24px ${NEON}, 0 0 48px #ff6fb5` }}
+          className="text-5xl font-bold mb-16 text-center"
+        >
+          socials
+        </h1>
+        <ul className="space-y-8">
+          {SOCIALS.map((s) => (
+            <li key={s.name}>
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-2xl px-7 py-6 bg-black/60 transition-all duration-300 hover:bg-black/80 hover:scale-[1.02]"
+                style={{ border: `1.5px solid ${NEON}`, boxShadow: `0 0 10px ${NEON}66, inset 0 0 12px ${NEON}22` }}
+              >
+                <p style={{ fontFamily: "'Fraunces', serif", color: "#ffe3f1", textShadow: `0 0 10px ${NEON}` }} className="text-2xl font-bold">
+                  {s.name}
+                </p>
+                <p className="text-sm mt-1" style={{ color: `${NEON}cc` }}>{s.handle}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
+}
+
 export default function App() {
   const [activeNav, setActiveNav] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -470,6 +533,7 @@ export default function App() {
           {activeNav === "Ezra Tracker" && <TrackerPage />}
           {activeNav === "Future Dreams" && <FutureDreamsPage />}
           {activeNav === "Quotes" && <QuotesPage />}
+          {activeNav === "Socials" && <SocialsPage />}
         </>
       )}
 
