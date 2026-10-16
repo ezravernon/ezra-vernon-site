@@ -6,6 +6,7 @@ import mountDrewPhoto from "@/imports/mount_drew.jpg";
 import mtTantalusPhoto from "@/imports/mt_tantalus.jpeg";
 import mountChurchillPhoto from "@/imports/mount_churchill.jpg";
 import penguinArt from "@/imports/Untitled_Artwork.png";
+import { VEINS } from "./marbleVeins";
 
 const NAV_LINKS = [
   { label: "Home" },
