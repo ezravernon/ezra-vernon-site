@@ -1,0 +1,900 @@
+{
+ "updated": "2026-11-10",
+ "source": "COROS",
+ "activities": [
+  {
+   "date": "2026-11-09",
+   "sport": "Indoor climb",
+   "group": "climbing",
+   "seconds": 4855,
+   "hr": 106
+  },
+  {
+   "date": "2026-11-09",
+   "sport": "Hike",
+   "group": "hiking",
+   "seconds": 2319,
+   "hr": 107,
+   "meters": 1620
+  },
+  {
+   "date": "2026-11-08",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 2242,
+   "hr": 178,
+   "meters": 7280
+  },
+  {
+   "date": "2026-11-08",
+   "sport": "Walk",
+   "group": "other",
+   "seconds": 4395,
+   "hr": 96,
+   "meters": 3900
+  },
+  {
+   "date": "2026-11-05",
+   "sport": "Walk",
+   "group": "other",
+   "seconds": 1287,
+   "hr": 146,
+   "meters": 2930
+  },
+  {
+   "date": "2026-11-05",
+   "sport": "Ride",
+   "group": "other",
+   "seconds": 969,
+   "hr": 106,
+   "meters": 2960
+  },
+  {
+   "date": "2026-11-01",
+   "sport": "Soccer",
+   "group": "soccer",
+   "seconds": 4842,
+   "hr": 117,
+   "meters": 4270
+  },
+  {
+   "date": "2026-10-27",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 1264,
+   "hr": 120,
+   "meters": 1410
+  },
+  {
+   "date": "2026-10-21",
+   "sport": "Soccer",
+   "group": "soccer",
+   "seconds": 6599,
+   "hr": 105,
+   "meters": 3430
+  },
+  {
+   "date": "2026-10-20",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 1694,
+   "hr": 117,
+   "meters": 1740
+  },
+  {
+   "date": "2026-10-20",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3373,
+   "hr": 148,
+   "meters": 10260
+  },
+  {
+   "date": "2026-10-19",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 2362,
+   "hr": 98,
+   "meters": 1300
+  },
+  {
+   "date": "2026-10-18",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 1704,
+   "hr": 154,
+   "meters": 6140
+  },
+  {
+   "date": "2026-10-11",
+   "sport": "Ride",
+   "group": "other",
+   "seconds": 1791,
+   "hr": 117,
+   "meters": 2330
+  },
+  {
+   "date": "2026-10-11",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 13945,
+   "hr": 164,
+   "meters": 42730,
+   "title": "Royal Victoria Marathon"
+  },
+  {
+   "date": "2026-10-09",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 1941,
+   "hr": 152,
+   "meters": 5900
+  },
+  {
+   "date": "2026-10-06",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 3262,
+   "hr": 106,
+   "sets": 13,
+   "title": "Chest / triceps"
+  },
+  {
+   "date": "2026-10-05",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 1930,
+   "hr": 158,
+   "meters": 5980
+  },
+  {
+   "date": "2026-10-04",
+   "sport": "Soccer",
+   "group": "soccer",
+   "seconds": 1339,
+   "hr": 110,
+   "meters": 527
+  },
+  {
+   "date": "2026-10-03",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 7456,
+   "hr": 159,
+   "meters": 21160
+  },
+  {
+   "date": "2026-10-01",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 3278,
+   "hr": 120,
+   "sets": 21,
+   "title": "Upper back / lower back / biceps"
+  },
+  {
+   "date": "2026-10-01",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3662,
+   "hr": 169,
+   "meters": 12090
+  },
+  {
+   "date": "2026-10-01",
+   "sport": "Ride",
+   "group": "other",
+   "seconds": 3717,
+   "hr": 102,
+   "meters": 7100
+  },
+  {
+   "date": "2026-09-29",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 3596,
+   "hr": 109,
+   "meters": 3450
+  },
+  {
+   "date": "2026-09-28",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 1441,
+   "hr": 129,
+   "sets": 6,
+   "title": "Legs (heavy)"
+  },
+  {
+   "date": "2026-09-27",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 2708,
+   "hr": 120,
+   "sets": 25,
+   "title": "Chest / triceps"
+  },
+  {
+   "date": "2026-09-26",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 2859,
+   "hr": 157,
+   "meters": 9150
+  },
+  {
+   "date": "2026-09-24",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 3707,
+   "hr": 120,
+   "sets": 9
+  },
+  {
+   "date": "2026-09-23",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 3880,
+   "hr": 129,
+   "sets": 15
+  },
+  {
+   "date": "2026-09-23",
+   "sport": "Soccer",
+   "group": "soccer",
+   "seconds": 3277,
+   "hr": 140,
+   "meters": 1900
+  },
+  {
+   "date": "2026-09-23",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 1849,
+   "hr": 165,
+   "meters": 5770
+  },
+  {
+   "date": "2026-09-21",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 3179,
+   "hr": 128,
+   "sets": 15
+  },
+  {
+   "date": "2026-09-21",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 1343,
+   "hr": 178,
+   "meters": 5150
+  },
+  {
+   "date": "2026-09-20",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 1445,
+   "hr": 115,
+   "sets": 7
+  },
+  {
+   "date": "2026-09-20",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 1861,
+   "hr": 147,
+   "meters": 5170
+  },
+  {
+   "date": "2026-09-18",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 3799,
+   "hr": 136,
+   "meters": 2950
+  },
+  {
+   "date": "2026-09-17",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 889,
+   "hr": 104,
+   "sets": 3
+  },
+  {
+   "date": "2026-09-17",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3867,
+   "hr": 152,
+   "meters": 9870
+  },
+  {
+   "date": "2026-09-16",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 6039,
+   "hr": 130,
+   "meters": 5120
+  },
+  {
+   "date": "2026-09-14",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 1239,
+   "hr": 151,
+   "meters": 4070
+  },
+  {
+   "date": "2026-09-13",
+   "sport": "Soccer",
+   "group": "soccer",
+   "seconds": 708,
+   "hr": 116,
+   "meters": 707
+  },
+  {
+   "date": "2026-09-13",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 1476,
+   "hr": 160,
+   "meters": 4110
+  },
+  {
+   "date": "2026-09-10",
+   "sport": "Trail run",
+   "group": "running",
+   "seconds": 1418,
+   "hr": 164,
+   "meters": 3060
+  },
+  {
+   "date": "2026-09-10",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 2693,
+   "hr": 102,
+   "sets": 9
+  },
+  {
+   "date": "2026-09-09",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 2098,
+   "hr": 163,
+   "meters": 5880
+  },
+  {
+   "date": "2026-09-02",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 1887,
+   "hr": 138,
+   "meters": 5160
+  },
+  {
+   "date": "2026-08-30",
+   "sport": "Walk",
+   "group": "other",
+   "seconds": 175,
+   "hr": 82,
+   "meters": 18
+  },
+  {
+   "date": "2026-08-29",
+   "sport": "Walk",
+   "group": "other",
+   "seconds": 3721,
+   "hr": 94,
+   "meters": 2190
+  },
+  {
+   "date": "2026-08-21",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 5827,
+   "hr": 96,
+   "sets": 9
+  },
+  {
+   "date": "2026-08-19",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 3144,
+   "hr": 109,
+   "sets": 13
+  },
+  {
+   "date": "2026-08-17",
+   "sport": "Strength",
+   "group": "strength",
+   "seconds": 3127,
+   "hr": 110,
+   "sets": 13
+  },
+  {
+   "date": "2026-08-16",
+   "sport": "Walk",
+   "group": "other",
+   "seconds": 4623,
+   "hr": 102,
+   "meters": 4740
+  },
+  {
+   "date": "2026-08-11",
+   "sport": "Hike",
+   "group": "hiking",
+   "seconds": 29097,
+   "hr": 121,
+   "meters": 16930
+  },
+  {
+   "date": "2026-08-06",
+   "sport": "Hike",
+   "group": "hiking",
+   "seconds": 16049,
+   "hr": 135,
+   "meters": 11290
+  },
+  {
+   "date": "2026-07-23",
+   "sport": "Hike",
+   "group": "hiking",
+   "seconds": 20448,
+   "hr": 142,
+   "meters": 25160
+  },
+  {
+   "date": "2026-07-20",
+   "sport": "Walk",
+   "group": "other",
+   "seconds": 1400,
+   "hr": 95,
+   "meters": 1710
+  },
+  {
+   "date": "2026-07-18",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 2664,
+   "hr": 160,
+   "meters": 2270
+  },
+  {
+   "date": "2026-07-18",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 2976,
+   "hr": 142,
+   "meters": 2650
+  },
+  {
+   "date": "2026-07-18",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3593,
+   "hr": 164,
+   "meters": 3160
+  },
+  {
+   "date": "2026-07-17",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3520,
+   "hr": 148,
+   "meters": 4860
+  },
+  {
+   "date": "2026-06-24",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 2094,
+   "hr": 155,
+   "meters": 5010
+  },
+  {
+   "date": "2026-06-22",
+   "sport": "Hike",
+   "group": "hiking",
+   "seconds": 4179,
+   "hr": 105,
+   "meters": 4800
+  },
+  {
+   "date": "2026-06-17",
+   "sport": "Hike",
+   "group": "hiking",
+   "seconds": 20840,
+   "hr": 105,
+   "meters": 11790
+  },
+  {
+   "date": "2026-06-14",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 734,
+   "hr": 156,
+   "meters": 1300
+  },
+  {
+   "date": "2026-06-14",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 4063,
+   "hr": 152,
+   "meters": 12640
+  },
+  {
+   "date": "2026-06-13",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 679,
+   "hr": 149,
+   "meters": 1400
+  },
+  {
+   "date": "2026-06-13",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 11214,
+   "hr": 150,
+   "meters": 27580
+  },
+  {
+   "date": "2026-06-12",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 538,
+   "hr": 127,
+   "meters": 1320
+  },
+  {
+   "date": "2026-06-12",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 1246,
+   "hr": 146,
+   "meters": 5000
+  },
+  {
+   "date": "2026-06-11",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3236,
+   "hr": 161,
+   "meters": 9650
+  },
+  {
+   "date": "2026-06-09",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 598,
+   "hr": 153,
+   "meters": 1360
+  },
+  {
+   "date": "2026-06-09",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 4812,
+   "hr": 159,
+   "meters": 13970
+  },
+  {
+   "date": "2026-06-08",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3166,
+   "hr": 162,
+   "meters": 8470
+  },
+  {
+   "date": "2026-06-06",
+   "sport": "Rowing",
+   "group": "other",
+   "seconds": 5951,
+   "hr": 93,
+   "meters": 6920
+  },
+  {
+   "date": "2026-06-05",
+   "sport": "Rowing",
+   "group": "other",
+   "seconds": 4933,
+   "hr": 98,
+   "meters": 6060
+  },
+  {
+   "date": "2026-06-05",
+   "sport": "Rowing",
+   "group": "other",
+   "seconds": 3240,
+   "hr": 93,
+   "meters": 3920
+  },
+  {
+   "date": "2026-06-03",
+   "sport": "Hike",
+   "group": "hiking",
+   "seconds": 1788,
+   "hr": 102,
+   "meters": 1620
+  },
+  {
+   "date": "2026-06-03",
+   "sport": "Rowing",
+   "group": "other",
+   "seconds": 67,
+   "hr": 107,
+   "meters": 76
+  },
+  {
+   "date": "2026-06-02",
+   "sport": "Rowing",
+   "group": "other",
+   "seconds": 2556,
+   "hr": 108,
+   "meters": 3190
+  },
+  {
+   "date": "2026-06-02",
+   "sport": "Hike",
+   "group": "hiking",
+   "seconds": 1636,
+   "hr": 98,
+   "meters": 1310
+  },
+  {
+   "date": "2026-06-02",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 113,
+   "hr": 92,
+   "meters": 150
+  },
+  {
+   "date": "2026-06-01",
+   "sport": "Hike",
+   "group": "hiking",
+   "seconds": 2632,
+   "hr": 109,
+   "meters": 2120
+  },
+  {
+   "date": "2026-06-01",
+   "sport": "Hike",
+   "group": "hiking",
+   "seconds": 2180,
+   "hr": 115,
+   "meters": 1920
+  },
+  {
+   "date": "2026-05-29",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 4299,
+   "hr": 149,
+   "meters": 11660
+  },
+  {
+   "date": "2026-05-27",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3481,
+   "hr": 139,
+   "meters": 8510
+  },
+  {
+   "date": "2026-05-26",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 4022,
+   "hr": 115,
+   "meters": 3630
+  },
+  {
+   "date": "2026-05-26",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 5926,
+   "hr": 131,
+   "meters": 5770
+  },
+  {
+   "date": "2026-05-25",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 2496,
+   "hr": 111,
+   "meters": 1700
+  },
+  {
+   "date": "2026-05-21",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 2076,
+   "hr": 126,
+   "meters": 1570
+  },
+  {
+   "date": "2026-05-19",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3712,
+   "hr": 161,
+   "meters": 8380
+  },
+  {
+   "date": "2026-05-18",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 2361,
+   "hr": 155,
+   "meters": 6560
+  },
+  {
+   "date": "2026-05-17",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 7116,
+   "hr": 158,
+   "meters": 22250
+  },
+  {
+   "date": "2026-05-16",
+   "sport": "Trail run",
+   "group": "running",
+   "seconds": 4335,
+   "hr": 146,
+   "meters": 13240
+  },
+  {
+   "date": "2026-05-13",
+   "sport": "Rowing",
+   "group": "other",
+   "seconds": 10675,
+   "hr": 101,
+   "meters": 7650
+  },
+  {
+   "date": "2026-05-12",
+   "sport": "Rowing",
+   "group": "other",
+   "seconds": 7024,
+   "hr": 90,
+   "meters": 6460
+  },
+  {
+   "date": "2026-05-11",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 2727,
+   "hr": 133,
+   "meters": 1350
+  },
+  {
+   "date": "2026-05-11",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 5651,
+   "hr": 142,
+   "meters": 4190
+  },
+  {
+   "date": "2026-05-11",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 4518,
+   "hr": 140,
+   "meters": 2700
+  },
+  {
+   "date": "2026-05-10",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 7984,
+   "hr": 152,
+   "meters": 21900
+  },
+  {
+   "date": "2026-05-08",
+   "sport": "Trail run",
+   "group": "running",
+   "seconds": 3984,
+   "hr": 128,
+   "meters": 8190
+  },
+  {
+   "date": "2026-05-07",
+   "sport": "Trail run",
+   "group": "running",
+   "seconds": 4884,
+   "hr": 148,
+   "meters": 13290
+  },
+  {
+   "date": "2026-05-06",
+   "sport": "Trail run",
+   "group": "running",
+   "seconds": 1576,
+   "hr": 150,
+   "meters": 5020
+  },
+  {
+   "date": "2026-05-06",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 3635,
+   "hr": 108,
+   "meters": 2020
+  },
+  {
+   "date": "2026-05-04",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3794,
+   "hr": 142,
+   "meters": 3520
+  },
+  {
+   "date": "2026-05-04",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3810,
+   "hr": 131,
+   "meters": 2200
+  },
+  {
+   "date": "2026-05-03",
+   "sport": "Trail run",
+   "group": "running",
+   "seconds": 7565,
+   "hr": 151,
+   "meters": 21370,
+   "title": "Long run, trails x4"
+  },
+  {
+   "date": "2026-05-02",
+   "sport": "Walk",
+   "group": "other",
+   "seconds": 8133,
+   "hr": 85,
+   "meters": 1530
+  },
+  {
+   "date": "2026-05-01",
+   "sport": "Trail run",
+   "group": "running",
+   "seconds": 3402,
+   "hr": 142,
+   "meters": 8160,
+   "title": "Recovery"
+  },
+  {
+   "date": "2026-04-30",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 3059,
+   "hr": 135,
+   "meters": 2630
+  },
+  {
+   "date": "2026-04-30",
+   "sport": "Trail run",
+   "group": "running",
+   "seconds": 5176,
+   "hr": 149,
+   "meters": 13650
+  },
+  {
+   "date": "2026-04-29",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 5818,
+   "hr": 145,
+   "meters": 3910
+  }
+ ]
+}

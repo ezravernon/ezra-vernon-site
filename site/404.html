@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-CA" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Ezra Vernon</title>
+<meta name="description" content="This page doesn't exist on Ezra Vernon's site.">
+<meta name="theme-color" content="#1E2A27">
+<script>document.documentElement.classList.replace('no-js','js')</script>
+<link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png"><link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap">
+<style>
+/* ===== SHARED STYLES — keep identical on all pages ===== */
+:root{
+  /* Colour: one neutral base, one dark text colour, one accent */
+  --base:#F6F3EE;        /* warm paper off-white */
+  --base-deep:#EDE7DE;   /* slightly deeper tint of the base, for alternating sections */
+  --ink:#1E2A27;         /* deep pine — main text (13.4:1 on base) */
+  --ink-soft:#5B6662;    /* secondary text (5.4:1 on base) */
+  --accent:#1A6E6A;      /* deep turquoise — buttons + links only (5.45:1 on base) */
+  --line:rgba(30,42,39,.14);
+  /* Type: 1.25 modular scale from an 18px body */
+  --font-serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-sans:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --step--1:0.875rem; --step-0:1.125rem; --step-1:1.406rem; --step-2:1.758rem;
+  --step-3:2.197rem; --step-4:2.747rem; --step-5:3.433rem; --step-6:4.292rem;
+  /* Spacing: multiples of 8px */
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px; --s7:96px; --s8:128px;
+  --measure:68ch;
+  --radius:8px;
+  --shadow:0 8px 24px rgba(30,42,39,.08);
+  --t-fast:160ms; --t-med:240ms; --t-slow:300ms;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--base);color:var(--ink);font-family:var(--font-sans);font-size:var(--step-0);line-height:1.6;text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:var(--font-serif);font-weight:400;line-height:1.1;letter-spacing:-0.015em;margin:0 0 var(--s3)}
+h1{font-size:clamp(var(--step-4),6vw,var(--step-6));letter-spacing:-0.025em}
+h2{font-size:clamp(var(--step-3),4vw,var(--step-4))}
+h3{font-size:var(--step-2);line-height:1.2}
+p{margin:0 0 var(--s3);max-width:var(--measure)}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px;transition:color var(--t-fast) var(--ease)}
+a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.site-header :focus-visible,.hero :focus-visible,.q-head :focus-visible{outline-color:var(--base)}
+.eyebrow{font-family:var(--font-sans);font-size:var(--step--1);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 var(--s2)}
+.lede{font-size:var(--step-1);line-height:1.5;color:var(--ink)}
+.wrap{width:min(1200px,100% - var(--s4));margin-inline:auto}
+.section{padding-block:var(--s7)}
+.section--tint{background:var(--base-deep)}
+.skip{position:absolute;left:var(--s2);top:-80px;background:var(--ink);color:var(--base);padding:var(--s1) var(--s2);border-radius:var(--radius);z-index:100;transition:top var(--t-fast)}
+.skip:focus{top:var(--s2)}
+/* Buttons — one style everywhere */
+.btn{display:inline-flex;align-items:center;gap:var(--s1);font:500 var(--step-0)/1 var(--font-sans);padding:var(--s2) var(--s3);border-radius:var(--radius);background:var(--accent);color:var(--base);text-decoration:none;border:1px solid var(--accent);cursor:pointer;transition:background var(--t-med) var(--ease),color var(--t-med) var(--ease),transform var(--t-med) var(--ease)}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:var(--base);transform:translateY(-1px)}
+.btn--ghost{background:transparent;color:var(--accent)}
+.btn--ghost:hover{background:var(--accent);border-color:var(--accent)}
+/* Header + nav */
+.site-header{position:sticky;top:0;z-index:20;background:rgba(30,42,39,.96);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid rgba(246,243,238,.08)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:72px}
+.brand{display:flex;align-items:center;gap:var(--s2);text-decoration:none;color:var(--base);font-family:var(--font-serif);font-size:var(--step-1)}
+.brand img{width:56px;height:32px}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:var(--s4)}
+.nav a{color:var(--base);text-decoration:none;font-size:var(--step-0);padding-block:var(--s1);border-bottom:1px solid transparent;transition:border-color var(--t-med) var(--ease),color var(--t-med) var(--ease)}
+.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--base)}
+.nav a[aria-current="page"]{color:var(--base)}
+.brand:hover{color:var(--base)}
+.nav .btn{color:var(--base);padding:var(--s1) var(--s3);border-bottom:1px solid var(--accent)}
+.nav .btn:hover,.nav .btn[aria-current="page"]{background:var(--base);border-color:var(--base);color:var(--ink)}
+.nav-toggle{display:none}
+@media (max-width:960px){
+  .nav-toggle{display:inline-flex;font:500 var(--step-0)/1 var(--font-sans);background:none;border:1px solid rgba(246,243,238,.3);border-radius:var(--radius);padding:var(--s1) var(--s2);color:var(--base);cursor:pointer}
+  .nav{position:absolute;inset:72px 0 auto 0;background:var(--ink);border-bottom:1px solid rgba(246,243,238,.08);display:none}
+  .nav.is-open{display:block}
+  .no-js .nav{display:block;position:static;border:0}
+  .no-js .site-header .wrap{flex-wrap:wrap;padding-block:var(--s2)}
+  .nav ul{flex-direction:column;align-items:flex-start;gap:var(--s1);padding:var(--s2) var(--s2) var(--s3)}
+  .no-js .nav ul{flex-direction:row;flex-wrap:wrap;padding:0}
+}
+/* Page header used on inner pages */
+.page-head{padding-block:var(--s7) var(--s5)}
+.page-head p{font-size:var(--step-1);line-height:1.5}
+/* Footer */
+.site-footer{border-top:1px solid var(--line);padding-block:var(--s6) var(--s8)}
+.site-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s3);align-items:center}
+.site-footer p{margin:0;color:var(--ink-soft);font-size:var(--step--1)}
+.site-footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s3);margin:0;padding:0;font-size:var(--step--1)}
+/* Sign-in corner */
+.signin-btn{position:fixed;right:var(--s2);bottom:var(--s2);z-index:30;font:500 var(--step--1)/1 var(--font-sans);padding:var(--s1) var(--s2);border-radius:var(--radius);border:1px solid var(--line);background:var(--base);color:var(--ink-soft);box-shadow:var(--shadow);cursor:pointer;transition:color var(--t-med) var(--ease),border-color var(--t-med) var(--ease)}
+.signin-btn:hover{color:var(--accent);border-color:var(--accent)}
+.signin-btn[data-state="in"]{color:var(--accent)}
+.signin{border:1px solid var(--line);border-radius:var(--radius);padding:var(--s4);width:min(400px,100% - var(--s4));background:var(--base);color:var(--ink);box-shadow:var(--shadow)}
+.signin::backdrop{background:rgba(30,42,39,.35)}
+.signin h2{font-size:var(--step-2);margin-bottom:var(--s2)}
+.field{display:grid;gap:var(--s1);margin-bottom:var(--s3)}
+.field label{font-size:var(--step--1);font-weight:500;color:var(--ink-soft);letter-spacing:.04em}
+.field input{font:400 var(--step-0)/1.4 var(--font-sans);padding:var(--s2);border:1px solid var(--line);border-radius:var(--radius);background:#fff;color:var(--ink);transition:border-color var(--t-fast)}
+.field input:focus-visible{border-color:var(--accent);outline-offset:1px}
+.signin-msg{min-height:1.6em;margin:0 0 var(--s2);font-size:var(--step--1);color:var(--ink-soft)}
+.signin-actions{display:flex;gap:var(--s2);flex-wrap:wrap}
+/* Gentle reveal on scroll (only when JS runs and motion is allowed) */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity var(--t-slow) var(--ease),transform var(--t-slow) var(--ease)}
+.js .reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  *{transition-duration:1ms!important;animation:none!important}
+}
+</style>
+<style>
+/* ===== PAGE STYLES: 404.html ===== */
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="images/logo-240.webp" width="56" height="32" alt="">Ezra Vernon</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <ul><li><a href="index.html">Home</a></li><li><a href="dreams.html">Dreams</a></li><li><a href="sidequests.html">Sidequests</a></li><li><a href="quotes.html">Quotes</a></li><li><a href="training.html">Training</a></li><li><a class="btn" href="socials.html">Socials</a></li></ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-head" style="padding-block:var(--s8)">
+  <div class="wrap">
+    <p class="eyebrow">404 · Off route</p>
+    <h1>This trail doesn’t go anywhere.</h1>
+    <p>The page you were looking for isn’t here. Head back to the trailhead or see what I’m planning next.</p>
+    <p style="display:flex;gap:var(--s2);flex-wrap:wrap"><a class="btn" href="index.html">Back home</a><a class="btn btn--ghost" href="dreams.html">Future dreams</a></p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Ezra Vernon · Live in the balance between two extremes.</p>
+    <ul>
+      <li><a href="https://www.instagram.com/ezrav_insta" rel="noopener">Instagram</a></li>
+      <li><a href="https://ca.linkedin.com/in/ezra-vernon-a98a40343" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://strava.app.link/lBou8jZCg7b" rel="noopener">Strava</a></li>
+    </ul>
+  </div>
+</footer>
+<button class="signin-btn" type="button" data-state="out" aria-haspopup="dialog">Sign in</button>
+<dialog class="signin" id="signin" aria-labelledby="signin-title">
+  <form method="dialog" novalidate>
+    <h2 id="signin-title">Sign in</h2>
+    <div class="field"><label for="signin-pw">Password</label><input id="signin-pw" name="password" type="password" autocomplete="current-password" required></div>
+    <p class="signin-msg" role="status" aria-live="polite"></p>
+    <div class="signin-actions">
+      <button class="btn signin-submit" type="submit">Sign in</button>
+      <button class="btn btn--ghost signin-out" type="button" hidden>Sign out</button>
+      <button class="btn btn--ghost signin-cancel" type="button">Close</button>
+    </div>
+  </form>
+</dialog>
+<script>
+/* ===== SHARED SCRIPT — keep identical on all pages ===== */
+(function(){
+  var d=document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
+  // Mobile nav
+  var t=document.querySelector('.nav-toggle'), n=document.getElementById('site-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('is-open');t.setAttribute('aria-expanded',o)});}
+  // Scroll reveal
+  var els=document.querySelectorAll('.reveal');
+  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!('IntersectionObserver' in window)||rm){els.forEach(function(e){e.classList.add('is-in')});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)});}
+  // Simple sign-in. NOTE: this is a static site, so this is a convenience gate only, not real security.
+  var HASH='eb740430888cafad58f8882004534e966e9f13775ecb87450da7d24ac53ce126';
+  var KEY='ev-signed-in', btn=document.querySelector('.signin-btn'), dlg=document.getElementById('signin');
+  if(!btn||!dlg)return;
+  function get(){try{return sessionStorage.getItem(KEY)==='1'}catch(e){return false}}
+  function set(v){try{v?sessionStorage.setItem(KEY,'1'):sessionStorage.removeItem(KEY)}catch(e){}}
+  function paint(){var on=get();btn.textContent=on?'Signed in · Ezra':'Sign in';btn.dataset.state=on?'in':'out';d.classList.toggle('is-owner',on)}
+  paint();
+  var form=dlg.querySelector('form'), msg=dlg.querySelector('.signin-msg'), pw=dlg.querySelector('#signin-pw'),
+      out=dlg.querySelector('.signin-out'), sub=dlg.querySelector('.signin-submit'), title=dlg.querySelector('#signin-title');
+  function openD(){var on=get();title.textContent=on?'You\u2019re signed in':'Sign in';pw.parentNode.hidden=on;sub.hidden=on;out.hidden=!on;msg.textContent='';pw.value='';
+    if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');setTimeout(function(){(on?out:pw).focus()},0)}
+  function closeD(){if(dlg.close)dlg.close();else dlg.removeAttribute('open');btn.focus()}
+  btn.addEventListener('click',openD);
+  dlg.querySelector('.signin-cancel').addEventListener('click',closeD);
+  out.addEventListener('click',function(){set(false);paint();closeD()});
+  async function sha(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}
+  form.addEventListener('submit',async function(e){e.preventDefault();
+    try{ if(await sha(pw.value)===HASH){set(true);paint();msg.textContent='Welcome back, Ezra.';setTimeout(closeD,600)}
+         else{msg.textContent='That password didn\u2019t match. Try again.';pw.select()} }
+    catch(err){msg.textContent='Sign-in needs a secure (https) connection.'}
+  });
+})();
+</script>
+</body>
+</html>
