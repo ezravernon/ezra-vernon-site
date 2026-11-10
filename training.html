@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-CA" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Training log — Ezra Vernon</title>
+<meta name="description" content="Every run, hike, climb, ultimate and soccer session from Ezra Vernon's COROS watch, newest first, with monthly totals.">
+<meta name="theme-color" content="#1E2A27">
+<script>document.documentElement.classList.replace('no-js','js')</script>
+<link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png"><link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap">
+<style>
+/* ===== SHARED STYLES — keep identical on all pages ===== */
+:root{
+  /* Colour: one neutral base, one dark text colour, one accent */
+  --base:#F6F3EE;        /* warm paper off-white */
+  --base-deep:#EDE7DE;   /* slightly deeper tint of the base, for alternating sections */
+  --ink:#1E2A27;         /* deep pine — main text (13.4:1 on base) */
+  --ink-soft:#5B6662;    /* secondary text (5.4:1 on base) */
+  --accent:#1A6E6A;      /* deep turquoise — buttons + links only (5.45:1 on base) */
+  --line:rgba(30,42,39,.14);
+  /* Type: 1.25 modular scale from an 18px body */
+  --font-serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-sans:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --step--1:0.875rem; --step-0:1.125rem; --step-1:1.406rem; --step-2:1.758rem;
+  --step-3:2.197rem; --step-4:2.747rem; --step-5:3.433rem; --step-6:4.292rem;
+  /* Spacing: multiples of 8px */
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px; --s7:96px; --s8:128px;
+  --measure:68ch;
+  --radius:8px;
+  --shadow:0 8px 24px rgba(30,42,39,.08);
+  --t-fast:160ms; --t-med:240ms; --t-slow:300ms;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--base);color:var(--ink);font-family:var(--font-sans);font-size:var(--step-0);line-height:1.6;text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:var(--font-serif);font-weight:400;line-height:1.1;letter-spacing:-0.015em;margin:0 0 var(--s3)}
+h1{font-size:clamp(var(--step-4),6vw,var(--step-6));letter-spacing:-0.025em}
+h2{font-size:clamp(var(--step-3),4vw,var(--step-4))}
+h3{font-size:var(--step-2);line-height:1.2}
+p{margin:0 0 var(--s3);max-width:var(--measure)}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px;transition:color var(--t-fast) var(--ease)}
+a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.site-header :focus-visible,.hero :focus-visible,.q-head :focus-visible{outline-color:var(--base)}
+.eyebrow{font-family:var(--font-sans);font-size:var(--step--1);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 var(--s2)}
+.lede{font-size:var(--step-1);line-height:1.5;color:var(--ink)}
+.wrap{width:min(1200px,100% - var(--s4));margin-inline:auto}
+.section{padding-block:var(--s7)}
+.section--tint{background:var(--base-deep)}
+.skip{position:absolute;left:var(--s2);top:-80px;background:var(--ink);color:var(--base);padding:var(--s1) var(--s2);border-radius:var(--radius);z-index:100;transition:top var(--t-fast)}
+.skip:focus{top:var(--s2)}
+/* Buttons — one style everywhere */
+.btn{display:inline-flex;align-items:center;gap:var(--s1);font:500 var(--step-0)/1 var(--font-sans);padding:var(--s2) var(--s3);border-radius:var(--radius);background:var(--accent);color:var(--base);text-decoration:none;border:1px solid var(--accent);cursor:pointer;transition:background var(--t-med) var(--ease),color var(--t-med) var(--ease),transform var(--t-med) var(--ease)}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:var(--base);transform:translateY(-1px)}
+.btn--ghost{background:transparent;color:var(--accent)}
+.btn--ghost:hover{background:var(--accent);border-color:var(--accent)}
+/* Header + nav */
+.site-header{position:sticky;top:0;z-index:20;background:rgba(30,42,39,.96);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid rgba(246,243,238,.08)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:72px}
+.brand{display:flex;align-items:center;gap:var(--s2);text-decoration:none;color:var(--base);font-family:var(--font-serif);font-size:var(--step-1)}
+.brand img{width:56px;height:32px}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:var(--s4)}
+.nav a{color:var(--base);text-decoration:none;font-size:var(--step-0);padding-block:var(--s1);border-bottom:1px solid transparent;transition:border-color var(--t-med) var(--ease),color var(--t-med) var(--ease)}
+.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--base)}
+.nav a[aria-current="page"]{color:var(--base)}
+.brand:hover{color:var(--base)}
+.nav .btn{color:var(--base);padding:var(--s1) var(--s3);border-bottom:1px solid var(--accent)}
+.nav .btn:hover,.nav .btn[aria-current="page"]{background:var(--base);border-color:var(--base);color:var(--ink)}
+.nav-toggle{display:none}
+@media (max-width:960px){
+  .nav-toggle{display:inline-flex;font:500 var(--step-0)/1 var(--font-sans);background:none;border:1px solid rgba(246,243,238,.3);border-radius:var(--radius);padding:var(--s1) var(--s2);color:var(--base);cursor:pointer}
+  .nav{position:absolute;inset:72px 0 auto 0;background:var(--ink);border-bottom:1px solid rgba(246,243,238,.08);display:none}
+  .nav.is-open{display:block}
+  .no-js .nav{display:block;position:static;border:0}
+  .no-js .site-header .wrap{flex-wrap:wrap;padding-block:var(--s2)}
+  .nav ul{flex-direction:column;align-items:flex-start;gap:var(--s1);padding:var(--s2) var(--s2) var(--s3)}
+  .no-js .nav ul{flex-direction:row;flex-wrap:wrap;padding:0}
+}
+/* Page header used on inner pages */
+.page-head{padding-block:var(--s7) var(--s5)}
+.page-head p{font-size:var(--step-1);line-height:1.5}
+/* Footer */
+.site-footer{border-top:1px solid var(--line);padding-block:var(--s6) var(--s8)}
+.site-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s3);align-items:center}
+.site-footer p{margin:0;color:var(--ink-soft);font-size:var(--step--1)}
+.site-footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s3);margin:0;padding:0;font-size:var(--step--1)}
+/* Sign-in corner */
+.signin-btn{position:fixed;right:var(--s2);bottom:var(--s2);z-index:30;font:500 var(--step--1)/1 var(--font-sans);padding:var(--s1) var(--s2);border-radius:var(--radius);border:1px solid var(--line);background:var(--base);color:var(--ink-soft);box-shadow:var(--shadow);cursor:pointer;transition:color var(--t-med) var(--ease),border-color var(--t-med) var(--ease)}
+.signin-btn:hover{color:var(--accent);border-color:var(--accent)}
+.signin-btn[data-state="in"]{color:var(--accent)}
+.signin{border:1px solid var(--line);border-radius:var(--radius);padding:var(--s4);width:min(400px,100% - var(--s4));background:var(--base);color:var(--ink);box-shadow:var(--shadow)}
+.signin::backdrop{background:rgba(30,42,39,.35)}
+.signin h2{font-size:var(--step-2);margin-bottom:var(--s2)}
+.field{display:grid;gap:var(--s1);margin-bottom:var(--s3)}
+.field label{font-size:var(--step--1);font-weight:500;color:var(--ink-soft);letter-spacing:.04em}
+.field input{font:400 var(--step-0)/1.4 var(--font-sans);padding:var(--s2);border:1px solid var(--line);border-radius:var(--radius);background:#fff;color:var(--ink);transition:border-color var(--t-fast)}
+.field input:focus-visible{border-color:var(--accent);outline-offset:1px}
+.signin-msg{min-height:1.6em;margin:0 0 var(--s2);font-size:var(--step--1);color:var(--ink-soft)}
+.signin-actions{display:flex;gap:var(--s2);flex-wrap:wrap}
+/* Gentle reveal on scroll (only when JS runs and motion is allowed) */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity var(--t-slow) var(--ease),transform var(--t-slow) var(--ease)}
+.js .reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  *{transition-duration:1ms!important;animation:none!important}
+}
+</style>
+<style>
+/* ===== PAGE STYLES: training.html ===== */
+
+.stats{display:grid;gap:var(--s3);grid-template-columns:repeat(2,1fr);margin:0}
+@media (min-width:900px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat-tile{border-top:1px solid var(--ink);padding-top:var(--s2)}
+.stat-tile dt{font-size:var(--step--1);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.stat-tile dd{margin:var(--s1) 0 0;font-family:var(--font-serif);font-size:clamp(var(--step-3),4vw,var(--step-5));line-height:1}
+.stat-tile dd small{display:block;font-family:var(--font-sans);font-size:var(--step--1);color:var(--ink-soft);margin-top:var(--s1);line-height:1.4}
+.highlights{display:grid;gap:var(--s3);grid-template-columns:1fr;margin-top:var(--s5)}
+@media (min-width:760px){.highlights{grid-template-columns:repeat(3,1fr)}}
+.hl{border:1px solid var(--line);border-radius:var(--radius);padding:var(--s3);background:var(--base)}
+.hl p{margin:0}
+.hl .eyebrow{margin-bottom:var(--s1)}
+.hl .big{font-family:var(--font-serif);font-size:var(--step-2);line-height:1.2}
+.hl .sub{color:var(--ink-soft);font-size:var(--step--1);margin-top:var(--s1)}
+.chart-wrap{position:relative;margin-top:var(--s3)}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .axis{stroke:var(--ink-soft);stroke-width:1}
+.chart .ytick{font:400 12px var(--font-sans);fill:var(--ink-soft);text-anchor:end}
+.chart .xtick{font:400 12px var(--font-sans);fill:var(--ink-soft);text-anchor:middle}
+.chart .bar path{fill:var(--accent);transition:opacity var(--t-fast) var(--ease)}
+.chart .bar .hit{fill:transparent}
+.chart:hover .bar path{opacity:.45}
+.chart .bar:hover path,.chart .bar:focus path{opacity:1}
+.chart .bar:focus{outline:none}
+.chart .bar:focus-visible .hit{stroke:var(--accent);stroke-width:2}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--base);font-size:var(--step--1);padding:var(--s1) var(--s2);border-radius:var(--radius);white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity var(--t-fast)}
+.tip.on{opacity:1}
+details.data{margin-top:var(--s3);font-size:var(--step--1)}
+details.data summary{cursor:pointer;color:var(--accent)}
+details.data table{border-collapse:collapse;margin-top:var(--s2);min-width:min(420px,100%)}
+details.data th,details.data td{text-align:left;padding:var(--s1) var(--s2);border-bottom:1px solid var(--line);font-weight:400}
+details.data td{font-variant-numeric:tabular-nums}
+.filters{display:none;flex-wrap:wrap;gap:var(--s1);margin-bottom:var(--s4)}
+.js .filters{display:flex}
+.chip{font:500 var(--step--1)/1 var(--font-sans);padding:var(--s1) var(--s2);border-radius:999px;border:1px solid var(--line);background:var(--base);color:var(--ink);cursor:pointer;transition:border-color var(--t-fast),background var(--t-fast),color var(--t-fast)}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--base)}
+.count{color:var(--ink-soft);font-size:var(--step--1);margin:0 0 var(--s4)}
+.month{margin-bottom:var(--s5)}
+.month h3{font-size:var(--step-2);padding-bottom:var(--s1);border-bottom:1px solid var(--ink);margin-bottom:0;position:sticky;top:72px;background:var(--base);z-index:2;padding-top:var(--s2)}
+.month h3 span{color:var(--ink-soft)}
+.acts{list-style:none;margin:0;padding:0}
+.act{display:grid;grid-template-columns:56px 1fr;gap:var(--s1) var(--s3);padding-block:var(--s2);border-bottom:1px solid var(--line);align-items:center}
+@media (min-width:760px){.act{grid-template-columns:64px 1fr auto}}
+.act[hidden],.month[hidden]{display:none}
+.act time{display:flex;flex-direction:column;line-height:1.1;grid-row:span 2}
+@media (min-width:760px){.act time{grid-row:auto}}
+.act time b{font-family:var(--font-serif);font-weight:400;font-size:var(--step-2)}
+.act time span{font-size:var(--step--1);color:var(--ink-soft)}
+.what{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s1) var(--s2)}
+.what strong{font-weight:500}
+.tag{font-size:var(--step--1);border:1px solid var(--line);border-radius:999px;padding:0 var(--s1);color:var(--ink-soft)}
+.how{display:flex;gap:var(--s2);font-variant-numeric:tabular-nums;font-size:var(--step-0)}
+@media (min-width:760px){.how{justify-content:flex-end;text-align:right}}
+.how .meta{color:var(--ink-soft)}
+.source{color:var(--ink-soft);font-size:var(--step--1)}
+@media (min-width:760px){.highlights{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.highlights{grid-template-columns:repeat(4,1fr)}}
+/* Activity mix pie: the one place the site uses more than its single accent (Ezra asked for colour here) */
+.mix{display:grid;gap:var(--s5);align-items:center;margin-top:var(--s3)}
+@media (min-width:900px){.mix{grid-template-columns:minmax(240px,360px) 1fr;gap:var(--s7)}}
+.pie{width:100%;max-width:360px;height:auto;display:block;overflow:visible}
+.pie path{stroke:var(--base-deep);stroke-width:2;stroke-linejoin:round;transition:opacity var(--t-fast) var(--ease),transform var(--t-med) var(--ease);transform-origin:120px 120px}
+.pie:hover .slice path{opacity:.5}
+.pie .slice:hover path,.pie .slice:focus path{opacity:1;transform:scale(1.03)}
+.pie .slice:focus{outline:none}
+.pie .slice:focus-visible path{stroke:var(--ink)}
+.slice-label{font:500 13px var(--font-sans);fill:#fff;text-anchor:middle;pointer-events:none}
+.legend{list-style:none;margin:0;padding:0}
+.legend li{display:grid;grid-template-columns:16px 1fr 48px 48px 80px;gap:var(--s2);align-items:baseline;padding-block:var(--s1);border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.legend li.head{font-size:var(--step--1);color:var(--ink-soft);letter-spacing:.04em}
+.legend .sw{width:16px;height:16px;border-radius:4px;align-self:center}
+.legend .lg-name small{display:block;font-size:var(--step--1);color:var(--ink-soft)}
+.legend .lg-n,.legend .lg-pct,.legend .lg-hr{text-align:right}
+.legend .lg-hr{color:var(--ink-soft);white-space:nowrap}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="images/logo-240.webp" width="56" height="32" alt="">Ezra Vernon</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <ul><li><a href="index.html">Home</a></li><li><a href="dreams.html">Dreams</a></li><li><a href="sidequests.html">Sidequests</a></li><li><a href="quotes.html">Quotes</a></li><li><a href="training.html" aria-current="page">Training</a></li><li><a class="btn" href="socials.html">Socials</a></li></ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-head">
+  <div class="wrap reveal">
+    <p class="eyebrow">Page 05</p>
+    <h1>Training log</h1>
+    <p>Data and activities from my watch. Updated November 10, 2026.</p>
+  </div>
+</section>
+
+<section class="section section--tint" aria-labelledby="totals" style="padding-top:var(--s6)">
+  <div class="wrap">
+    <h2 id="totals" class="eyebrow">Since April 2026</h2>
+    <dl class="stats reveal">
+      <div class="stat-tile"><dt>Activities</dt><dd>111</dd></div>
+      <div class="stat-tile"><dt>Hours moving</dt><dd>126</dd></div>
+      <div class="stat-tile"><dt>Kilometres run</dt><dd>454<small>road + trail</small></dd></div>
+      <div class="stat-tile"><dt>Avg heart rate</dt><dd>130<small>bpm, across all activity time</small></dd></div>
+    </dl>
+    <div class="highlights">
+      <div class="hl reveal"><p class="eyebrow">Longest run</p><p class="big">Royal Victoria Marathon</p><p class="sub">42.73 km · 3h 52m · Oct 11, 2026</p></div>
+      <div class="hl reveal"><p class="eyebrow">Longest day out</p><p class="big">8h 04m hiking</p><p class="sub">16.9 km · Aug 11, 2026</p></div>
+      <div class="hl reveal"><p class="eyebrow">Busiest month</p><p class="big">May 2026</p><p class="sub">33.1 hours · 25 activities</p></div>
+      <div class="hl reveal"><p class="eyebrow">Hardest effort</p><p class="big">178 bpm average</p><p class="sub">Run · 7.28 km · 37 min · Nov 8, 2026</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="chart-title">
+  <div class="wrap">
+    <h2 id="chart-title" style="font-size:var(--step-3)">Hours per month</h2>
+    <div class="chart-wrap reveal"><svg viewBox="0 0 720 260" class="chart" aria-labelledby="chart-title" role="group"><line x1="40" x2="720" y1="228.0" y2="228.0" class="grid"/><text x="32" y="232.0" class="ytick">0</text><line x1="40" x2="720" y1="175.0" y2="175.0" class="grid"/><text x="32" y="179.0" class="ytick">10</text><line x1="40" x2="720" y1="122.0" y2="122.0" class="grid"/><text x="32" y="126.0" class="ytick">20</text><line x1="40" x2="720" y1="69.0" y2="69.0" class="grid"/><text x="32" y="73.0" class="ytick">30</text><line x1="40" x2="720" y1="16.0" y2="16.0" class="grid"/><text x="32" y="20.0" class="ytick">40</text><line x1="40" x2="720" y1="228" y2="228" class="axis"/><g class="bar" tabindex="0" role="img" aria-label="April 2026: 3.9 hours · 3 activities" data-tip="April 2026: 3.9 hours · 3 activities"><rect x="40.0" y="16" width="85.0" height="212" class="hit"/><path d="M58.7,228 V211.3 Q58.7,207.3 62.7,207.3 H102.3 Q106.3,207.3 106.3,211.3 V228 Z"/><text x="82.5" y="250" class="xtick">Apr</text></g><g class="bar" tabindex="0" role="img" aria-label="May 2026: 33.1 hours · 25 activities" data-tip="May 2026: 33.1 hours · 25 activities"><rect x="125.0" y="16" width="85.0" height="212" class="hit"/><path d="M143.7,228 V56.5 Q143.7,52.5 147.7,52.5 H187.3 Q191.3,52.5 191.3,56.5 V228 Z"/><text x="167.5" y="250" class="xtick">May</text></g><g class="bar" tabindex="0" role="img" aria-label="June 2026: 22.9 hours · 23 activities" data-tip="June 2026: 22.9 hours · 23 activities"><rect x="210.0" y="16" width="85.0" height="212" class="hit"/><path d="M228.7,228 V110.5 Q228.7,106.5 232.7,106.5 H272.3 Q276.3,106.5 276.3,110.5 V228 Z"/><text x="252.5" y="250" class="xtick">Jun</text></g><g class="bar" tabindex="0" role="img" aria-label="July 2026: 9.6 hours · 6 activities" data-tip="July 2026: 9.6 hours · 6 activities"><rect x="295.0" y="16" width="85.0" height="212" class="hit"/><path d="M313.7,228 V181.1 Q313.7,177.1 317.7,177.1 H357.3 Q361.3,177.1 361.3,181.1 V228 Z"/><text x="337.5" y="250" class="xtick">Jul</text></g><g class="bar" tabindex="0" role="img" aria-label="August 2026: 18.3 hours · 8 activities" data-tip="August 2026: 18.3 hours · 8 activities"><rect x="380.0" y="16" width="85.0" height="212" class="hit"/><path d="M398.7,228 V135.2 Q398.7,131.2 402.7,131.2 H442.3 Q446.3,131.2 446.3,135.2 V228 Z"/><text x="422.5" y="250" class="xtick">Aug</text></g><g class="bar" tabindex="0" role="img" aria-label="September 2026: 15.9 hours · 23 activities" data-tip="September 2026: 15.9 hours · 23 activities"><rect x="465.0" y="16" width="85.0" height="212" class="hit"/><path d="M483.7,228 V147.7 Q483.7,143.7 487.7,143.7 H527.3 Q531.3,143.7 531.3,147.7 V228 Z"/><text x="507.5" y="250" class="xtick">Sep</text></g><g class="bar" tabindex="0" role="img" aria-label="October 2026: 16.5 hours · 16 activities" data-tip="October 2026: 16.5 hours · 16 activities"><rect x="550.0" y="16" width="85.0" height="212" class="hit"/><path d="M568.7,228 V144.7 Q568.7,140.7 572.7,140.7 H612.3 Q616.3,140.7 616.3,144.7 V228 Z"/><text x="592.5" y="250" class="xtick">Oct</text></g><g class="bar" tabindex="0" role="img" aria-label="November 2026: 5.8 hours · 7 activities" data-tip="November 2026: 5.8 hours · 7 activities"><rect x="635.0" y="16" width="85.0" height="212" class="hit"/><path d="M653.7,228 V201.2 Q653.7,197.2 657.7,197.2 H697.3 Q701.3,197.2 701.3,201.2 V228 Z"/><text x="677.5" y="250" class="xtick">Nov</text></g></svg><div class="tip" aria-hidden="true"></div></div>
+    <details class="data"><summary>Show as a table</summary>
+      <table><thead><tr><th scope="col">Month</th><th scope="col">Hours</th><th scope="col">Activities</th></tr></thead><tbody><tr><th scope="row">April 2026</th><td>3.9</td><td>3</td></tr><tr><th scope="row">May 2026</th><td>33.1</td><td>25</td></tr><tr><th scope="row">June 2026</th><td>22.9</td><td>23</td></tr><tr><th scope="row">July 2026</th><td>9.6</td><td>6</td></tr><tr><th scope="row">August 2026</th><td>18.3</td><td>8</td></tr><tr><th scope="row">September 2026</th><td>15.9</td><td>23</td></tr><tr><th scope="row">October 2026</th><td>16.5</td><td>16</td></tr><tr><th scope="row">November 2026</th><td>5.8</td><td>7</td></tr></tbody></table>
+    </details>
+  </div>
+</section>
+
+<section class="section section--tint" aria-labelledby="mix-title">
+  <div class="wrap">
+    <h2 id="mix-title" style="font-size:var(--step-3)">Activity mix</h2>
+    <p>Share of all 111 activities, by sport.</p>
+    <div class="mix">
+      <div class="chart-wrap reveal"><svg viewBox="0 0 240 240" class="pie" role="group" aria-labelledby="mix-title"><g class="slice" tabindex="0" role="img" aria-label="Running: 50% · 55 activities · avg 151 bpm" data-tip="Running: 50% · 55 activities · avg 151 bpm"><path d="M120,120 L120.00,8.00 A112,112 0 0 1 123.17,231.96 Z" fill="#2a78d6"/><text x="191.7" y="124.0" class="slice-label">50%</text></g><g class="slice" tabindex="0" role="img" aria-label="Strength: 12% · 13 activities · avg 114 bpm" data-tip="Strength: 12% · 13 activities · avg 114 bpm"><path d="M120,120 L123.17,231.96 A112,112 0 0 1 47.20,205.11 Z" fill="#eb6834"/><text x="96.1" y="192.6" class="slice-label">12%</text></g><g class="slice" tabindex="0" role="img" aria-label="Hiking: 9% · 10 activities · avg 122 bpm" data-tip="Hiking: 9% · 10 activities · avg 122 bpm"><path d="M120,120 L47.20,205.11 A112,112 0 0 1 12.91,152.80 Z" fill="#1baf7a"/><text x="60.1" y="164.3" class="slice-label">9%</text></g><g class="slice" tabindex="0" role="img" aria-label="Ultimate: 9% · 10 activities · avg 120 bpm" data-tip="Ultimate: 9% · 10 activities · avg 120 bpm"><path d="M120,120 L12.91,152.80 A112,112 0 0 1 12.02,90.25 Z" fill="#eda100"/><text x="48.3" y="126.0" class="slice-label" style="fill:#0b0b0b">9%</text></g><g class="slice" tabindex="0" role="img" aria-label="Soccer: 5% · 5 activities · avg 116 bpm" data-tip="Soccer: 5% · 5 activities · avg 116 bpm"><path d="M120,120 L12.02,90.25 A112,112 0 0 1 24.63,61.28 Z" fill="#e87ba4"/></g><g class="slice" tabindex="0" role="img" aria-label="Other: 16% · 18 activities · avg 98 bpm" data-tip="Other: 16% · 18 activities · avg 98 bpm"><path d="M120,120 L24.63,61.28 A112,112 0 0 1 120.00,8.00 Z" fill="#008300"/><text x="85.0" y="62.4" class="slice-label">16%</text></g></svg><div class="tip" aria-hidden="true"></div></div>
+      <ul class="legend reveal"><li class="head" aria-hidden="true"><span></span><span>Sport</span><span class="lg-n">Count</span><span class="lg-pct">Share</span><span class="lg-hr">Avg HR</span></li><li><span class="sw" style="background:#2a78d6" aria-hidden="true"></span><span class="lg-name">Running<small>Run, Trail run</small></span><span class="lg-n">55</span><span class="lg-pct">50%</span><span class="lg-hr">151 bpm</span></li><li><span class="sw" style="background:#eb6834" aria-hidden="true"></span><span class="lg-name">Strength</span><span class="lg-n">13</span><span class="lg-pct">12%</span><span class="lg-hr">114 bpm</span></li><li><span class="sw" style="background:#1baf7a" aria-hidden="true"></span><span class="lg-name">Hiking</span><span class="lg-n">10</span><span class="lg-pct">9%</span><span class="lg-hr">122 bpm</span></li><li><span class="sw" style="background:#eda100" aria-hidden="true"></span><span class="lg-name">Ultimate</span><span class="lg-n">10</span><span class="lg-pct">9%</span><span class="lg-hr">120 bpm</span></li><li><span class="sw" style="background:#e87ba4" aria-hidden="true"></span><span class="lg-name">Soccer</span><span class="lg-n">5</span><span class="lg-pct">5%</span><span class="lg-hr">116 bpm</span></li><li><span class="sw" style="background:#008300" aria-hidden="true"></span><span class="lg-name">Other<small>Indoor climb, Ride, Rowing, Walk</small></span><span class="lg-n">18</span><span class="lg-pct">16%</span><span class="lg-hr">98 bpm</span></li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="log-title">
+  <div class="wrap">
+    <h2 id="log-title" style="font-size:var(--step-3)">Every activity</h2>
+    <div class="filters" role="group" aria-label="Filter by sport"><button type="button" class="chip" data-filter="all" aria-pressed="true">All</button><button type="button" class="chip" data-filter="running" aria-pressed="false">Running</button><button type="button" class="chip" data-filter="hiking" aria-pressed="false">Hiking</button><button type="button" class="chip" data-filter="climbing" aria-pressed="false">Climbing</button><button type="button" class="chip" data-filter="ultimate" aria-pressed="false">Ultimate</button><button type="button" class="chip" data-filter="soccer" aria-pressed="false">Soccer</button><button type="button" class="chip" data-filter="strength" aria-pressed="false">Strength</button><button type="button" class="chip" data-filter="other" aria-pressed="false">Other</button></div>
+    <p class="count" aria-live="polite">111 activities</p>
+    <section class="month" aria-labelledby="m-2026-11"><h3 id="m-2026-11">November <span>2026</span></h3><ol class="acts"><li class="act" data-group="climbing"><time datetime="2026-11-09"><b>9</b><span>Mon</span></time><div class="what"><strong>Indoor climb</strong></div><div class="how"><span>1h 20m</span><span class="meta">106 bpm avg</span></div></li><li class="act" data-group="hiking"><time datetime="2026-11-09"><b>9</b><span>Mon</span></time><div class="what"><strong>Hike</strong></div><div class="how"><span>38 min</span><span class="meta">1.62 km · 107 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-11-08"><b>8</b><span>Sun</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>37 min</span><span class="meta">7.28 km · 5:07 /km · 178 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-11-08"><b>8</b><span>Sun</span></time><div class="what"><strong>Walk</strong></div><div class="how"><span>1h 13m</span><span class="meta">3.90 km · 96 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-11-05"><b>5</b><span>Thu</span></time><div class="what"><strong>Walk</strong></div><div class="how"><span>21 min</span><span class="meta">2.93 km · 146 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-11-05"><b>5</b><span>Thu</span></time><div class="what"><strong>Ride</strong></div><div class="how"><span>16 min</span><span class="meta">2.96 km · 106 bpm avg</span></div></li><li class="act" data-group="soccer"><time datetime="2026-11-01"><b>1</b><span>Sun</span></time><div class="what"><strong>Soccer</strong></div><div class="how"><span>1h 20m</span><span class="meta">4.27 km · 117 bpm avg</span></div></li></ol></section><section class="month" aria-labelledby="m-2026-10"><h3 id="m-2026-10">October <span>2026</span></h3><ol class="acts"><li class="act" data-group="ultimate"><time datetime="2026-10-27"><b>27</b><span>Tue</span></time><div class="what"><strong>Ultimate</strong></div><div class="how"><span>21 min</span><span class="meta">1.41 km · 120 bpm avg</span></div></li><li class="act" data-group="soccer"><time datetime="2026-10-21"><b>21</b><span>Wed</span></time><div class="what"><strong>Soccer</strong></div><div class="how"><span>1h 49m</span><span class="meta">3.43 km · 105 bpm avg</span></div></li><li class="act" data-group="ultimate"><time datetime="2026-10-20"><b>20</b><span>Tue</span></time><div class="what"><strong>Ultimate</strong></div><div class="how"><span>28 min</span><span class="meta">1.74 km · 117 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-10-20"><b>20</b><span>Tue</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>56 min</span><span class="meta">10.26 km · 5:28 /km · 148 bpm avg</span></div></li><li class="act" data-group="ultimate"><time datetime="2026-10-19"><b>19</b><span>Mon</span></time><div class="what"><strong>Ultimate</strong></div><div class="how"><span>39 min</span><span class="meta">1.30 km · 98 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-10-18"><b>18</b><span>Sun</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>28 min</span><span class="meta">6.14 km · 4:37 /km · 154 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-10-11"><b>11</b><span>Sun</span></time><div class="what"><strong>Ride</strong></div><div class="how"><span>29 min</span><span class="meta">2.33 km · 117 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-10-11"><b>11</b><span>Sun</span></time><div class="what"><strong>Royal Victoria Marathon</strong><span class="tag">Run</span></div><div class="how"><span>3h 52m</span><span class="meta">42.73 km · 5:26 /km · 164 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-10-09"><b>9</b><span>Fri</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>32 min</span><span class="meta">5.90 km · 5:28 /km · 152 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-10-06"><b>6</b><span>Tue</span></time><div class="what"><strong>Chest / triceps</strong><span class="tag">Strength</span></div><div class="how"><span>54 min</span><span class="meta">13 sets · 106 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-10-05"><b>5</b><span>Mon</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>32 min</span><span class="meta">5.98 km · 5:22 /km · 158 bpm avg</span></div></li><li class="act" data-group="soccer"><time datetime="2026-10-04"><b>4</b><span>Sun</span></time><div class="what"><strong>Soccer</strong></div><div class="how"><span>22 min</span><span class="meta">527 m · 110 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-10-03"><b>3</b><span>Sat</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>2h 04m</span><span class="meta">21.16 km · 5:52 /km · 159 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-10-01"><b>1</b><span>Thu</span></time><div class="what"><strong>Upper back / lower back / biceps</strong><span class="tag">Strength</span></div><div class="how"><span>54 min</span><span class="meta">21 sets · 120 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-10-01"><b>1</b><span>Thu</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 01m</span><span class="meta">12.09 km · 5:02 /km · 169 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-10-01"><b>1</b><span>Thu</span></time><div class="what"><strong>Ride</strong></div><div class="how"><span>1h 01m</span><span class="meta">7.10 km · 102 bpm avg</span></div></li></ol></section><section class="month" aria-labelledby="m-2026-09"><h3 id="m-2026-09">September <span>2026</span></h3><ol class="acts"><li class="act" data-group="ultimate"><time datetime="2026-09-29"><b>29</b><span>Tue</span></time><div class="what"><strong>Ultimate</strong></div><div class="how"><span>59 min</span><span class="meta">3.45 km · 109 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-09-28"><b>28</b><span>Mon</span></time><div class="what"><strong>Legs (heavy)</strong><span class="tag">Strength</span></div><div class="how"><span>24 min</span><span class="meta">6 sets · 129 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-09-27"><b>27</b><span>Sun</span></time><div class="what"><strong>Chest / triceps</strong><span class="tag">Strength</span></div><div class="how"><span>45 min</span><span class="meta">25 sets · 120 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-09-26"><b>26</b><span>Sat</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>47 min</span><span class="meta">9.15 km · 5:12 /km · 157 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-09-24"><b>24</b><span>Thu</span></time><div class="what"><strong>Strength</strong></div><div class="how"><span>1h 01m</span><span class="meta">9 sets · 120 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-09-23"><b>23</b><span>Wed</span></time><div class="what"><strong>Strength</strong></div><div class="how"><span>1h 04m</span><span class="meta">15 sets · 129 bpm avg</span></div></li><li class="act" data-group="soccer"><time datetime="2026-09-23"><b>23</b><span>Wed</span></time><div class="what"><strong>Soccer</strong></div><div class="how"><span>54 min</span><span class="meta">1.90 km · 140 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-09-23"><b>23</b><span>Wed</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>30 min</span><span class="meta">5.77 km · 5:20 /km · 165 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-09-21"><b>21</b><span>Mon</span></time><div class="what"><strong>Strength</strong></div><div class="how"><span>52 min</span><span class="meta">15 sets · 128 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-09-21"><b>21</b><span>Mon</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>22 min</span><span class="meta">5.15 km · 4:20 /km · 178 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-09-20"><b>20</b><span>Sun</span></time><div class="what"><strong>Strength</strong></div><div class="how"><span>24 min</span><span class="meta">7 sets · 115 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-09-20"><b>20</b><span>Sun</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>31 min</span><span class="meta">5.17 km · 5:59 /km · 147 bpm avg</span></div></li><li class="act" data-group="ultimate"><time datetime="2026-09-18"><b>18</b><span>Fri</span></time><div class="what"><strong>Ultimate</strong></div><div class="how"><span>1h 03m</span><span class="meta">2.95 km · 136 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-09-17"><b>17</b><span>Thu</span></time><div class="what"><strong>Strength</strong></div><div class="how"><span>14 min</span><span class="meta">3 sets · 104 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-09-17"><b>17</b><span>Thu</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 04m</span><span class="meta">9.87 km · 6:31 /km · 152 bpm avg</span></div></li><li class="act" data-group="ultimate"><time datetime="2026-09-16"><b>16</b><span>Wed</span></time><div class="what"><strong>Ultimate</strong></div><div class="how"><span>1h 40m</span><span class="meta">5.12 km · 130 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-09-14"><b>14</b><span>Mon</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>20 min</span><span class="meta">4.07 km · 5:04 /km · 151 bpm avg</span></div></li><li class="act" data-group="soccer"><time datetime="2026-09-13"><b>13</b><span>Sun</span></time><div class="what"><strong>Soccer</strong></div><div class="how"><span>11 min</span><span class="meta">707 m · 116 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-09-13"><b>13</b><span>Sun</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>24 min</span><span class="meta">4.11 km · 5:59 /km · 160 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-09-10"><b>10</b><span>Thu</span></time><div class="what"><strong>Trail run</strong></div><div class="how"><span>23 min</span><span class="meta">3.06 km · 7:43 /km · 164 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-09-10"><b>10</b><span>Thu</span></time><div class="what"><strong>Strength</strong></div><div class="how"><span>44 min</span><span class="meta">9 sets · 102 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-09-09"><b>9</b><span>Wed</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>34 min</span><span class="meta">5.88 km · 5:56 /km · 163 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-09-02"><b>2</b><span>Wed</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>31 min</span><span class="meta">5.16 km · 6:05 /km · 138 bpm avg</span></div></li></ol></section><section class="month" aria-labelledby="m-2026-08"><h3 id="m-2026-08">August <span>2026</span></h3><ol class="acts"><li class="act" data-group="other"><time datetime="2026-08-30"><b>30</b><span>Sun</span></time><div class="what"><strong>Walk</strong></div><div class="how"><span>2 min</span><span class="meta">18 m · 82 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-08-29"><b>29</b><span>Sat</span></time><div class="what"><strong>Walk</strong></div><div class="how"><span>1h 02m</span><span class="meta">2.19 km · 94 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-08-21"><b>21</b><span>Fri</span></time><div class="what"><strong>Strength</strong></div><div class="how"><span>1h 37m</span><span class="meta">9 sets · 96 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-08-19"><b>19</b><span>Wed</span></time><div class="what"><strong>Strength</strong></div><div class="how"><span>52 min</span><span class="meta">13 sets · 109 bpm avg</span></div></li><li class="act" data-group="strength"><time datetime="2026-08-17"><b>17</b><span>Mon</span></time><div class="what"><strong>Strength</strong></div><div class="how"><span>52 min</span><span class="meta">13 sets · 110 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-08-16"><b>16</b><span>Sun</span></time><div class="what"><strong>Walk</strong></div><div class="how"><span>1h 17m</span><span class="meta">4.74 km · 102 bpm avg</span></div></li><li class="act" data-group="hiking"><time datetime="2026-08-11"><b>11</b><span>Tue</span></time><div class="what"><strong>Hike</strong></div><div class="how"><span>8h 04m</span><span class="meta">16.93 km · 121 bpm avg</span></div></li><li class="act" data-group="hiking"><time datetime="2026-08-06"><b>6</b><span>Thu</span></time><div class="what"><strong>Hike</strong></div><div class="how"><span>4h 27m</span><span class="meta">11.29 km · 135 bpm avg</span></div></li></ol></section><section class="month" aria-labelledby="m-2026-07"><h3 id="m-2026-07">July <span>2026</span></h3><ol class="acts"><li class="act" data-group="hiking"><time datetime="2026-07-23"><b>23</b><span>Thu</span></time><div class="what"><strong>Hike</strong></div><div class="how"><span>5h 40m</span><span class="meta">25.16 km · 142 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-07-20"><b>20</b><span>Mon</span></time><div class="what"><strong>Walk</strong></div><div class="how"><span>23 min</span><span class="meta">1.71 km · 95 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-07-18"><b>18</b><span>Sat</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>44 min</span><span class="meta">2.27 km · 160 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-07-18"><b>18</b><span>Sat</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>49 min</span><span class="meta">2.65 km · 142 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-07-18"><b>18</b><span>Sat</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>59 min</span><span class="meta">3.16 km · 164 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-07-17"><b>17</b><span>Fri</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>58 min</span><span class="meta">4.86 km · 12:04 /km · 148 bpm avg</span></div></li></ol></section><section class="month" aria-labelledby="m-2026-06"><h3 id="m-2026-06">June <span>2026</span></h3><ol class="acts"><li class="act" data-group="running"><time datetime="2026-06-24"><b>24</b><span>Wed</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>34 min</span><span class="meta">5.01 km · 6:57 /km · 155 bpm avg</span></div></li><li class="act" data-group="hiking"><time datetime="2026-06-22"><b>22</b><span>Mon</span></time><div class="what"><strong>Hike</strong></div><div class="how"><span>1h 09m</span><span class="meta">4.80 km · 105 bpm avg</span></div></li><li class="act" data-group="hiking"><time datetime="2026-06-17"><b>17</b><span>Wed</span></time><div class="what"><strong>Hike</strong></div><div class="how"><span>5h 47m</span><span class="meta">11.79 km · 105 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-14"><b>14</b><span>Sun</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>12 min</span><span class="meta">1.30 km · 9:24 /km · 156 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-14"><b>14</b><span>Sun</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 07m</span><span class="meta">12.64 km · 5:21 /km · 152 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-13"><b>13</b><span>Sat</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>11 min</span><span class="meta">1.40 km · 8:05 /km · 149 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-13"><b>13</b><span>Sat</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>3h 06m</span><span class="meta">27.58 km · 6:46 /km · 150 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-12"><b>12</b><span>Fri</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>8 min</span><span class="meta">1.32 km · 6:47 /km · 127 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-12"><b>12</b><span>Fri</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>20 min</span><span class="meta">5.00 km · 4:09 /km · 146 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-11"><b>11</b><span>Thu</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>53 min</span><span class="meta">9.65 km · 5:35 /km · 161 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-09"><b>9</b><span>Tue</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>9 min</span><span class="meta">1.36 km · 7:19 /km · 153 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-09"><b>9</b><span>Tue</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 20m</span><span class="meta">13.97 km · 5:44 /km · 159 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-08"><b>8</b><span>Mon</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>52 min</span><span class="meta">8.47 km · 6:13 /km · 162 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-06-06"><b>6</b><span>Sat</span></time><div class="what"><strong>Rowing</strong></div><div class="how"><span>1h 39m</span><span class="meta">6.92 km · 93 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-06-05"><b>5</b><span>Fri</span></time><div class="what"><strong>Rowing</strong></div><div class="how"><span>1h 22m</span><span class="meta">6.06 km · 98 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-06-05"><b>5</b><span>Fri</span></time><div class="what"><strong>Rowing</strong></div><div class="how"><span>54 min</span><span class="meta">3.92 km · 93 bpm avg</span></div></li><li class="act" data-group="hiking"><time datetime="2026-06-03"><b>3</b><span>Wed</span></time><div class="what"><strong>Hike</strong></div><div class="how"><span>29 min</span><span class="meta">1.62 km · 102 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-06-03"><b>3</b><span>Wed</span></time><div class="what"><strong>Rowing</strong></div><div class="how"><span>1 min</span><span class="meta">76 m · 107 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-06-02"><b>2</b><span>Tue</span></time><div class="what"><strong>Rowing</strong></div><div class="how"><span>42 min</span><span class="meta">3.19 km · 108 bpm avg</span></div></li><li class="act" data-group="hiking"><time datetime="2026-06-02"><b>2</b><span>Tue</span></time><div class="what"><strong>Hike</strong></div><div class="how"><span>27 min</span><span class="meta">1.31 km · 98 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-06-02"><b>2</b><span>Tue</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1 min</span><span class="meta">150 m · 92 bpm avg</span></div></li><li class="act" data-group="hiking"><time datetime="2026-06-01"><b>1</b><span>Mon</span></time><div class="what"><strong>Hike</strong></div><div class="how"><span>43 min</span><span class="meta">2.12 km · 109 bpm avg</span></div></li><li class="act" data-group="hiking"><time datetime="2026-06-01"><b>1</b><span>Mon</span></time><div class="what"><strong>Hike</strong></div><div class="how"><span>36 min</span><span class="meta">1.92 km · 115 bpm avg</span></div></li></ol></section><section class="month" aria-labelledby="m-2026-05"><h3 id="m-2026-05">May <span>2026</span></h3><ol class="acts"><li class="act" data-group="running"><time datetime="2026-05-29"><b>29</b><span>Fri</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 11m</span><span class="meta">11.66 km · 6:08 /km · 149 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-27"><b>27</b><span>Wed</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>58 min</span><span class="meta">8.51 km · 6:49 /km · 139 bpm avg</span></div></li><li class="act" data-group="ultimate"><time datetime="2026-05-26"><b>26</b><span>Tue</span></time><div class="what"><strong>Ultimate</strong></div><div class="how"><span>1h 07m</span><span class="meta">3.63 km · 115 bpm avg</span></div></li><li class="act" data-group="ultimate"><time datetime="2026-05-26"><b>26</b><span>Tue</span></time><div class="what"><strong>Ultimate</strong></div><div class="how"><span>1h 38m</span><span class="meta">5.77 km · 131 bpm avg</span></div></li><li class="act" data-group="ultimate"><time datetime="2026-05-25"><b>25</b><span>Mon</span></time><div class="what"><strong>Ultimate</strong></div><div class="how"><span>41 min</span><span class="meta">1.70 km · 111 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-21"><b>21</b><span>Thu</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>34 min</span><span class="meta">1.57 km · 126 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-19"><b>19</b><span>Tue</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 01m</span><span class="meta">8.38 km · 7:22 /km · 161 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-18"><b>18</b><span>Mon</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>39 min</span><span class="meta">6.56 km · 5:59 /km · 155 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-17"><b>17</b><span>Sun</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 58m</span><span class="meta">22.25 km · 5:19 /km · 158 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-16"><b>16</b><span>Sat</span></time><div class="what"><strong>Trail run</strong></div><div class="how"><span>1h 12m</span><span class="meta">13.24 km · 5:27 /km · 146 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-05-13"><b>13</b><span>Wed</span></time><div class="what"><strong>Rowing</strong></div><div class="how"><span>2h 57m</span><span class="meta">7.65 km · 101 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-05-12"><b>12</b><span>Tue</span></time><div class="what"><strong>Rowing</strong></div><div class="how"><span>1h 57m</span><span class="meta">6.46 km · 90 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-11"><b>11</b><span>Mon</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>45 min</span><span class="meta">1.35 km · 133 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-11"><b>11</b><span>Mon</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 34m</span><span class="meta">4.19 km · 142 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-11"><b>11</b><span>Mon</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 15m</span><span class="meta">2.70 km · 140 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-10"><b>10</b><span>Sun</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>2h 13m</span><span class="meta">21.90 km · 6:04 /km · 152 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-08"><b>8</b><span>Fri</span></time><div class="what"><strong>Trail run</strong></div><div class="how"><span>1h 06m</span><span class="meta">8.19 km · 8:06 /km · 128 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-07"><b>7</b><span>Thu</span></time><div class="what"><strong>Trail run</strong></div><div class="how"><span>1h 21m</span><span class="meta">13.29 km · 6:07 /km · 148 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-06"><b>6</b><span>Wed</span></time><div class="what"><strong>Trail run</strong></div><div class="how"><span>26 min</span><span class="meta">5.02 km · 5:13 /km · 150 bpm avg</span></div></li><li class="act" data-group="ultimate"><time datetime="2026-05-06"><b>6</b><span>Wed</span></time><div class="what"><strong>Ultimate</strong></div><div class="how"><span>1h 00m</span><span class="meta">2.02 km · 108 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-04"><b>4</b><span>Mon</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 03m</span><span class="meta">3.52 km · 142 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-04"><b>4</b><span>Mon</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 03m</span><span class="meta">2.20 km · 131 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-03"><b>3</b><span>Sun</span></time><div class="what"><strong>Long run, trails x4</strong><span class="tag">Trail run</span></div><div class="how"><span>2h 06m</span><span class="meta">21.37 km · 5:54 /km · 151 bpm avg</span></div></li><li class="act" data-group="other"><time datetime="2026-05-02"><b>2</b><span>Sat</span></time><div class="what"><strong>Walk</strong></div><div class="how"><span>2h 15m</span><span class="meta">1.53 km · 85 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-05-01"><b>1</b><span>Fri</span></time><div class="what"><strong>Recovery</strong><span class="tag">Trail run</span></div><div class="how"><span>56 min</span><span class="meta">8.16 km · 6:56 /km · 142 bpm avg</span></div></li></ol></section><section class="month" aria-labelledby="m-2026-04"><h3 id="m-2026-04">April <span>2026</span></h3><ol class="acts"><li class="act" data-group="running"><time datetime="2026-04-30"><b>30</b><span>Thu</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>50 min</span><span class="meta">2.63 km · 135 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-04-30"><b>30</b><span>Thu</span></time><div class="what"><strong>Trail run</strong></div><div class="how"><span>1h 26m</span><span class="meta">13.65 km · 6:19 /km · 149 bpm avg</span></div></li><li class="act" data-group="running"><time datetime="2026-04-29"><b>29</b><span>Wed</span></time><div class="what"><strong>Run</strong></div><div class="how"><span>1h 36m</span><span class="meta">3.91 km · 145 bpm avg</span></div></li></ol></section>
+    <p class="source">Data from my COROS watch. Heart rate is the average for each activity. Routes and locations are left out on purpose.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Ezra Vernon · Live in the balance between two extremes.</p>
+    <ul>
+      <li><a href="https://www.instagram.com/ezrav_insta" rel="noopener">Instagram</a></li>
+      <li><a href="https://ca.linkedin.com/in/ezra-vernon-a98a40343" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://strava.app.link/lBou8jZCg7b" rel="noopener">Strava</a></li>
+    </ul>
+  </div>
+</footer>
+<button class="signin-btn" type="button" data-state="out" aria-haspopup="dialog">Sign in</button>
+<dialog class="signin" id="signin" aria-labelledby="signin-title">
+  <form method="dialog" novalidate>
+    <h2 id="signin-title">Sign in</h2>
+    <div class="field"><label for="signin-pw">Password</label><input id="signin-pw" name="password" type="password" autocomplete="current-password" required></div>
+    <p class="signin-msg" role="status" aria-live="polite"></p>
+    <div class="signin-actions">
+      <button class="btn signin-submit" type="submit">Sign in</button>
+      <button class="btn btn--ghost signin-out" type="button" hidden>Sign out</button>
+      <button class="btn btn--ghost signin-cancel" type="button">Close</button>
+    </div>
+  </form>
+</dialog>
+<script>
+/* ===== SHARED SCRIPT — keep identical on all pages ===== */
+(function(){
+  var d=document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
+  // Mobile nav
+  var t=document.querySelector('.nav-toggle'), n=document.getElementById('site-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('is-open');t.setAttribute('aria-expanded',o)});}
+  // Scroll reveal
+  var els=document.querySelectorAll('.reveal');
+  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!('IntersectionObserver' in window)||rm){els.forEach(function(e){e.classList.add('is-in')});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)});}
+  // Simple sign-in. NOTE: this is a static site, so this is a convenience gate only, not real security.
+  var HASH='eb740430888cafad58f8882004534e966e9f13775ecb87450da7d24ac53ce126';
+  var KEY='ev-signed-in', btn=document.querySelector('.signin-btn'), dlg=document.getElementById('signin');
+  if(!btn||!dlg)return;
+  function get(){try{return sessionStorage.getItem(KEY)==='1'}catch(e){return false}}
+  function set(v){try{v?sessionStorage.setItem(KEY,'1'):sessionStorage.removeItem(KEY)}catch(e){}}
+  function paint(){var on=get();btn.textContent=on?'Signed in · Ezra':'Sign in';btn.dataset.state=on?'in':'out';d.classList.toggle('is-owner',on)}
+  paint();
+  var form=dlg.querySelector('form'), msg=dlg.querySelector('.signin-msg'), pw=dlg.querySelector('#signin-pw'),
+      out=dlg.querySelector('.signin-out'), sub=dlg.querySelector('.signin-submit'), title=dlg.querySelector('#signin-title');
+  function openD(){var on=get();title.textContent=on?'You\u2019re signed in':'Sign in';pw.parentNode.hidden=on;sub.hidden=on;out.hidden=!on;msg.textContent='';pw.value='';
+    if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');setTimeout(function(){(on?out:pw).focus()},0)}
+  function closeD(){if(dlg.close)dlg.close();else dlg.removeAttribute('open');btn.focus()}
+  btn.addEventListener('click',openD);
+  dlg.querySelector('.signin-cancel').addEventListener('click',closeD);
+  out.addEventListener('click',function(){set(false);paint();closeD()});
+  async function sha(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}
+  form.addEventListener('submit',async function(e){e.preventDefault();
+    try{ if(await sha(pw.value)===HASH){set(true);paint();msg.textContent='Welcome back, Ezra.';setTimeout(closeD,600)}
+         else{msg.textContent='That password didn\u2019t match. Try again.';pw.select()} }
+    catch(err){msg.textContent='Sign-in needs a secure (https) connection.'}
+  });
+})();
+</script>
+<script>
+/* ===== PAGE SCRIPT: training.html ===== */
+(function(){
+  // Sport filter
+  var chips=[].slice.call(document.querySelectorAll('.chip')),acts=[].slice.call(document.querySelectorAll('.act')),
+      months=[].slice.call(document.querySelectorAll('.month')),count=document.querySelector('.count');
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    var f=c.dataset.filter,n=0;
+    chips.forEach(function(x){x.setAttribute('aria-pressed',x===c)});
+    acts.forEach(function(a){var on=f==='all'||a.dataset.group===f;a.hidden=!on;if(on)n++});
+    months.forEach(function(m){m.hidden=!m.querySelector('.act:not([hidden])')});
+    count.textContent=n+(n===1?' activity':' activities');
+  })});
+  // Chart tooltips (bars + pie slices)
+  [].forEach.call(document.querySelectorAll('.chart-wrap'),function(wrap){
+  var tip=wrap.querySelector('.tip');if(!tip)return;
+  function show(b){var r=b.querySelector('path').getBoundingClientRect(),w=wrap.getBoundingClientRect();
+    if(!r.height){r=b.getBoundingClientRect()}
+    tip.textContent=b.dataset.tip;tip.style.left=(r.left-w.left+r.width/2)+'px';tip.style.top=(r.top-w.top-8)+'px';tip.classList.add('on')}
+  [].forEach.call(wrap.querySelectorAll('.bar,.slice'),function(b){
+    b.addEventListener('mouseenter',function(){show(b)});b.addEventListener('focus',function(){show(b)});
+    b.addEventListener('mouseleave',function(){tip.classList.remove('on')});b.addEventListener('blur',function(){tip.classList.remove('on')});
+  });});
+})();
+</script>
+</body>
+</html>
