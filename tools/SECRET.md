@@ -2,22 +2,28 @@
 
 The "Sign in" button (bottom-right on every page) opens a password prompt. The right password decrypts
 `site/data/secret.json` in the browser and shows a full-screen black section with tabs:
-**Summit log** (the main one), **Dreams** (check-off of the four Dreams-page peaks), **Notes**, **Wishlist**, **Gear**.
-Any new "Section" value used in Notion gets its own tab automatically.
+**Summit log** (the main one) and **Thoughts**.
+Any new "Section" value used in the Summit Log gets its own tab automatically. The old Dreams, Notes, Wishlist and Gear
+sections were removed (Nov 2026); rows with those Section values are ignored.
 
 ## Where the content lives
 
-Ezra's private Notion database **Summit Log**
+**Thoughts** come from Ezra's private Notion database **Thoughts**
+(https://app.notion.com/p/8f1a14a9d18d4c81b09a2d993d54ffb6, data source `collection://7b6ff07b-bcd6-48c9-9322-988d9c43e6cb`).
+Every row is shown unless **Hide** is ticked (no Publish box: anything he writes goes up at the next weekly update).
+Name = optional title; Date = date shown (if empty, use the date part of **Created**); page body = the thought.
+
+Everything else comes from Ezra's private Notion database **Summit Log**
 (https://app.notion.com/p/d49a6821dca141bbba1928cd9b0fcc8e, data source `collection://e5bd3954-d98e-42e7-90be-964c5ca33205`).
 
 | Property | Use |
 |---|---|
 | Name | entry title (peak name) |
-| Section | Summit log / Notes / Wishlist / Gear (or a new value = new tab) |
+| Section | Summit log (or a new value = new tab; Notes / Wishlist / Gear are retired and ignored) |
 | Publish | only ticked rows go on the site |
 | Date | summit day; also used to match a COROS activity |
 | Elevation (m), Range / area, Route, Partners, Conditions, Rating | shown on Summit log entries when filled |
-| Dream peak | ticks off that peak in the Dreams tab |
+| Dream peak | shows a "Dream peak" badge on the entry |
 | Photo keys | managed by Claude, one line per photo: `<id> <key> <WxH> <caption>` |
 | page body | the write-up (headings, paragraphs, lists, bold/italic, links) |
 
@@ -33,6 +39,9 @@ Nothing from Notion is committed in plain text. The repo is public; only encrypt
      "dream": "Tetrahedron Peak", "photo_keys": "<the Photo keys text, as is>", "body_md": "<page content, as is>"}]}
    ```
    Use "" for empty text fields and null for an empty elevation/date. Copy values exactly; don't rewrite Ezra's text.
+   Then query ALL rows of the **Thoughts** data source where Hide is not ticked, fetch each page, and append to the same
+   `entries` list: `{"name": "<Name or \"\">", "section": "Thoughts", "date": "<Date, else Created, as YYYY-MM-DD>", "body_md": "<page content, as is>"}`.
+   Untitled thoughts are fine; empty pages are skipped.
 2. `python3 tools/secret.py build` — renders the section, encrypts it with a **new** 4-word password,
    and prints `PASSWORD: word-word-word-word` (also in `tools/secret/PASSWORD`).
 3. Commit `site/data/secret.json` (and nothing from `tools/secret/`). Report the password at the top of the recap.
