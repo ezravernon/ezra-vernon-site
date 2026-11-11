@@ -45,7 +45,8 @@ p{margin:0 0 var(--s3);max-width:var(--measure)}
 a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px;transition:color var(--t-fast) var(--ease)}
 a:hover{color:var(--ink)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
-.site-header :focus-visible,.hero :focus-visible,.q-head :focus-visible{outline-color:var(--base)}
+.hero :focus-visible,.q-head :focus-visible{outline-color:var(--base)}
+.site-header :focus-visible{outline-color:var(--hc)}
 .eyebrow{font-family:var(--font-sans);font-size:var(--step--1);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 var(--s2)}
 .lede{font-size:var(--step-1);line-height:1.5;color:var(--ink)}
 .wrap{width:min(1200px,100% - var(--s4));margin-inline:auto}
@@ -58,22 +59,31 @@ a:hover{color:var(--ink)}
 .btn:hover{background:var(--ink);border-color:var(--ink);color:var(--base);transform:translateY(-1px)}
 .btn--ghost{background:transparent;color:var(--accent)}
 .btn--ghost:hover{background:var(--accent);border-color:var(--accent)}
-/* Header + nav */
-.site-header{position:sticky;top:0;z-index:20;background:rgba(30,42,39,.96);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid rgba(246,243,238,.08)}
+/* Header + nav — transparent, sits over the top of every page.
+   data-tone="light" = light links (over a dark photo header: Home, Quotes); data-tone="dark" = pine links (over paper).
+   The shared script flips the tone to match whatever is behind the header, and adds .is-scrolled (frosted glass) once you scroll. */
+.site-header{--hc:var(--ink);--hc-line:rgba(30,42,39,.28);position:fixed;inset:0 0 auto 0;z-index:20;background:transparent;border-bottom:1px solid transparent;transition:background var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease),box-shadow var(--t-slow) var(--ease)}
+.site-header[data-tone="light"]{--hc:var(--base);--hc-line:rgba(246,243,238,.4)}
+.site-header.is-scrolled,.site-header.menu-open{background:rgba(246,243,238,.8);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom-color:var(--line);box-shadow:0 4px 24px rgba(30,42,39,.06)}
+.site-header[data-tone="light"].is-scrolled,.site-header[data-tone="light"].menu-open{background:rgba(30,42,39,.5);border-bottom-color:rgba(246,243,238,.12);box-shadow:none}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:72px}
-.brand{display:flex;align-items:center;gap:var(--s2);text-decoration:none;color:var(--base);font-family:var(--font-serif);font-size:var(--step-1)}
+.brand{display:flex;align-items:center;gap:var(--s2);text-decoration:none;color:var(--hc);font-family:var(--font-serif);font-size:var(--step-1);transition:color var(--t-slow) var(--ease)}
 .brand img{width:56px;height:32px}
 .nav ul{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:var(--s4)}
-.nav a{color:var(--base);text-decoration:none;font-size:var(--step-0);padding-block:var(--s1);border-bottom:1px solid transparent;transition:border-color var(--t-med) var(--ease),color var(--t-med) var(--ease)}
-.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--base)}
-.nav a[aria-current="page"]{color:var(--base)}
-.brand:hover{color:var(--base)}
+.nav a{color:var(--hc);text-decoration:none;font-size:var(--step-0);padding-block:var(--s1);border-bottom:1px solid transparent;transition:border-color var(--t-med) var(--ease),color var(--t-slow) var(--ease)}
+.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--hc)}
+.nav a[aria-current="page"]{color:var(--hc)}
+.brand:hover{color:var(--hc)}
 .nav .btn{color:var(--base);padding:var(--s1) var(--s3);border-bottom:1px solid var(--accent)}
-.nav .btn:hover,.nav .btn[aria-current="page"]{background:var(--base);border-color:var(--base);color:var(--ink)}
+.nav .btn:hover,.nav .btn[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:var(--base)}
+.site-header[data-tone="light"] .nav .btn:hover,.site-header[data-tone="light"] .nav .btn[aria-current="page"]{background:var(--base);border-color:var(--base);color:var(--ink)}
+/* Pages that start with a paper header leave room for the fixed bar */
+main > .page-head:first-child{padding-top:calc(72px + var(--s7))}
 .nav-toggle{display:none}
 @media (max-width:960px){
-  .nav-toggle{display:inline-flex;font:500 var(--step-0)/1 var(--font-sans);background:none;border:1px solid rgba(246,243,238,.3);border-radius:var(--radius);padding:var(--s1) var(--s2);color:var(--base);cursor:pointer}
-  .nav{position:absolute;inset:72px 0 auto 0;background:var(--ink);border-bottom:1px solid rgba(246,243,238,.08);display:none}
+  .nav-toggle{display:inline-flex;font:500 var(--step-0)/1 var(--font-sans);background:none;border:1px solid var(--hc-line);border-radius:var(--radius);padding:var(--s1) var(--s2);color:var(--hc);cursor:pointer;transition:color var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease)}
+  .nav{position:absolute;inset:72px 0 auto 0;background:var(--base);border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(30,42,39,.08);display:none}
+  .site-header[data-tone="light"] .nav{background:var(--ink);border-bottom-color:rgba(246,243,238,.08)}
   .nav.is-open{display:block}
   .no-js .nav{display:block;position:static;border:0}
   .no-js .site-header .wrap{flex-wrap:wrap;padding-block:var(--s2)}
@@ -88,19 +98,83 @@ a:hover{color:var(--ink)}
 .site-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s3);align-items:center}
 .site-footer p{margin:0;color:var(--ink-soft);font-size:var(--step--1)}
 .site-footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s3);margin:0;padding:0;font-size:var(--step--1)}
-/* Sign-in corner */
-.signin-btn{position:fixed;right:var(--s2);bottom:var(--s2);z-index:30;font:500 var(--step--1)/1 var(--font-sans);padding:var(--s1) var(--s2);border-radius:var(--radius);border:1px solid var(--line);background:var(--base);color:var(--ink-soft);box-shadow:var(--shadow);cursor:pointer;transition:color var(--t-med) var(--ease),border-color var(--t-med) var(--ease)}
-.signin-btn:hover{color:var(--accent);border-color:var(--accent)}
-.signin-btn[data-state="in"]{color:var(--accent)}
-.signin{border:1px solid var(--line);border-radius:var(--radius);padding:var(--s4);width:min(400px,100% - var(--s4));background:var(--base);color:var(--ink);box-shadow:var(--shadow)}
-.signin::backdrop{background:rgba(30,42,39,.35)}
-.signin h2{font-size:var(--step-2);margin-bottom:var(--s2)}
+/* Sign-in corner -> password gate -> secret section (everything here is black with white type) */
+.signin-btn{position:fixed;right:var(--s2);bottom:var(--s2);z-index:30;font:500 var(--step--1)/1 var(--font-sans);padding:var(--s1) var(--s2);border-radius:var(--radius);border:1px solid var(--line);background:var(--base);color:var(--ink-soft);box-shadow:var(--shadow);cursor:pointer;transition:color var(--t-med) var(--ease),border-color var(--t-med) var(--ease),background var(--t-med) var(--ease)}
+.signin-btn:hover{color:#fff;border-color:#000;background:#000}
+.signin,.vault{--v-ink:#fff;--v-soft:rgba(255,255,255,.62);--v-line:rgba(255,255,255,.14);background:#000;color:var(--v-ink);font-family:var(--font-sans)}
+.signin{border:1px solid var(--v-line);border-radius:12px;padding:var(--s5) var(--s4) var(--s4);width:min(420px,100% - var(--s4));box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.signin::backdrop{background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.signin h2,.vault h1,.vault h2,.vault h3{font-family:var(--font-sans);font-weight:500;color:var(--v-ink);letter-spacing:-0.03em}
+.signin h2{font-size:var(--step-2);margin-bottom:var(--s1)}
+.signin .sub{color:var(--v-soft);font-size:var(--step--1);margin:0 0 var(--s4)}
 .field{display:grid;gap:var(--s1);margin-bottom:var(--s3)}
-.field label{font-size:var(--step--1);font-weight:500;color:var(--ink-soft);letter-spacing:.04em}
-.field input{font:400 var(--step-0)/1.4 var(--font-sans);padding:var(--s2);border:1px solid var(--line);border-radius:var(--radius);background:#fff;color:var(--ink);transition:border-color var(--t-fast)}
-.field input:focus-visible{border-color:var(--accent);outline-offset:1px}
-.signin-msg{min-height:1.6em;margin:0 0 var(--s2);font-size:var(--step--1);color:var(--ink-soft)}
+.field label{font-size:var(--step--1);font-weight:500;color:var(--v-soft);letter-spacing:.14em;text-transform:uppercase}
+.field input{font:400 var(--step-0)/1.4 var(--font-sans);padding:var(--s2);border:1px solid var(--v-line);border-radius:var(--radius);background:#0d0d0d;color:#fff;transition:border-color var(--t-fast)}
+.field input:focus-visible{border-color:#fff;outline:0}
+.signin-msg{min-height:1.6em;margin:0 0 var(--s2);font-size:var(--step--1);color:var(--v-soft)}
 .signin-actions{display:flex;gap:var(--s2);flex-wrap:wrap}
+.v-btn{font:500 var(--step--1)/1 var(--font-sans);letter-spacing:.04em;padding:var(--s2) var(--s3);border-radius:999px;border:1px solid #fff;background:#fff;color:#000;cursor:pointer;transition:background var(--t-med) var(--ease),color var(--t-med) var(--ease),border-color var(--t-med) var(--ease)}
+.v-btn:hover{background:transparent;color:#fff}
+.v-btn--ghost{background:transparent;color:#fff;border-color:var(--v-line)}
+.v-btn--ghost:hover{border-color:#fff}
+.v-btn[disabled]{opacity:.5;cursor:wait}
+.signin :focus-visible,.vault :focus-visible{outline-color:#fff}
+.vault{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;overflow-y:auto}
+.vault[open]{animation:vault-in 500ms var(--ease)}
+@keyframes vault-in{from{opacity:0}to{opacity:1}}
+.vault::backdrop{background:#000}
+html:has(.vault[open]){overflow:hidden}
+.vault-bar{position:sticky;top:0;z-index:2;background:#000;border-bottom:1px solid var(--v-line)}
+.vault-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);min-height:72px}
+.vault-tag{font-size:var(--step--1);font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--v-soft);margin:0;display:flex;align-items:center;gap:var(--s1)}
+.vault-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
+.vault-bar div{display:flex;gap:var(--s1)}
+.vault-body{width:min(880px,100% - var(--s4));margin-inline:auto;padding-block:var(--s7) var(--s8)}
+.vault-body h1{font-size:clamp(var(--step-4),7vw,var(--step-6));line-height:1;letter-spacing:-0.045em;margin-bottom:var(--s3)}
+.vault-body h2{font-size:clamp(var(--step-2),3.4vw,var(--step-3));margin:var(--s7) 0 var(--s2)}
+.vault-body h3{font-size:var(--step-1);margin:var(--s4) 0 var(--s1)}
+.vault-body p,.vault-body li{color:var(--v-soft);font-size:var(--step-0);line-height:1.7}
+.vault-body .lede{color:var(--v-ink);font-size:var(--step-1);line-height:1.5}
+.vault-body ul,.vault-body ol{padding-left:1.2em;margin:0 0 var(--s3)}
+.vault-body a{color:#fff;text-decoration-color:rgba(255,255,255,.4)}
+.vault-body a:hover{text-decoration-color:#fff}
+.vault-body hr{border:0;border-top:1px solid var(--v-line);margin:var(--s7) 0}
+.vault-body .eyebrow{color:var(--v-soft);letter-spacing:.24em}
+.v-tabs{position:sticky;top:72px;z-index:1;display:flex;gap:var(--s1);overflow-x:auto;scrollbar-width:none;background:#000;padding-block:var(--s2);margin:calc(-1 * var(--s5)) 0 var(--s6);border-bottom:1px solid var(--v-line)}
+.v-tabs::-webkit-scrollbar{display:none}
+.v-tab{flex:none;font:500 var(--step--1)/1 var(--font-sans);letter-spacing:.04em;padding:var(--s1) var(--s2);border-radius:999px;border:1px solid transparent;background:none;color:var(--v-soft);cursor:pointer;transition:color var(--t-fast),border-color var(--t-fast),background var(--t-fast)}
+.v-tab:hover{color:#fff}
+.v-tab[aria-selected="true"]{background:#fff;color:#000}
+.v-panel[hidden]{display:none}
+.v-panel > .lede{margin-bottom:var(--s5)}
+.v-entry{padding-block:var(--s6);border-top:1px solid var(--v-line);scroll-margin-top:150px}
+.v-entry h2{margin:0 0 var(--s3);display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2)}
+.vault-body .v-entry .eyebrow{margin-bottom:var(--s1)}
+.v-badge{font:500 var(--step--1)/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;border:1px solid #fff;border-radius:999px;padding:6px var(--s1)}
+.v-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s3);margin:0 0 var(--s3)}
+.v-meta div{border-top:1px solid var(--v-line);padding-top:var(--s1)}
+.v-meta dt{font-size:var(--step--1);letter-spacing:.14em;text-transform:uppercase;color:var(--v-soft);margin-bottom:4px}
+.v-meta dd{margin:0;color:#fff}
+.vault-body .v-watch{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s2);align-items:baseline;color:#fff;font-variant-numeric:tabular-nums;border:1px solid var(--v-line);border-radius:var(--radius);padding:var(--s2);max-width:none}
+.v-watch span{font-size:var(--step--1);letter-spacing:.14em;text-transform:uppercase;color:var(--v-soft)}
+.v-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s2);margin:var(--s4) 0}
+.v-photo{margin:0}
+.v-frame{background:#111;border-radius:var(--radius);overflow:hidden}
+.v-frame img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity var(--t-slow) var(--ease)}
+.v-frame img.is-in{opacity:1}
+.v-photo figcaption{margin-top:var(--s1);font-size:var(--step--1);color:var(--v-soft)}
+.v-body blockquote{margin:0 0 var(--s3);padding-left:var(--s2);border-left:2px solid #fff;color:#fff}
+.v-body code{font-size:.9em;background:#141414;padding:2px 6px;border-radius:4px}
+.v-dreams{list-style:none;padding:0;margin:0}
+.vault-body .v-dreams li{display:grid;grid-template-columns:24px 1fr auto;gap:var(--s3);align-items:center;padding-block:var(--s4);border-top:1px solid var(--v-line);color:#fff}
+.v-dreams b{display:block;font-weight:500;font-size:var(--step-2);letter-spacing:-0.02em}
+.v-dreams div span{color:var(--v-soft);font-size:var(--step--1)}
+.v-dreams em{font-style:normal;color:var(--v-soft);font-size:var(--step--1);text-align:right}
+.v-dreams .is-done em{color:#fff}
+.v-check{width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,255,255,.4)}
+.is-done .v-check{background:#fff;border-color:#fff;box-shadow:inset 0 0 0 4px #000}
+.vault-body .v-empty{border:1px dashed var(--v-line);border-radius:var(--radius);padding:var(--s4);max-width:none}
+.vault-body .v-stamp{margin-top:var(--s7);font-size:var(--step--1);color:rgba(255,255,255,.4)}
 /* Gentle reveal on scroll (only when JS runs and motion is allowed) */
 .js .reveal{opacity:0;transform:translateY(16px);transition:opacity var(--t-slow) var(--ease),transform var(--t-slow) var(--ease)}
 .js .reveal.is-in{opacity:1;transform:none}
@@ -132,7 +206,7 @@ a:hover{color:var(--ink)}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site-header">
+<header class="site-header" data-tone="dark">
   <div class="wrap">
     <a class="brand" href="index.html"><img src="images/logo-240.webp" width="56" height="32" alt="">Ezra Vernon</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
@@ -212,53 +286,86 @@ a:hover{color:var(--ink)}
     </ul>
   </div>
 </footer>
-<button class="signin-btn" type="button" data-state="out" aria-haspopup="dialog">Sign in</button>
+<button class="signin-btn" type="button" aria-haspopup="dialog" aria-controls="signin">Sign in</button>
 <dialog class="signin" id="signin" aria-labelledby="signin-title">
   <form method="dialog" novalidate>
     <h2 id="signin-title">Sign in</h2>
+    <p class="sub">Private section. Password only.</p>
     <div class="field"><label for="signin-pw">Password</label><input id="signin-pw" name="password" type="password" autocomplete="current-password" required></div>
     <p class="signin-msg" role="status" aria-live="polite"></p>
     <div class="signin-actions">
-      <button class="btn signin-submit" type="submit">Sign in</button>
-      <button class="btn btn--ghost signin-out" type="button" hidden>Sign out</button>
-      <button class="btn btn--ghost signin-cancel" type="button">Close</button>
+      <button class="v-btn signin-submit" type="submit">Unlock</button>
+      <button class="v-btn v-btn--ghost signin-cancel" type="button">Close</button>
     </div>
   </form>
+</dialog>
+<dialog class="vault" id="vault" aria-label="Secret section">
+  <div class="vault-bar"><div class="wrap">
+    <p class="vault-tag">Secret</p>
+    <div><button class="v-btn v-btn--ghost vault-lock" type="button">Lock</button><button class="v-btn vault-close" type="button">Close</button></div>
+  </div></div>
+  <div class="vault-body"></div>
 </dialog>
 <script>
 /* ===== SHARED SCRIPT — keep identical on all pages ===== */
 (function(){
   var d=document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
   // Mobile nav
-  var t=document.querySelector('.nav-toggle'), n=document.getElementById('site-nav');
-  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('is-open');t.setAttribute('aria-expanded',o)});}
+  var hd=document.querySelector('.site-header'), t=document.querySelector('.nav-toggle'), n=document.getElementById('site-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('is-open');t.setAttribute('aria-expanded',o);hd.classList.toggle('menu-open',o)});}
+  // Transparent header: frosted once scrolled; light links while a dark photo header ([data-dark-head]) is behind it
+  if(hd){var dark=document.querySelector('[data-dark-head]'),busy=false;
+    function hdr(){var y=window.scrollY||0,h=hd.offsetHeight;hd.classList.toggle('is-scrolled',y>8);
+      if(dark)hd.dataset.tone=dark.getBoundingClientRect().bottom>h?'light':'dark';busy=false}
+    addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(hdr)}},{passive:true});addEventListener('resize',hdr);hdr();}
   // Scroll reveal
   var els=document.querySelectorAll('.reveal');
   var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!('IntersectionObserver' in window)||rm){els.forEach(function(e){e.classList.add('is-in')});}
   else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)});}
-  // Simple sign-in. NOTE: this is a static site, so this is a convenience gate only, not real security.
-  var HASH='eb740430888cafad58f8882004534e966e9f13775ecb87450da7d24ac53ce126';
-  var KEY='ev-signed-in', btn=document.querySelector('.signin-btn'), dlg=document.getElementById('signin');
-  if(!btn||!dlg)return;
-  function get(){try{return sessionStorage.getItem(KEY)==='1'}catch(e){return false}}
-  function set(v){try{v?sessionStorage.setItem(KEY,'1'):sessionStorage.removeItem(KEY)}catch(e){}}
-  function paint(){var on=get();btn.textContent=on?'Signed in · Ezra':'Sign in';btn.dataset.state=on?'in':'out';d.classList.toggle('is-owner',on)}
-  paint();
-  var form=dlg.querySelector('form'), msg=dlg.querySelector('.signin-msg'), pw=dlg.querySelector('#signin-pw'),
-      out=dlg.querySelector('.signin-out'), sub=dlg.querySelector('.signin-submit'), title=dlg.querySelector('#signin-title');
-  function openD(){var on=get();title.textContent=on?'You\u2019re signed in':'Sign in';pw.parentNode.hidden=on;sub.hidden=on;out.hidden=!on;msg.textContent='';pw.value='';
-    if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');setTimeout(function(){(on?out:pw).focus()},0)}
-  function closeD(){if(dlg.close)dlg.close();else dlg.removeAttribute('open');btn.focus()}
-  btn.addEventListener('click',openD);
-  dlg.querySelector('.signin-cancel').addEventListener('click',closeD);
-  out.addEventListener('click',function(){set(false);paint();closeD()});
-  async function sha(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}
-  form.addEventListener('submit',async function(e){e.preventDefault();
-    try{ if(await sha(pw.value)===HASH){set(true);paint();msg.textContent='Welcome back, Ezra.';setTimeout(closeD,600)}
-         else{msg.textContent='That password didn\u2019t match. Try again.';pw.select()} }
-    catch(err){msg.textContent='Sign-in needs a secure (https) connection.'}
-  });
+  // Secret section. Its content lives in data/secret.json, encrypted (AES-256-GCM, key from the password via PBKDF2-SHA256),
+  // so nothing private is readable in the page source. Wrong password = decryption fails. Made with tools/secret.py.
+  var btn=document.querySelector('.signin-btn'), dlg=document.getElementById('signin'), vault=document.getElementById('vault');
+  if(!btn||!dlg||!vault)return;
+  var KEY='ev-vault', body=vault.querySelector('.vault-body'), form=dlg.querySelector('form'), msg=dlg.querySelector('.signin-msg'),
+      pw=dlg.querySelector('#signin-pw'), sub=dlg.querySelector('.signin-submit'), blob=null;
+  function b64(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)})}
+  function load(){return blob||(blob=fetch('data/secret.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('load');return r.json()}).catch(function(e){blob=null;throw e}))}
+  function getK(){try{return sessionStorage.getItem(KEY)}catch(e){return null}}
+  function setK(v){try{v?sessionStorage.setItem(KEY,v):sessionStorage.removeItem(KEY)}catch(e){}}
+  async function derive(p,j){var m=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveBits']);
+    return new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:b64(j.salt),iterations:j.iter},m,256))}
+  async function open(raw,j){var k=await crypto.subtle.importKey('raw',raw,'AES-GCM',false,['decrypt']);
+    return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(j.iv)},k,b64(j.ct)))}
+  // Tabs + encrypted photos inside the secret section (each photo has its own key, carried inside the encrypted page)
+  function pics(scope){scope.querySelectorAll('img[data-k]').forEach(async function(im){var k=im.dataset.k;im.removeAttribute('data-k');
+    try{var r=await fetch('data/secret/p/'+im.dataset.p+'.bin');if(!r.ok)throw 0;var b=new Uint8Array(await r.arrayBuffer());
+      var key=await crypto.subtle.importKey('raw',b64(k),'AES-GCM',false,['decrypt']);
+      var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b.slice(0,12)},key,b.slice(12));
+      im.src=URL.createObjectURL(new Blob([pt],{type:'image/webp'}));im.classList.add('is-in')}catch(e){im.alt='Photo couldn\u2019t load';im.classList.add('is-err')}})}
+  function tab(id){var pn=document.getElementById(id);if(!pn)return;
+    body.querySelectorAll('[data-panel]').forEach(function(x){x.hidden=x!==pn});
+    body.querySelectorAll('[data-tab]').forEach(function(t){t.setAttribute('aria-selected',t.dataset.tab===id)});pics(pn)}
+  body.addEventListener('click',function(e){var t=e.target.closest('[data-tab]');if(t){tab(t.dataset.tab);vault.scrollTop=0;return}
+    var g=e.target.closest('[data-goto]');if(g){e.preventDefault();tab(g.dataset.goto);var x=document.getElementById(g.getAttribute('href').slice(1));if(x)x.scrollIntoView({block:'start'})}});
+  function show(html){body.innerHTML=html;var first=body.querySelector('[data-panel]:not([hidden])');if(first)pics(first);if(dlg.open)dlg.close();if(vault.showModal)vault.showModal();else vault.setAttribute('open','');
+    vault.scrollTop=0;setTimeout(function(){vault.querySelector('.vault-close').focus()},0)}
+  function hide(){if(vault.close)vault.close();else vault.removeAttribute('open');btn.focus()}
+  function gate(){msg.textContent='';pw.value='';sub.disabled=false;if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');setTimeout(function(){pw.focus()},0)}
+  btn.addEventListener('click',async function(){var k=getK();
+    if(k){try{show(await open(b64(k),await load()));return}catch(e){setK(null)}}
+    gate()});
+  dlg.querySelector('.signin-cancel').addEventListener('click',function(){dlg.close();btn.focus()});
+  vault.querySelector('.vault-close').addEventListener('click',hide);
+  vault.querySelector('.vault-lock').addEventListener('click',function(){setK(null);body.innerHTML='';hide()});
+  vault.addEventListener('close',function(){btn.focus()});
+  form.addEventListener('submit',async function(e){e.preventDefault();if(!pw.value){msg.textContent='Enter the password.';return}
+    if(!window.crypto||!crypto.subtle){msg.textContent='This needs a secure (https) connection.';return}
+    sub.disabled=true;msg.textContent='Unlocking\u2026';var j;
+    try{j=await load()}catch(err){msg.textContent='Couldn\u2019t load the secret section. Check your connection.';sub.disabled=false;return}
+    try{var raw=await derive(pw.value,j),html=await open(raw,j);setK(btoa(String.fromCharCode.apply(null,raw)));show(html)}
+    catch(err){msg.textContent='That password didn\u2019t match. Try again.';pw.select()}
+    sub.disabled=false});
 })();
 </script>
 </body>

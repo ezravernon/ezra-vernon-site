@@ -35,7 +35,9 @@ change the builder or the data, then rebuild.
 6. Rebuild: `python3 tools/build.py` (from the repo root). It writes `site/` and stamps today's date as "Updated".
 7. Check: every page in `site/` exists, `site/data/activities.json` parses, its activity count grew by the number of lines added,
    and `git diff --stat` only touches `tools/coros/activities.tsv`, `site/training.html` and `site/data/activities.json`
-   (plus `build_training.py` if an exclusion was added). If anything else changed, stop and report instead of pushing.
+   (plus `build_training.py` if an exclusion was added, and `site/data/secret.json` from the secret rotation).
+   If anything else changed, stop and report instead of pushing.
 8. Commit as `Ezra Vernon <ezravernon@users.noreply.github.com>` with a message like
    `Training data: +4 activities (Nov 10–15)` and push.
-9. If there were no new activities, change nothing and push nothing.
+9. If there were no new activities, leave the Training files alone, but still do the secret-section password rotation
+   (`tools/SECRET.md`) and push that.
