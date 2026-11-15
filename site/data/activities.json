@@ -1,7 +1,23 @@
 {
- "updated": "2026-11-10",
+ "updated": "2026-11-14",
  "source": "COROS",
  "activities": [
+  {
+   "date": "2026-11-14",
+   "sport": "Run",
+   "group": "running",
+   "seconds": 4038,
+   "hr": 153,
+   "meters": 12880
+  },
+  {
+   "date": "2026-11-12",
+   "sport": "Activity",
+   "group": "other",
+   "seconds": 1297,
+   "hr": 127,
+   "meters": 1850
+  },
   {
    "date": "2026-11-09",
    "sport": "Indoor climb",
