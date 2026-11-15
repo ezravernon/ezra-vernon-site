@@ -34,7 +34,7 @@ SHARED_CSS = """
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:104px} /* keeps focused/linked items clear of the fixed header */
 body{margin:0;background:var(--base);color:var(--ink);font-family:var(--font-sans);font-size:var(--step-0);line-height:1.6;text-rendering:optimizeLegibility}
 img{max-width:100%;height:auto;display:block}
 h1,h2,h3{font-family:var(--font-serif);font-weight:400;line-height:1.1;letter-spacing:-0.015em;margin:0 0 var(--s3)}
@@ -54,6 +54,8 @@ a:hover{color:var(--ink)}
 .section--tint{background:var(--base-deep)}
 .skip{position:absolute;left:var(--s2);top:-80px;background:var(--ink);color:var(--base);padding:var(--s1) var(--s2);border-radius:var(--radius);z-index:100;transition:top var(--t-fast)}
 .skip:focus{top:var(--s2)}
+/* Visually hidden, still read by screen readers */
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 /* Buttons — one style everywhere */
 .btn{display:inline-flex;align-items:center;gap:var(--s1);font:500 var(--step-0)/1 var(--font-sans);padding:var(--s2) var(--s3);border-radius:var(--radius);background:var(--accent);color:var(--base);text-decoration:none;border:1px solid var(--accent);cursor:pointer;transition:background var(--t-med) var(--ease),color var(--t-med) var(--ease),transform var(--t-med) var(--ease)}
 .btn:hover{background:var(--ink);border-color:var(--ink);color:var(--base);transform:translateY(-1px)}
@@ -74,6 +76,10 @@ a:hover{color:var(--ink)}
 .nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--hc)}
 .nav a[aria-current="page"]{color:var(--hc)}
 .brand:hover{color:var(--hc)}
+/* Sign in sits in the menu and looks like the other links (it is a button because it opens a dialog) */
+.nav .nav-signin{font:inherit;line-height:inherit;background:none;border:0;border-bottom:1px solid transparent;border-radius:0;margin:calc(-1 * var(--s1)) 0 calc(-1 * var(--s1) - 1px);padding:var(--s1) 0;color:var(--hc);cursor:pointer;transition:border-color var(--t-med) var(--ease),color var(--t-slow) var(--ease)}
+.nav .nav-signin:hover{border-bottom-color:var(--hc)}
+.no-js .nav-signin-item{display:none}
 .nav .btn{color:var(--base);padding:var(--s1) var(--s3);border-bottom:1px solid var(--accent)}
 .nav .btn:hover,.nav .btn[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:var(--base)}
 .site-header[data-tone="light"] .nav .btn:hover,.site-header[data-tone="light"] .nav .btn[aria-current="page"]{background:var(--base);border-color:var(--base);color:var(--ink)}
@@ -94,13 +100,15 @@ main > .page-head:first-child{padding-top:calc(72px + var(--s7))}
 .page-head{padding-block:var(--s7) var(--s5)}
 .page-head p{font-size:var(--step-1);line-height:1.5}
 /* Footer */
-.site-footer{border-top:1px solid var(--line);padding-block:var(--s6) var(--s8)}
+.site-footer{border-top:1px solid var(--line);padding-block:var(--s6)}
 .site-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s3);align-items:center}
 .site-footer p{margin:0;color:var(--ink-soft);font-size:var(--step--1)}
-.site-footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s3);margin:0;padding:0;font-size:var(--step--1)}
-/* Sign-in corner -> password gate -> secret section (everything here is black with white type) */
-.signin-btn{position:fixed;right:var(--s2);bottom:var(--s2);z-index:30;font:500 var(--step--1)/1 var(--font-sans);padding:var(--s1) var(--s2);border-radius:var(--radius);border:1px solid var(--line);background:var(--base);color:var(--ink-soft);box-shadow:var(--shadow);cursor:pointer;transition:color var(--t-med) var(--ease),border-color var(--t-med) var(--ease),background var(--t-med) var(--ease)}
-.signin-btn:hover{color:#fff;border-color:#000;background:#000}
+.site-footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s1) var(--s3);margin:0;padding:0;font-size:var(--step--1)}
+.site-footer a{display:inline-block;padding-block:4px}
+.site-footer .legal{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line)}
+.site-footer .legal a{color:var(--ink-soft)}
+.site-footer .legal a:hover,.site-footer .legal a[aria-current="page"]{color:var(--ink)}
+/* Sign in (in the menu) -> password gate -> secret section (everything here is black with white type) */
 .signin,.vault{--v-ink:#fff;--v-soft:rgba(255,255,255,.62);--v-line:rgba(255,255,255,.14);background:#000;color:var(--v-ink);font-family:var(--font-sans)}
 .signin{border:1px solid var(--v-line);border-radius:12px;padding:var(--s5) var(--s4) var(--s4);width:min(420px,100% - var(--s4));box-shadow:0 24px 64px rgba(0,0,0,.5)}
 .signin::backdrop{background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
@@ -110,7 +118,8 @@ main > .page-head:first-child{padding-top:calc(72px + var(--s7))}
 .field{display:grid;gap:var(--s1);margin-bottom:var(--s3)}
 .field label{font-size:var(--step--1);font-weight:500;color:var(--v-soft);letter-spacing:.14em;text-transform:uppercase}
 .field input{font:400 var(--step-0)/1.4 var(--font-sans);padding:var(--s2);border:1px solid var(--v-line);border-radius:var(--radius);background:#0d0d0d;color:#fff;transition:border-color var(--t-fast)}
-.field input:focus-visible{border-color:#fff;outline:0}
+.field input:focus-visible{border-color:#fff;outline:2px solid #fff;outline-offset:2px}
+.field input[aria-invalid="true"]{border-color:#fff}
 .signin-msg{min-height:1.6em;margin:0 0 var(--s2);font-size:var(--step--1);color:var(--v-soft)}
 .signin-actions{display:flex;gap:var(--s2);flex-wrap:wrap}
 .v-btn{font:500 var(--step--1)/1 var(--font-sans);letter-spacing:.04em;padding:var(--s2) var(--s3);border-radius:999px;border:1px solid #fff;background:#fff;color:#000;cursor:pointer;transition:background var(--t-med) var(--ease),color var(--t-med) var(--ease),border-color var(--t-med) var(--ease)}
@@ -146,6 +155,7 @@ html:has(.vault[open]){overflow:hidden}
 .v-tab:hover{color:#fff}
 .v-tab[aria-selected="true"]{background:#fff;color:#000}
 .v-panel[hidden]{display:none}
+.v-panel:focus-visible{outline-offset:8px}
 .v-panel > .lede{margin-bottom:var(--s5)}
 .v-entry{padding-block:var(--s6);border-top:1px solid var(--v-line);scroll-margin-top:150px}
 .v-entry h2{margin:0 0 var(--s3);display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2)}
@@ -178,6 +188,12 @@ html:has(.vault[open]){overflow:hidden}
   .js .reveal{opacity:1;transform:none;transition:none}
   *{transition-duration:1ms!important;animation:none!important}
 }
+/* Windows high-contrast / forced colours: states that rely on a background fill get a visible border instead */
+@media (forced-colors:active){
+  .btn,.v-btn,.chip,.v-tab,.nav-toggle{border:1px solid ButtonText}
+  .nav a[aria-current="page"],.chip[aria-pressed="true"],.v-tab[aria-selected="true"]{outline:2px solid Highlight;outline-offset:2px}
+  .site-header.is-scrolled,.site-header.menu-open{background:Canvas;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
 """
 
 SHARED_JS = """
@@ -186,7 +202,10 @@ SHARED_JS = """
   var d=document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
   // Mobile nav
   var hd=document.querySelector('.site-header'), t=document.querySelector('.nav-toggle'), n=document.getElementById('site-nav');
-  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('is-open');t.setAttribute('aria-expanded',o);hd.classList.toggle('menu-open',o)});}
+  function menu(o){n.classList.toggle('is-open',o);t.setAttribute('aria-expanded',o);hd.classList.toggle('menu-open',o)}
+  if(t&&n){t.addEventListener('click',function(){menu(!n.classList.contains('is-open'))});
+    // Escape closes the open menu and hands focus back to the Menu button
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&n.classList.contains('is-open')&&!document.querySelector('dialog[open]')){var inside=n.contains(document.activeElement);menu(false);if(inside)t.focus()}});}
   // Transparent header: frosted once scrolled; light links while a dark photo header ([data-dark-head]) is behind it
   if(hd){var dark=document.querySelector('[data-dark-head]'),busy=false;
     function hdr(){var y=window.scrollY||0,h=hd.offsetHeight;hd.classList.toggle('is-scrolled',y>8);
@@ -219,26 +238,38 @@ SHARED_JS = """
       im.src=URL.createObjectURL(new Blob([pt],{type:'image/webp'}));im.classList.add('is-in')}catch(e){im.alt='Photo couldn\\u2019t load';im.classList.add('is-err')}})}
   function tab(id){var pn=document.getElementById(id);if(!pn)return;
     body.querySelectorAll('[data-panel]').forEach(function(x){x.hidden=x!==pn});
-    body.querySelectorAll('[data-tab]').forEach(function(t){t.setAttribute('aria-selected',t.dataset.tab===id)});pics(pn)}
+    body.querySelectorAll('[data-tab]').forEach(function(t){var on=t.dataset.tab===id;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1});pics(pn)}
+  // Screen-reader semantics for the tabs (added here so they also apply to an already-encrypted page): tablist/tab/tabpanel + arrow keys
+  function tabsAria(){var tl=body.querySelector('.v-tabs');if(!tl)return;tl.setAttribute('role','tablist');tl.setAttribute('aria-label','Secret sections');
+    body.querySelectorAll('[data-tab]').forEach(function(t){t.setAttribute('role','tab');t.id='tab-'+t.dataset.tab;t.setAttribute('aria-controls',t.dataset.tab);t.tabIndex=t.getAttribute('aria-selected')==='true'?0:-1});
+    body.querySelectorAll('[data-panel]').forEach(function(p){p.setAttribute('role','tabpanel');p.setAttribute('aria-labelledby','tab-'+p.id);p.tabIndex=0})}
+  body.addEventListener('keydown',function(e){var c=e.target.closest&&e.target.closest('[data-tab]');if(!c)return;
+    var all=[].slice.call(body.querySelectorAll('[data-tab]')),i=all.indexOf(c),k=e.key,
+        j=k==='ArrowRight'?(i+1)%all.length:k==='ArrowLeft'?(i-1+all.length)%all.length:k==='Home'?0:k==='End'?all.length-1:-1;
+    if(j<0)return;e.preventDefault();tab(all[j].dataset.tab);all[j].focus();vault.scrollTop=0});
   body.addEventListener('click',function(e){var t=e.target.closest('[data-tab]');if(t){tab(t.dataset.tab);vault.scrollTop=0;return}
     var g=e.target.closest('[data-goto]');if(g){e.preventDefault();tab(g.dataset.goto);var x=document.getElementById(g.getAttribute('href').slice(1));if(x)x.scrollIntoView({block:'start'})}});
-  function show(html){body.innerHTML=html;var first=body.querySelector('[data-panel]:not([hidden])');if(first)pics(first);if(dlg.open)dlg.close();if(vault.showModal)vault.showModal();else vault.setAttribute('open','');
+  function show(html){body.innerHTML=html;tabsAria();var first=body.querySelector('[data-panel]:not([hidden])');if(first)pics(first);if(dlg.open)dlg.close();if(vault.showModal)vault.showModal();else vault.setAttribute('open','');
     vault.scrollTop=0;setTimeout(function(){vault.querySelector('.vault-close').focus()},0)}
-  function hide(){if(vault.close)vault.close();else vault.removeAttribute('open');btn.focus()}
-  function gate(){msg.textContent='';pw.value='';sub.disabled=false;if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');setTimeout(function(){pw.focus()},0)}
-  btn.addEventListener('click',async function(){var k=getK();
+  // Focus goes back to Sign in, or to the Menu button when Sign in is tucked inside the closed mobile menu
+  function back(){var el=btn.offsetParent?btn:t;if(el)el.focus()}
+  function hide(){if(vault.close)vault.close();else vault.removeAttribute('open');back()}
+  function gate(){msg.textContent='';pw.value='';pw.removeAttribute('aria-invalid');sub.disabled=false;if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');setTimeout(function(){pw.focus()},0)}
+  btn.addEventListener('click',async function(){var k=getK();if(t&&n&&n.classList.contains('is-open')&&t.offsetParent)menu(false);
     if(k){try{show(await open(b64(k),await load()));return}catch(e){setK(null)}}
     gate()});
-  dlg.querySelector('.signin-cancel').addEventListener('click',function(){dlg.close();btn.focus()});
+  dlg.querySelector('.signin-cancel').addEventListener('click',function(){dlg.close()});
+  dlg.addEventListener('close',function(){if(!vault.open)back()});
+  pw.addEventListener('input',function(){pw.removeAttribute('aria-invalid')});
   vault.querySelector('.vault-close').addEventListener('click',hide);
   vault.querySelector('.vault-lock').addEventListener('click',function(){setK(null);body.innerHTML='';hide()});
-  vault.addEventListener('close',function(){btn.focus()});
+  vault.addEventListener('close',back);
   form.addEventListener('submit',async function(e){e.preventDefault();if(!pw.value){msg.textContent='Enter the password.';return}
     if(!window.crypto||!crypto.subtle){msg.textContent='This needs a secure (https) connection.';return}
     sub.disabled=true;msg.textContent='Unlocking\\u2026';var j;
     try{j=await load()}catch(err){msg.textContent='Couldn\\u2019t load the secret section. Check your connection.';sub.disabled=false;return}
     try{var raw=await derive(pw.value,j),html=await open(raw,j);setK(btoa(String.fromCharCode.apply(null,raw)));show(html)}
-    catch(err){msg.textContent='That password didn\\u2019t match. Try again.';pw.select()}
+    catch(err){msg.textContent='That password didn\\u2019t match. Try again.';pw.setAttribute('aria-invalid','true');pw.select()}
     sub.disabled=false});
 })();
 """
@@ -260,10 +291,18 @@ def header(current):
     <a class="brand" href="index.html"><img src="images/logo-240.webp" width="56" height="32" alt="">Ezra Vernon</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="nav" id="site-nav" aria-label="Main">
-      <ul>{items}<li><a class="btn" href="socials.html"{cur}>Socials</a></li></ul>
+      <ul>{items}<li class="nav-signin-item"><button class="nav-signin signin-btn" type="button" aria-haspopup="dialog" aria-controls="signin">Sign in</button></li><li><a class="btn" href="socials.html"{cur}>Socials</a></li></ul>
     </nav>
   </div>
 </header>"""
+
+
+LEGAL = [("privacy.html", "Privacy"), ("terms.html", "Terms"), ("cookies.html", "Cookies"), ("accessibility.html", "Accessibility")]
+
+
+def footer(current):
+    legal = "".join(f'<li><a href="{h}"{" aria-current=\"page\"" if h == current else ""}>{l}</a></li>' for h, l in LEGAL)
+    return FOOTER.replace("{legal}", legal)
 
 
 FOOTER = """<footer class="site-footer">
@@ -275,14 +314,16 @@ FOOTER = """<footer class="site-footer">
       <li><a href="https://strava.app.link/lBou8jZCg7b" rel="noopener">Strava</a></li>
     </ul>
   </div>
+  <nav class="wrap legal" aria-label="Legal">
+    <ul>{legal}</ul>
+  </nav>
 </footer>
-<button class="signin-btn" type="button" aria-haspopup="dialog" aria-controls="signin">Sign in</button>
 <dialog class="signin" id="signin" aria-labelledby="signin-title">
   <form method="dialog" novalidate>
     <h2 id="signin-title">Sign in</h2>
     <p class="sub">Private section. Password only.</p>
-    <div class="field"><label for="signin-pw">Password</label><input id="signin-pw" name="password" type="password" autocomplete="current-password" required></div>
-    <p class="signin-msg" role="status" aria-live="polite"></p>
+    <div class="field"><label for="signin-pw">Password</label><input id="signin-pw" name="password" type="password" autocomplete="current-password" aria-describedby="signin-msg" required></div>
+    <p class="signin-msg" id="signin-msg" role="status" aria-live="polite"></p>
     <div class="signin-actions">
       <button class="v-btn signin-submit" type="submit">Unlock</button>
       <button class="v-btn v-btn--ghost signin-cancel" type="button">Close</button>
@@ -326,7 +367,7 @@ def page(fname, title, desc, body, page_css="", page_js="", fonts=FONTS, top_com
 <main id="main">
 {body}
 </main>
-{FOOTER}
+{footer(fname)}
 <script>{SHARED_JS}</script>
 {pjs}</body>
 </html>
@@ -338,6 +379,7 @@ def page(fname, title, desc, body, page_css="", page_js="", fonts=FONTS, top_com
 HOME_COMMENT = """<!--
 HANDOVER NOTES — Ezra Vernon personal site (v1, 2026-11-08)
 Pages: index.html (Home), dreams.html, sidequests.html, quotes.html, training.html, socials.html, 404.html; photos in images/.
+Policies: privacy.html, terms.html, cookies.html, accessibility.html, linked from the footer of every page.
 Training data: data/activities.json + the log on training.html, generated from Ezra's COROS history (date, sport, time, distance, own titles only;
   no coordinates, place names, heart rate or calories). Refresh by asking Claude to pull new COROS activities.
 Hosting plan: GitHub repo -> Vercel -> custom domain (Wix). Plain static HTML, no build step; Vercel serves 404.html automatically.
@@ -351,7 +393,7 @@ Photos: meadow-{600,900,1220}.webp (Home hero background), meadow-wide-{800,1220
   frisbee-{800,1400}.webp (Home photos; credit Dan Tsuji Photography), car-{600,1000}.webp + belay-{600,1000}.webp (Home photos),
   logo-{240,480,960}.webp (header + Socials), favicon-64.png, apple-touch-icon.png. All EXIF stripped.
   To add/swap a photo: convert to WebP, strip metadata, export the same widths, update width/height/srcset/alt.
-Sign-in: bottom-right "Sign in" button opens a password prompt; the right password decrypts data/secret.json and shows the
+Sign-in: the "Sign in" item in the menu opens a password prompt; the right password decrypts data/secret.json and shows the
   blacked-out secret section. The content is encrypted (AES-GCM, PBKDF2 key), so it is not readable in the source.
   Content comes from Ezra's Notion "Summit Log" database and is re-encrypted with a NEW password every Saturday by the weekly update (tools/secret.py, tools/SECRET.md).
 -->
@@ -530,8 +572,8 @@ home_js = """(function(){
   if(!window.matchMedia||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   // Mantra: wrap each word so it can animate in
   var q=document.querySelector('.mantra blockquote p');
-  if(q){var words=q.textContent.trim().split(/\\s+/);q.setAttribute('aria-label',q.textContent.trim());
-    q.innerHTML=words.map(function(w,i){return '<span class="w" aria-hidden="true" style="--i:'+i+'">'+w+'</span>'}).join(' ');}
+  if(q){var full=q.textContent.trim(),words=full.split(/\\s+/);
+    q.innerHTML='<span class="vh">'+full+'</span>'+words.map(function(w,i){return '<span class="w" aria-hidden="true" style="--i:'+i+'">'+w+'</span>'}).join(' ');}
   // Hero background: reveal on load, then parallax while scrolling
   var fig=document.querySelector('.hero-bg'),img=fig&&fig.querySelector('img');
   if(!fig)return;
@@ -603,7 +645,7 @@ dreams_body = """<section class="page-head">
         <span class="num">03</span>
         <div><h2>Mount Tantalus</h2><p class="elev">2,603 m · Tantalus Range</p></div>
         <div>
-          <p>The highest summit of the Tantalus Range, the wall of glaciated peaks you see across the Squamish Valley from the Sea to Sky Highway. The Squamish people call the range Tsewílx’.</p>
+          <p>The highest summit of the Tantalus Range, the wall of glaciated peaks you see across the Squamish Valley from the Sea to Sky Highway. The Squamish people call the range <span lang="squ">Tsewílx’</span>.</p>
           <p>First climbed in 1911, it is a serious glacier-and-ridge objective: crevasses, bergschrunds and an exposed summit ridge, usually approached by helicopter or a long climb up from near sea level.</p>
         </div>
       </article>
@@ -808,6 +850,208 @@ s_body = """<section class="page-head">
 </section>"""
 page("socials.html", "Socials — Ezra Vernon",
      "Find Ezra Vernon on Instagram, LinkedIn and Strava.", s_body, s_css)
+
+# ---------------------------------------------------------------- LEGAL (privacy, terms, cookies, accessibility)
+# POLICY_UPDATED is written by hand: change it only when the wording of a policy changes, so the weekly rebuild leaves these pages untouched.
+# If the site ever gains analytics, ads, embeds, a contact form or accounts, the Privacy and Cookie pages must be rewritten first.
+POLICY_UPDATED = "November 14, 2026"
+legal_css = """
+.legal-head .updated{font-size:var(--step--1);color:var(--ink-soft);margin:0}
+.prose{padding-block:0 var(--s7)}
+.prose > .wrap > *{max-width:var(--measure)}
+.prose h2{font-size:var(--step-3);margin:var(--s6) 0 var(--s2)}
+.prose h3{font-size:var(--step-1);font-family:var(--font-sans);font-weight:500;letter-spacing:0;margin:var(--s4) 0 var(--s1)}
+.prose ul{padding-left:1.2em;margin:0 0 var(--s3)}
+.prose li{margin-bottom:var(--s1)}
+.prose .short{border:1px solid var(--line);border-left:2px solid var(--accent);border-radius:var(--radius);background:var(--base-deep);padding:var(--s3) var(--s4)}
+.prose .short h2{font-size:var(--step-1);font-family:var(--font-sans);font-weight:500;letter-spacing:0;margin:0 0 var(--s2)}
+.prose .short ul,.prose .short p:last-child{margin-bottom:0}
+.prose .short li:last-child{margin-bottom:0}
+.prose .table-scroll{overflow-x:auto;margin:0 0 var(--s3);max-width:none}
+.prose table{border-collapse:collapse;width:100%;min-width:560px;font-size:var(--step--1);line-height:1.5}
+.prose caption{text-align:left;color:var(--ink-soft);padding-bottom:var(--s1)}
+.prose th,.prose td{text-align:left;vertical-align:top;padding:var(--s2);border-bottom:1px solid var(--line)}
+.prose thead th{font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.8125rem;color:var(--ink-soft);border-bottom-color:var(--ink)}
+.prose tbody th{font-weight:500}
+.prose code{white-space:nowrap;font-size:.9em;background:var(--base-deep);padding:2px 6px;border-radius:4px}
+"""
+
+
+def legal_page(fname, title, desc, h1, lede, body):
+    page(fname, f"{title} — Ezra Vernon", desc, f"""<section class="page-head legal-head">
+  <div class="wrap">
+    <p class="eyebrow">The fine print</p>
+    <h1>{h1}</h1>
+    <p>{lede}</p>
+    <p class="updated">Last updated {POLICY_UPDATED}</p>
+  </div>
+</section>
+<section class="prose">
+  <div class="wrap">
+{body}
+  </div>
+</section>""", legal_css)
+
+
+legal_page("privacy.html", "Privacy policy",
+           "How Ezra Vernon's personal site handles your information: no accounts, no analytics, no ads and no cookies.",
+           "Privacy policy", "What this site does, and doesn’t do, with information about you.", """    <div class="short">
+      <h2>The short version</h2>
+      <ul>
+        <li>This is a personal site. It has no accounts, forms, newsletter, comments, analytics or ads.</li>
+        <li>I don’t collect, sell or share personal information about visitors.</li>
+        <li>The site sets no cookies. Two outside services are involved in showing you the pages: the host (Vercel) and the fonts (Google Fonts). Both see your IP address, as any web server does.</li>
+      </ul>
+    </div>
+
+    <h2>Who runs this site</h2>
+    <p>This is the personal website of Ezra Vernon, based in Victoria, British Columbia, Canada. “I” and “me” on this page mean Ezra. To reach me about anything here, use the links on the <a href="socials.html">Socials page</a>.</p>
+
+    <h2>What I collect</h2>
+    <p>Nothing directly. There is nowhere on this site to type in your name, email address or any other details, and I don’t run analytics, advertising or tracking tools, so I have no record of who visits or what they look at.</p>
+
+    <h2>What happens automatically when you visit</h2>
+    <h3>Hosting (Vercel)</h3>
+    <p>The site is hosted by Vercel Inc. To send you a page, Vercel’s servers receive your IP address, your browser and device type, the page you asked for and the time of the request. Vercel uses this to deliver the site and to protect it from abuse, and keeps technical logs for a limited time. As the site owner I can see limited request logs in my hosting dashboard; I don’t use them to identify anyone. See <a href="https://vercel.com/legal/privacy-policy" rel="noopener">Vercel’s privacy policy</a>.</p>
+    <h3>Fonts (Google Fonts)</h3>
+    <p>The typefaces are loaded from Google Fonts. When your browser fetches them, Google receives your IP address, your browser type and the address of the page that asked for the font. Google says the Fonts service sets no cookies and limits what it keeps. See <a href="https://developers.google.com/fonts/faq/privacy" rel="noopener">Google Fonts’ privacy notes</a>.</p>
+
+    <h2>The private section</h2>
+    <p>“Sign in” in the menu opens a private, password-protected part of the site that is meant for me. The password is checked inside your browser and is never sent to me or to a server. If the password is right, your browser keeps a temporary key in its session storage so the section stays unlocked until you close the tab or press “Lock”. The <a href="cookies.html">Cookie policy</a> has the details.</p>
+
+    <h2>My own data and photos</h2>
+    <p>The <a href="training.html">Training log</a> shows my own activities from my watch. Routes and locations are left out on purpose.</p>
+    <p>Some photos include other people. If you appear in a photo here and would like it taken down, tell me and I will remove it.</p>
+
+    <h2>Links and getting in touch</h2>
+    <p>This site links to other sites, including Instagram, LinkedIn and Strava. Once you follow a link, or message me on one of those platforms, that platform’s own privacy policy applies. I use what you send me only to reply to you.</p>
+
+    <h2>Where information is processed</h2>
+    <p>Vercel and Google run servers in the United States and other countries, so the technical information described above may be processed outside Canada and be subject to the laws of those places.</p>
+
+    <h2>Your choices</h2>
+    <ul>
+      <li>You can browse every public page without giving any information about yourself.</li>
+      <li>Because I don’t hold personal information about visitors, there is nothing for me to look up, correct or delete. Requests about server or font logs go to Vercel or Google.</li>
+      <li>If you have messaged me through a social platform, you can delete that conversation there, or ask me to delete my copy.</li>
+    </ul>
+
+    <h2>Changes</h2>
+    <p>If the site changes in a way that affects your privacy (for example, if I ever add a contact form or visitor statistics), I will update this page and the date at the top before the change goes live.</p>""")
+
+legal_page("terms.html", "Terms and conditions",
+           "The terms for using Ezra Vernon's personal site: content ownership, outdoor-activity disclaimer, links and liability.",
+           "Terms and conditions", "The ground rules for using this site. By using it, you agree to them.", """    <div class="short">
+      <h2>The short version</h2>
+      <ul>
+        <li>This is a personal site, shared for interest and fun. Nothing on it is professional advice.</li>
+        <li>The mountains and challenges described here are dangerous. What you do outdoors is your own decision and your own risk.</li>
+        <li>The writing, quotes, photos and logo belong to me unless credited to someone else. Please ask before reusing them.</li>
+      </ul>
+    </div>
+
+    <h2>About these terms</h2>
+    <p>This website is run by Ezra Vernon, an individual based in Victoria, British Columbia, Canada. These terms apply to everyone who visits. If you don’t agree with them, please don’t use the site.</p>
+
+    <h2>Personal content, not advice</h2>
+    <p>Everything here is my own experience, plans and opinions. I try to be accurate, but I make no promise that anything on the site is complete, correct or current. Elevations, route notes, distances and training figures in particular may be wrong or out of date.</p>
+
+    <h2>Outdoor activities are at your own risk</h2>
+    <p>Scrambling, mountaineering, glacier travel, skiing, climbing and long-distance running can cause serious injury or death. Nothing on this site is a guide, a route description, instruction or a recommendation that you attempt anything. Conditions change, and what I describe may not match what you find. If you head out, you are responsible for your own research, training, equipment and decisions, and for getting qualified instruction or a guide where it is needed.</p>
+    <p>If we make plans together through this site or my social accounts, each person takes part at their own risk.</p>
+
+    <h2>Who owns the content</h2>
+    <p>Unless credited otherwise, the text, original quotes, photos, bird logo and design of this site are © Ezra Vernon, all rights reserved. The ultimate frisbee photo on the Home page is by Dan Tsuji Photography.</p>
+    <p>You are welcome to link to the site and to quote a short passage, including one of my quotes, as long as you credit me by name. Please ask first before copying photos, the logo or longer pieces, or using anything commercially.</p>
+
+    <h2>Using the site fairly</h2>
+    <ul>
+      <li>Don’t try to break, overload or interfere with the site.</li>
+      <li>The private section behind “Sign in” is not public. Don’t try to get into it unless I have given you the password.</li>
+      <li>Don’t pass off my content as your own, or use my name or logo in a way that suggests I endorse something.</li>
+    </ul>
+
+    <h2>Links to other sites</h2>
+    <p>The site links to websites I don’t control, such as Instagram, LinkedIn, Strava and others. I’m not responsible for their content or for how they handle your information.</p>
+
+    <h2>No warranty</h2>
+    <p>The site is provided “as is” and “as available”. I don’t promise that it will always be online, free of errors or suitable for any particular purpose, and I may change or remove any part of it at any time.</p>
+
+    <h2>Limit of liability</h2>
+    <p>To the fullest extent the law allows, I am not liable for any loss, injury or damage that results from using this site or relying on anything on it. Nothing in these terms takes away rights you have by law that cannot be limited.</p>
+
+    <h2>Privacy</h2>
+    <p>How the site handles information is covered in the <a href="privacy.html">Privacy policy</a> and the <a href="cookies.html">Cookie policy</a>.</p>
+
+    <h2>Governing law</h2>
+    <p>These terms are governed by the laws of British Columbia and the federal laws of Canada that apply there. Any dispute will be dealt with by the courts of British Columbia.</p>
+
+    <h2>Changes and contact</h2>
+    <p>I may update these terms from time to time; the date at the top shows the latest version. Questions are welcome through the <a href="socials.html">Socials page</a>.</p>""")
+
+legal_page("cookies.html", "Cookie policy",
+           "Ezra Vernon's personal site sets no cookies. What is stored in your browser, when, and why there is no cookie banner.",
+           "Cookie policy", "What this site stores in your browser, which is almost nothing.", """    <div class="short">
+      <h2>The short version</h2>
+      <ul>
+        <li>This site sets no cookies, and uses no analytics, advertising or tracking.</li>
+        <li>One item is kept in your browser, and only if you unlock the private section with the correct password.</li>
+        <li>That is why there is no cookie banner: there is nothing here that needs your consent.</li>
+      </ul>
+    </div>
+
+    <h2>What cookies are</h2>
+    <p>Cookies are small text files a website saves in your browser, often to remember you or to follow what you do across pages and sites. Browsers also offer similar tools, such as “local storage” and “session storage”. This page covers all of them.</p>
+
+    <h2>What this site stores on your device</h2>
+    <div class="table-scroll" role="region" aria-label="Items stored in your browser" tabindex="0">
+      <table>
+        <caption>Everything this site stores in your browser</caption>
+        <thead><tr><th scope="col">Name</th><th scope="col">Type</th><th scope="col">When it is set</th><th scope="col">What it is for</th><th scope="col">How long it lasts</th></tr></thead>
+        <tbody><tr><th scope="row"><code>ev-vault</code></th><td>Session storage (not a cookie)</td><td>Only after you choose “Sign in” and enter the correct password</td><td>Keeps the private section unlocked as you move between pages</td><td>Until you close the tab or press “Lock”</td></tr></tbody>
+      </table>
+    </div>
+    <p>This item is needed for a feature you have asked for, it never leaves your browser, and it is not used to track you. If you never sign in, the site stores nothing at all.</p>
+
+    <h2>Other services</h2>
+    <ul>
+      <li><strong>Vercel (hosting)</strong> does not set cookies when it serves these pages normally. If its security systems suspect automated or abusive traffic, they may show a short browser check and set a short-lived security cookie so you are not checked again straight away.</li>
+      <li><strong>Google Fonts</strong> delivers the typefaces. Google says the Fonts service sets no cookies. It does receive your IP address, as explained in the <a href="privacy.html">Privacy policy</a>.</li>
+      <li><strong>Links to other sites</strong> such as Instagram, LinkedIn and Strava: those sites use their own cookies once you are on them, under their own policies. Nothing from them is embedded here.</li>
+    </ul>
+
+    <h2>Why there is no cookie banner</h2>
+    <p>Consent banners are for cookies and trackers that are not essential, such as analytics and advertising. This site has none. If I ever add something that does need your permission, I will update this page and ask before anything is stored.</p>
+
+    <h2>Clearing what is stored</h2>
+    <p>Pressing “Lock” in the private section, or closing the tab, removes the stored item. You can also clear site data for this site at any time in your browser’s privacy settings.</p>""")
+
+legal_page("accessibility.html", "Accessibility",
+           "Accessibility statement for Ezra Vernon's personal site: what has been done, known limits, and how to report a problem.",
+           "Accessibility", "I want everyone to be able to read and use this site, whatever device or assistive technology they use.", """    <h2>What I’m aiming for</h2>
+    <p>The site is built to follow the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA.</p>
+
+    <h2>What’s in place</h2>
+    <ul>
+      <li>Every page works with a keyboard alone, with a visible focus outline and a “Skip to content” link.</li>
+      <li>Headings, landmarks, lists and tables are marked up so screen readers can navigate by them.</li>
+      <li>Photos have text descriptions. Purely decorative images are hidden from assistive technology.</li>
+      <li>Text and controls meet AA colour contrast, and nothing relies on colour alone.</li>
+      <li>Pages reflow on small screens and when zoomed, without sideways scrolling.</li>
+      <li>Animations are switched off when your device is set to reduce motion.</li>
+      <li>The charts on the <a href="training.html">Training log</a> have the same numbers available as a table and a list.</li>
+    </ul>
+
+    <h2>Known limits</h2>
+    <ul>
+      <li>I check the site with automated accessibility tests and by keyboard. It has not had a professional audit or testing with every screen reader.</li>
+      <li>The charts on the Training log are drawn as graphics. Each bar and slice has a text label, but the table and list are the easier way to read the data.</li>
+      <li>Some text sits over photographs. It has a dark overlay behind it, but contrast can vary a little with the photo.</li>
+      <li>Sites I link to, such as Instagram, LinkedIn and Strava, are outside my control.</li>
+    </ul>
+
+    <h2>Tell me about a problem</h2>
+    <p>If something on this site is hard to use or doesn’t work with your setup, please let me know through the <a href="socials.html">Socials page</a>, and tell me the page and what went wrong. I will do my best to fix it.</p>""")
 
 # ---------------------------------------------------------------- 404
 nf_body = """<section class="page-head" style="padding-bottom:var(--s8)">

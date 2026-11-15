@@ -12,7 +12,9 @@ FILTERS = [("all", "All"), ("running", "Running"), ("hiking", "Hiking"), ("climb
 # Recordings that are clearly not the sport they're labelled as (e.g. a car drive logged as frisbee).
 EXCLUDE = {("2026-05-26", 1100, "1:25:33")}
 import zoneinfo
-UPDATED = _dt.datetime.now(zoneinfo.ZoneInfo("America/Vancouver")).date().isoformat()  # date the page was rebuilt
+import os
+# Date the page was rebuilt. SITE_UPDATED=YYYY-MM-DD keeps the old stamp when a rebuild changes layout only, not the data.
+UPDATED = os.environ.get("SITE_UPDATED") or _dt.datetime.now(zoneinfo.ZoneInfo("America/Vancouver")).date().isoformat()
 
 def secs(t):
     n = [int(x) for x in t.split(":")]
@@ -167,6 +169,7 @@ chips = "".join(f'<button type="button" class="chip" data-filter="{f}" aria-pres
                 for f, l in FILTERS if f == "all" or f in present)
 
 t_css = """
+html{scroll-padding-top:168px} /* fixed header + the sticky month heading */
 .stats{display:grid;gap:var(--s3);grid-template-columns:repeat(2,1fr);margin:0}
 @media (min-width:900px){.stats{grid-template-columns:repeat(4,1fr)}}
 .stat-tile{border-top:1px solid var(--ink);padding-top:var(--s2)}
@@ -191,7 +194,7 @@ t_css = """
 .chart:hover .bar path{opacity:.45}
 .chart .bar:hover path,.chart .bar:focus path{opacity:1}
 .chart .bar:focus{outline:none}
-.chart .bar:focus-visible .hit{stroke:var(--accent);stroke-width:2}
+.chart .bar:focus-visible .hit{stroke:var(--ink);stroke-width:2}
 .tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--base);font-size:var(--step--1);padding:var(--s1) var(--s2);border-radius:var(--radius);white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity var(--t-fast)}
 .tip.on{opacity:1}
 details.data{margin-top:var(--s3);font-size:var(--step--1)}
@@ -233,15 +236,17 @@ details.data td{font-variant-numeric:tabular-nums}
 .pie:hover .slice path{opacity:.5}
 .pie .slice:hover path,.pie .slice:focus path{opacity:1;transform:scale(1.03)}
 .pie .slice:focus{outline:none}
-.pie .slice:focus-visible path{stroke:var(--ink)}
+.pie .slice:focus-visible path{stroke:var(--ink);stroke-width:4}
 .slice-label{font:500 13px var(--font-sans);fill:#fff;text-anchor:middle;pointer-events:none}
 .legend{list-style:none;margin:0;padding:0}
-.legend li{display:grid;grid-template-columns:16px 1fr 48px 48px 80px;gap:var(--s2);align-items:baseline;padding-block:var(--s1);border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.mix > *{min-width:0}
+.legend li{display:grid;grid-template-columns:16px minmax(0,1fr) 48px 48px 80px;gap:var(--s2);align-items:baseline;padding-block:var(--s1);border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
 .legend li.head{font-size:var(--step--1);color:var(--ink-soft);letter-spacing:.04em}
 .legend .sw{width:16px;height:16px;border-radius:4px;align-self:center}
 .legend .lg-name small{display:block;font-size:var(--step--1);color:var(--ink-soft)}
 .legend .lg-n,.legend .lg-pct,.legend .lg-hr{text-align:right}
 .legend .lg-hr{color:var(--ink-soft);white-space:nowrap}
+@media (max-width:400px){.legend li{grid-template-columns:16px minmax(0,1fr) 32px 40px 64px;gap:var(--s1)}} /* fits a 320px screen without sideways scrolling */
 """
 
 t_body = f"""<section class="page-head">
@@ -321,7 +326,9 @@ t_js = """(function(){
   [].forEach.call(wrap.querySelectorAll('.bar,.slice'),function(b){
     b.addEventListener('mouseenter',function(){show(b)});b.addEventListener('focus',function(){show(b)});
     b.addEventListener('mouseleave',function(){tip.classList.remove('on')});b.addEventListener('blur',function(){tip.classList.remove('on')});
-  });});
+  });
+  // Escape dismisses the tooltip without moving the pointer or focus
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')tip.classList.remove('on')});});
 })();"""
 
 page("training.html", "Training log — Ezra Vernon",

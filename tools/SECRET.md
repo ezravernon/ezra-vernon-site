@@ -1,6 +1,6 @@
 # The secret section
 
-The "Sign in" button (bottom-right on every page) opens a password prompt. The right password decrypts
+The "Sign in" button (in the menu on every page; inside "Menu" on phones) opens a password prompt. The right password decrypts
 `site/data/secret.json` in the browser and shows a full-screen black section with tabs:
 **Summit log** (the main one) and **Thoughts**.
 Any new "Section" value used in the Summit Log gets its own tab automatically. The old Dreams, Notes, Wishlist and Gear

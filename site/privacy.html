@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-CA" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy — Ezra Vernon</title>
+<meta name="description" content="How Ezra Vernon's personal site handles your information: no accounts, no analytics, no ads and no cookies.">
+<meta name="theme-color" content="#1E2A27">
+<script>document.documentElement.classList.replace('no-js','js')</script>
+<link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png"><link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap">
+<style>
+/* ===== SHARED STYLES — keep identical on all pages ===== */
+:root{
+  /* Colour: one neutral base, one dark text colour, one accent */
+  --base:#F6F3EE;        /* warm paper off-white */
+  --base-deep:#EDE7DE;   /* slightly deeper tint of the base, for alternating sections */
+  --ink:#1E2A27;         /* deep pine — main text (13.4:1 on base) */
+  --ink-soft:#5B6662;    /* secondary text (5.4:1 on base) */
+  --accent:#1A6E6A;      /* deep turquoise — buttons + links only (5.45:1 on base) */
+  --line:rgba(30,42,39,.14);
+  /* Type: 1.25 modular scale from an 18px body */
+  --font-serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-sans:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --step--1:0.875rem; --step-0:1.125rem; --step-1:1.406rem; --step-2:1.758rem;
+  --step-3:2.197rem; --step-4:2.747rem; --step-5:3.433rem; --step-6:4.292rem;
+  /* Spacing: multiples of 8px */
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px; --s7:96px; --s8:128px;
+  --measure:68ch;
+  --radius:8px;
+  --shadow:0 8px 24px rgba(30,42,39,.08);
+  --t-fast:160ms; --t-med:240ms; --t-slow:300ms;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:104px} /* keeps focused/linked items clear of the fixed header */
+body{margin:0;background:var(--base);color:var(--ink);font-family:var(--font-sans);font-size:var(--step-0);line-height:1.6;text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:var(--font-serif);font-weight:400;line-height:1.1;letter-spacing:-0.015em;margin:0 0 var(--s3)}
+h1{font-size:clamp(var(--step-4),6vw,var(--step-6));letter-spacing:-0.025em}
+h2{font-size:clamp(var(--step-3),4vw,var(--step-4))}
+h3{font-size:var(--step-2);line-height:1.2}
+p{margin:0 0 var(--s3);max-width:var(--measure)}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px;transition:color var(--t-fast) var(--ease)}
+a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.hero :focus-visible,.q-head :focus-visible{outline-color:var(--base)}
+.site-header :focus-visible{outline-color:var(--hc)}
+.eyebrow{font-family:var(--font-sans);font-size:var(--step--1);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 var(--s2)}
+.lede{font-size:var(--step-1);line-height:1.5;color:var(--ink)}
+.wrap{width:min(1200px,100% - var(--s4));margin-inline:auto}
+.section{padding-block:var(--s7)}
+.section--tint{background:var(--base-deep)}
+.skip{position:absolute;left:var(--s2);top:-80px;background:var(--ink);color:var(--base);padding:var(--s1) var(--s2);border-radius:var(--radius);z-index:100;transition:top var(--t-fast)}
+.skip:focus{top:var(--s2)}
+/* Visually hidden, still read by screen readers */
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+/* Buttons — one style everywhere */
+.btn{display:inline-flex;align-items:center;gap:var(--s1);font:500 var(--step-0)/1 var(--font-sans);padding:var(--s2) var(--s3);border-radius:var(--radius);background:var(--accent);color:var(--base);text-decoration:none;border:1px solid var(--accent);cursor:pointer;transition:background var(--t-med) var(--ease),color var(--t-med) var(--ease),transform var(--t-med) var(--ease)}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:var(--base);transform:translateY(-1px)}
+.btn--ghost{background:transparent;color:var(--accent)}
+.btn--ghost:hover{background:var(--accent);border-color:var(--accent)}
+/* Header + nav — transparent, sits over the top of every page.
+   data-tone="light" = light links (over a dark photo header: Home, Quotes); data-tone="dark" = pine links (over paper).
+   The shared script flips the tone to match whatever is behind the header, and adds .is-scrolled (frosted glass) once you scroll. */
+.site-header{--hc:var(--ink);--hc-line:rgba(30,42,39,.28);position:fixed;inset:0 0 auto 0;z-index:20;background:transparent;border-bottom:1px solid transparent;transition:background var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease),box-shadow var(--t-slow) var(--ease)}
+.site-header[data-tone="light"]{--hc:var(--base);--hc-line:rgba(246,243,238,.4)}
+.site-header.is-scrolled,.site-header.menu-open{background:rgba(246,243,238,.8);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom-color:var(--line);box-shadow:0 4px 24px rgba(30,42,39,.06)}
+.site-header[data-tone="light"].is-scrolled,.site-header[data-tone="light"].menu-open{background:rgba(30,42,39,.5);border-bottom-color:rgba(246,243,238,.12);box-shadow:none}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:72px}
+.brand{display:flex;align-items:center;gap:var(--s2);text-decoration:none;color:var(--hc);font-family:var(--font-serif);font-size:var(--step-1);transition:color var(--t-slow) var(--ease)}
+.brand img{width:56px;height:32px}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:var(--s4)}
+.nav a{color:var(--hc);text-decoration:none;font-size:var(--step-0);padding-block:var(--s1);border-bottom:1px solid transparent;transition:border-color var(--t-med) var(--ease),color var(--t-slow) var(--ease)}
+.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--hc)}
+.nav a[aria-current="page"]{color:var(--hc)}
+.brand:hover{color:var(--hc)}
+/* Sign in sits in the menu and looks like the other links (it is a button because it opens a dialog) */
+.nav .nav-signin{font:inherit;line-height:inherit;background:none;border:0;border-bottom:1px solid transparent;border-radius:0;margin:calc(-1 * var(--s1)) 0 calc(-1 * var(--s1) - 1px);padding:var(--s1) 0;color:var(--hc);cursor:pointer;transition:border-color var(--t-med) var(--ease),color var(--t-slow) var(--ease)}
+.nav .nav-signin:hover{border-bottom-color:var(--hc)}
+.no-js .nav-signin-item{display:none}
+.nav .btn{color:var(--base);padding:var(--s1) var(--s3);border-bottom:1px solid var(--accent)}
+.nav .btn:hover,.nav .btn[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:var(--base)}
+.site-header[data-tone="light"] .nav .btn:hover,.site-header[data-tone="light"] .nav .btn[aria-current="page"]{background:var(--base);border-color:var(--base);color:var(--ink)}
+/* Pages that start with a paper header leave room for the fixed bar */
+main > .page-head:first-child{padding-top:calc(72px + var(--s7))}
+.nav-toggle{display:none}
+@media (max-width:960px){
+  .nav-toggle{display:inline-flex;font:500 var(--step-0)/1 var(--font-sans);background:none;border:1px solid var(--hc-line);border-radius:var(--radius);padding:var(--s1) var(--s2);color:var(--hc);cursor:pointer;transition:color var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease)}
+  .nav{position:absolute;inset:72px 0 auto 0;background:var(--base);border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(30,42,39,.08);display:none}
+  .site-header[data-tone="light"] .nav{background:var(--ink);border-bottom-color:rgba(246,243,238,.08)}
+  .nav.is-open{display:block}
+  .no-js .nav{display:block;position:static;border:0}
+  .no-js .site-header .wrap{flex-wrap:wrap;padding-block:var(--s2)}
+  .nav ul{flex-direction:column;align-items:flex-start;gap:var(--s1);padding:var(--s2) var(--s2) var(--s3)}
+  .no-js .nav ul{flex-direction:row;flex-wrap:wrap;padding:0}
+}
+/* Page header used on inner pages */
+.page-head{padding-block:var(--s7) var(--s5)}
+.page-head p{font-size:var(--step-1);line-height:1.5}
+/* Footer */
+.site-footer{border-top:1px solid var(--line);padding-block:var(--s6)}
+.site-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s3);align-items:center}
+.site-footer p{margin:0;color:var(--ink-soft);font-size:var(--step--1)}
+.site-footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s1) var(--s3);margin:0;padding:0;font-size:var(--step--1)}
+.site-footer a{display:inline-block;padding-block:4px}
+.site-footer .legal{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line)}
+.site-footer .legal a{color:var(--ink-soft)}
+.site-footer .legal a:hover,.site-footer .legal a[aria-current="page"]{color:var(--ink)}
+/* Sign in (in the menu) -> password gate -> secret section (everything here is black with white type) */
+.signin,.vault{--v-ink:#fff;--v-soft:rgba(255,255,255,.62);--v-line:rgba(255,255,255,.14);background:#000;color:var(--v-ink);font-family:var(--font-sans)}
+.signin{border:1px solid var(--v-line);border-radius:12px;padding:var(--s5) var(--s4) var(--s4);width:min(420px,100% - var(--s4));box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.signin::backdrop{background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.signin h2,.vault h1,.vault h2,.vault h3{font-family:var(--font-sans);font-weight:500;color:var(--v-ink);letter-spacing:-0.03em}
+.signin h2{font-size:var(--step-2);margin-bottom:var(--s1)}
+.signin .sub{color:var(--v-soft);font-size:var(--step--1);margin:0 0 var(--s4)}
+.field{display:grid;gap:var(--s1);margin-bottom:var(--s3)}
+.field label{font-size:var(--step--1);font-weight:500;color:var(--v-soft);letter-spacing:.14em;text-transform:uppercase}
+.field input{font:400 var(--step-0)/1.4 var(--font-sans);padding:var(--s2);border:1px solid var(--v-line);border-radius:var(--radius);background:#0d0d0d;color:#fff;transition:border-color var(--t-fast)}
+.field input:focus-visible{border-color:#fff;outline:2px solid #fff;outline-offset:2px}
+.field input[aria-invalid="true"]{border-color:#fff}
+.signin-msg{min-height:1.6em;margin:0 0 var(--s2);font-size:var(--step--1);color:var(--v-soft)}
+.signin-actions{display:flex;gap:var(--s2);flex-wrap:wrap}
+.v-btn{font:500 var(--step--1)/1 var(--font-sans);letter-spacing:.04em;padding:var(--s2) var(--s3);border-radius:999px;border:1px solid #fff;background:#fff;color:#000;cursor:pointer;transition:background var(--t-med) var(--ease),color var(--t-med) var(--ease),border-color var(--t-med) var(--ease)}
+.v-btn:hover{background:transparent;color:#fff}
+.v-btn--ghost{background:transparent;color:#fff;border-color:var(--v-line)}
+.v-btn--ghost:hover{border-color:#fff}
+.v-btn[disabled]{opacity:.5;cursor:wait}
+.signin :focus-visible,.vault :focus-visible{outline-color:#fff}
+.vault{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;overflow-y:auto}
+.vault[open]{animation:vault-in 500ms var(--ease)}
+@keyframes vault-in{from{opacity:0}to{opacity:1}}
+.vault::backdrop{background:#000}
+html:has(.vault[open]){overflow:hidden}
+.vault-bar{position:sticky;top:0;z-index:2;background:#000;border-bottom:1px solid var(--v-line)}
+.vault-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);min-height:72px}
+.vault-tag{font-size:var(--step--1);font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--v-soft);margin:0;display:flex;align-items:center;gap:var(--s1)}
+.vault-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
+.vault-bar div{display:flex;gap:var(--s1)}
+.vault-body{width:min(880px,100% - var(--s4));margin-inline:auto;padding-block:var(--s7) var(--s8)}
+.vault-body h1{font-size:clamp(var(--step-4),7vw,var(--step-6));line-height:1;letter-spacing:-0.045em;margin-bottom:var(--s3)}
+.vault-body h2{font-size:clamp(var(--step-2),3.4vw,var(--step-3));margin:var(--s7) 0 var(--s2)}
+.vault-body h3{font-size:var(--step-1);margin:var(--s4) 0 var(--s1)}
+.vault-body p,.vault-body li{color:var(--v-soft);font-size:var(--step-0);line-height:1.7}
+.vault-body .lede{color:var(--v-ink);font-size:var(--step-1);line-height:1.5}
+.vault-body ul,.vault-body ol{padding-left:1.2em;margin:0 0 var(--s3)}
+.vault-body a{color:#fff;text-decoration-color:rgba(255,255,255,.4)}
+.vault-body a:hover{text-decoration-color:#fff}
+.vault-body hr{border:0;border-top:1px solid var(--v-line);margin:var(--s7) 0}
+.vault-body .eyebrow{color:var(--v-soft);letter-spacing:.24em}
+.v-tabs{position:sticky;top:72px;z-index:1;display:flex;gap:var(--s1);overflow-x:auto;scrollbar-width:none;background:#000;padding-block:var(--s2);margin:calc(-1 * var(--s5)) 0 var(--s6);border-bottom:1px solid var(--v-line)}
+.v-tabs::-webkit-scrollbar{display:none}
+.v-tab{flex:none;font:500 var(--step--1)/1 var(--font-sans);letter-spacing:.04em;padding:var(--s1) var(--s2);border-radius:999px;border:1px solid transparent;background:none;color:var(--v-soft);cursor:pointer;transition:color var(--t-fast),border-color var(--t-fast),background var(--t-fast)}
+.v-tab:hover{color:#fff}
+.v-tab[aria-selected="true"]{background:#fff;color:#000}
+.v-panel[hidden]{display:none}
+.v-panel:focus-visible{outline-offset:8px}
+.v-panel > .lede{margin-bottom:var(--s5)}
+.v-entry{padding-block:var(--s6);border-top:1px solid var(--v-line);scroll-margin-top:150px}
+.v-entry h2{margin:0 0 var(--s3);display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2)}
+.vault-body .v-entry .eyebrow{margin-bottom:var(--s1)}
+.v-badge{font:500 var(--step--1)/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;border:1px solid #fff;border-radius:999px;padding:6px var(--s1)}
+.v-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s3);margin:0 0 var(--s3)}
+.v-meta div{border-top:1px solid var(--v-line);padding-top:var(--s1)}
+.v-meta dt{font-size:var(--step--1);letter-spacing:.14em;text-transform:uppercase;color:var(--v-soft);margin-bottom:4px}
+.v-meta dd{margin:0;color:#fff}
+.vault-body .v-watch{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s2);align-items:baseline;color:#fff;font-variant-numeric:tabular-nums;border:1px solid var(--v-line);border-radius:var(--radius);padding:var(--s2);max-width:none}
+.v-watch span{font-size:var(--step--1);letter-spacing:.14em;text-transform:uppercase;color:var(--v-soft)}
+.v-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s2);margin:var(--s4) 0}
+.v-photo{margin:0}
+.v-frame{background:#111;border-radius:var(--radius);overflow:hidden}
+.v-frame img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity var(--t-slow) var(--ease)}
+.v-frame img.is-in{opacity:1}
+.v-photo figcaption{margin-top:var(--s1);font-size:var(--step--1);color:var(--v-soft)}
+.v-body blockquote{margin:0 0 var(--s3);padding-left:var(--s2);border-left:2px solid #fff;color:#fff}
+.v-body code{font-size:.9em;background:#141414;padding:2px 6px;border-radius:4px}
+.v-thought{padding-block:var(--s5)}
+.v-thought h2{font-size:var(--step-2);margin:0 0 var(--s2)}
+.vault-body .v-thought .v-body p{color:#fff;font-size:var(--step-1);line-height:1.6;max-width:60ch}
+.vault-body .v-empty{border:1px dashed var(--v-line);border-radius:var(--radius);padding:var(--s4);max-width:none}
+.vault-body .v-stamp{margin-top:var(--s7);font-size:var(--step--1);color:rgba(255,255,255,.4)}
+/* Gentle reveal on scroll (only when JS runs and motion is allowed) */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity var(--t-slow) var(--ease),transform var(--t-slow) var(--ease)}
+.js .reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  *{transition-duration:1ms!important;animation:none!important}
+}
+/* Windows high-contrast / forced colours: states that rely on a background fill get a visible border instead */
+@media (forced-colors:active){
+  .btn,.v-btn,.chip,.v-tab,.nav-toggle{border:1px solid ButtonText}
+  .nav a[aria-current="page"],.chip[aria-pressed="true"],.v-tab[aria-selected="true"]{outline:2px solid Highlight;outline-offset:2px}
+  .site-header.is-scrolled,.site-header.menu-open{background:Canvas;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+</style>
+<style>
+/* ===== PAGE STYLES: privacy.html ===== */
+
+.legal-head .updated{font-size:var(--step--1);color:var(--ink-soft);margin:0}
+.prose{padding-block:0 var(--s7)}
+.prose > .wrap > *{max-width:var(--measure)}
+.prose h2{font-size:var(--step-3);margin:var(--s6) 0 var(--s2)}
+.prose h3{font-size:var(--step-1);font-family:var(--font-sans);font-weight:500;letter-spacing:0;margin:var(--s4) 0 var(--s1)}
+.prose ul{padding-left:1.2em;margin:0 0 var(--s3)}
+.prose li{margin-bottom:var(--s1)}
+.prose .short{border:1px solid var(--line);border-left:2px solid var(--accent);border-radius:var(--radius);background:var(--base-deep);padding:var(--s3) var(--s4)}
+.prose .short h2{font-size:var(--step-1);font-family:var(--font-sans);font-weight:500;letter-spacing:0;margin:0 0 var(--s2)}
+.prose .short ul,.prose .short p:last-child{margin-bottom:0}
+.prose .short li:last-child{margin-bottom:0}
+.prose .table-scroll{overflow-x:auto;margin:0 0 var(--s3);max-width:none}
+.prose table{border-collapse:collapse;width:100%;min-width:560px;font-size:var(--step--1);line-height:1.5}
+.prose caption{text-align:left;color:var(--ink-soft);padding-bottom:var(--s1)}
+.prose th,.prose td{text-align:left;vertical-align:top;padding:var(--s2);border-bottom:1px solid var(--line)}
+.prose thead th{font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.8125rem;color:var(--ink-soft);border-bottom-color:var(--ink)}
+.prose tbody th{font-weight:500}
+.prose code{white-space:nowrap;font-size:.9em;background:var(--base-deep);padding:2px 6px;border-radius:4px}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" data-tone="dark">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="images/logo-240.webp" width="56" height="32" alt="">Ezra Vernon</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <ul><li><a href="index.html">Home</a></li><li><a href="dreams.html">Dreams</a></li><li><a href="sidequests.html">Sidequests</a></li><li><a href="quotes.html">Quotes</a></li><li><a href="training.html">Training</a></li><li class="nav-signin-item"><button class="nav-signin signin-btn" type="button" aria-haspopup="dialog" aria-controls="signin">Sign in</button></li><li><a class="btn" href="socials.html">Socials</a></li></ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-head legal-head">
+  <div class="wrap">
+    <p class="eyebrow">The fine print</p>
+    <h1>Privacy policy</h1>
+    <p>What this site does, and doesn’t do, with information about you.</p>
+    <p class="updated">Last updated November 14, 2026</p>
+  </div>
+</section>
+<section class="prose">
+  <div class="wrap">
+    <div class="short">
+      <h2>The short version</h2>
+      <ul>
+        <li>This is a personal site. It has no accounts, forms, newsletter, comments, analytics or ads.</li>
+        <li>I don’t collect, sell or share personal information about visitors.</li>
+        <li>The site sets no cookies. Two outside services are involved in showing you the pages: the host (Vercel) and the fonts (Google Fonts). Both see your IP address, as any web server does.</li>
+      </ul>
+    </div>
+
+    <h2>Who runs this site</h2>
+    <p>This is the personal website of Ezra Vernon, based in Victoria, British Columbia, Canada. “I” and “me” on this page mean Ezra. To reach me about anything here, use the links on the <a href="socials.html">Socials page</a>.</p>
+
+    <h2>What I collect</h2>
+    <p>Nothing directly. There is nowhere on this site to type in your name, email address or any other details, and I don’t run analytics, advertising or tracking tools, so I have no record of who visits or what they look at.</p>
+
+    <h2>What happens automatically when you visit</h2>
+    <h3>Hosting (Vercel)</h3>
+    <p>The site is hosted by Vercel Inc. To send you a page, Vercel’s servers receive your IP address, your browser and device type, the page you asked for and the time of the request. Vercel uses this to deliver the site and to protect it from abuse, and keeps technical logs for a limited time. As the site owner I can see limited request logs in my hosting dashboard; I don’t use them to identify anyone. See <a href="https://vercel.com/legal/privacy-policy" rel="noopener">Vercel’s privacy policy</a>.</p>
+    <h3>Fonts (Google Fonts)</h3>
+    <p>The typefaces are loaded from Google Fonts. When your browser fetches them, Google receives your IP address, your browser type and the address of the page that asked for the font. Google says the Fonts service sets no cookies and limits what it keeps. See <a href="https://developers.google.com/fonts/faq/privacy" rel="noopener">Google Fonts’ privacy notes</a>.</p>
+
+    <h2>The private section</h2>
+    <p>“Sign in” in the menu opens a private, password-protected part of the site that is meant for me. The password is checked inside your browser and is never sent to me or to a server. If the password is right, your browser keeps a temporary key in its session storage so the section stays unlocked until you close the tab or press “Lock”. The <a href="cookies.html">Cookie policy</a> has the details.</p>
+
+    <h2>My own data and photos</h2>
+    <p>The <a href="training.html">Training log</a> shows my own activities from my watch. Routes and locations are left out on purpose.</p>
+    <p>Some photos include other people. If you appear in a photo here and would like it taken down, tell me and I will remove it.</p>
+
+    <h2>Links and getting in touch</h2>
+    <p>This site links to other sites, including Instagram, LinkedIn and Strava. Once you follow a link, or message me on one of those platforms, that platform’s own privacy policy applies. I use what you send me only to reply to you.</p>
+
+    <h2>Where information is processed</h2>
+    <p>Vercel and Google run servers in the United States and other countries, so the technical information described above may be processed outside Canada and be subject to the laws of those places.</p>
+
+    <h2>Your choices</h2>
+    <ul>
+      <li>You can browse every public page without giving any information about yourself.</li>
+      <li>Because I don’t hold personal information about visitors, there is nothing for me to look up, correct or delete. Requests about server or font logs go to Vercel or Google.</li>
+      <li>If you have messaged me through a social platform, you can delete that conversation there, or ask me to delete my copy.</li>
+    </ul>
+
+    <h2>Changes</h2>
+    <p>If the site changes in a way that affects your privacy (for example, if I ever add a contact form or visitor statistics), I will update this page and the date at the top before the change goes live.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Ezra Vernon · Live in the balance between two extremes.</p>
+    <ul>
+      <li><a href="https://www.instagram.com/ezrav_insta" rel="noopener">Instagram</a></li>
+      <li><a href="https://ca.linkedin.com/in/ezra-vernon-a98a40343" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://strava.app.link/lBou8jZCg7b" rel="noopener">Strava</a></li>
+    </ul>
+  </div>
+  <nav class="wrap legal" aria-label="Legal">
+    <ul><li><a href="privacy.html" aria-current="page">Privacy</a></li><li><a href="terms.html">Terms</a></li><li><a href="cookies.html">Cookies</a></li><li><a href="accessibility.html">Accessibility</a></li></ul>
+  </nav>
+</footer>
+<dialog class="signin" id="signin" aria-labelledby="signin-title">
+  <form method="dialog" novalidate>
+    <h2 id="signin-title">Sign in</h2>
+    <p class="sub">Private section. Password only.</p>
+    <div class="field"><label for="signin-pw">Password</label><input id="signin-pw" name="password" type="password" autocomplete="current-password" aria-describedby="signin-msg" required></div>
+    <p class="signin-msg" id="signin-msg" role="status" aria-live="polite"></p>
+    <div class="signin-actions">
+      <button class="v-btn signin-submit" type="submit">Unlock</button>
+      <button class="v-btn v-btn--ghost signin-cancel" type="button">Close</button>
+    </div>
+  </form>
+</dialog>
+<dialog class="vault" id="vault" aria-label="Secret section">
+  <div class="vault-bar"><div class="wrap">
+    <p class="vault-tag">Secret</p>
+    <div><button class="v-btn v-btn--ghost vault-lock" type="button">Lock</button><button class="v-btn vault-close" type="button">Close</button></div>
+  </div></div>
+  <div class="vault-body"></div>
+</dialog>
+<script>
+/* ===== SHARED SCRIPT — keep identical on all pages ===== */
+(function(){
+  var d=document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
+  // Mobile nav
+  var hd=document.querySelector('.site-header'), t=document.querySelector('.nav-toggle'), n=document.getElementById('site-nav');
+  function menu(o){n.classList.toggle('is-open',o);t.setAttribute('aria-expanded',o);hd.classList.toggle('menu-open',o)}
+  if(t&&n){t.addEventListener('click',function(){menu(!n.classList.contains('is-open'))});
+    // Escape closes the open menu and hands focus back to the Menu button
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&n.classList.contains('is-open')&&!document.querySelector('dialog[open]')){var inside=n.contains(document.activeElement);menu(false);if(inside)t.focus()}});}
+  // Transparent header: frosted once scrolled; light links while a dark photo header ([data-dark-head]) is behind it
+  if(hd){var dark=document.querySelector('[data-dark-head]'),busy=false;
+    function hdr(){var y=window.scrollY||0,h=hd.offsetHeight;hd.classList.toggle('is-scrolled',y>8);
+      if(dark)hd.dataset.tone=dark.getBoundingClientRect().bottom>h?'light':'dark';busy=false}
+    addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(hdr)}},{passive:true});addEventListener('resize',hdr);hdr();}
+  // Scroll reveal
+  var els=document.querySelectorAll('.reveal');
+  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!('IntersectionObserver' in window)||rm){els.forEach(function(e){e.classList.add('is-in')});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)});}
+  // Secret section. Its content lives in data/secret.json, encrypted (AES-256-GCM, key from the password via PBKDF2-SHA256),
+  // so nothing private is readable in the page source. Wrong password = decryption fails. Made with tools/secret.py.
+  var btn=document.querySelector('.signin-btn'), dlg=document.getElementById('signin'), vault=document.getElementById('vault');
+  if(!btn||!dlg||!vault)return;
+  var KEY='ev-vault', body=vault.querySelector('.vault-body'), form=dlg.querySelector('form'), msg=dlg.querySelector('.signin-msg'),
+      pw=dlg.querySelector('#signin-pw'), sub=dlg.querySelector('.signin-submit'), blob=null;
+  function b64(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)})}
+  function load(){return blob||(blob=fetch('data/secret.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('load');return r.json()}).catch(function(e){blob=null;throw e}))}
+  function getK(){try{return sessionStorage.getItem(KEY)}catch(e){return null}}
+  function setK(v){try{v?sessionStorage.setItem(KEY,v):sessionStorage.removeItem(KEY)}catch(e){}}
+  async function derive(p,j){var m=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveBits']);
+    return new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:b64(j.salt),iterations:j.iter},m,256))}
+  async function open(raw,j){var k=await crypto.subtle.importKey('raw',raw,'AES-GCM',false,['decrypt']);
+    return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(j.iv)},k,b64(j.ct)))}
+  // Tabs + encrypted photos inside the secret section (each photo has its own key, carried inside the encrypted page)
+  function pics(scope){scope.querySelectorAll('img[data-k]').forEach(async function(im){var k=im.dataset.k;im.removeAttribute('data-k');
+    try{var r=await fetch('data/secret/p/'+im.dataset.p+'.bin');if(!r.ok)throw 0;var b=new Uint8Array(await r.arrayBuffer());
+      var key=await crypto.subtle.importKey('raw',b64(k),'AES-GCM',false,['decrypt']);
+      var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b.slice(0,12)},key,b.slice(12));
+      im.src=URL.createObjectURL(new Blob([pt],{type:'image/webp'}));im.classList.add('is-in')}catch(e){im.alt='Photo couldn\u2019t load';im.classList.add('is-err')}})}
+  function tab(id){var pn=document.getElementById(id);if(!pn)return;
+    body.querySelectorAll('[data-panel]').forEach(function(x){x.hidden=x!==pn});
+    body.querySelectorAll('[data-tab]').forEach(function(t){var on=t.dataset.tab===id;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1});pics(pn)}
+  // Screen-reader semantics for the tabs (added here so they also apply to an already-encrypted page): tablist/tab/tabpanel + arrow keys
+  function tabsAria(){var tl=body.querySelector('.v-tabs');if(!tl)return;tl.setAttribute('role','tablist');tl.setAttribute('aria-label','Secret sections');
+    body.querySelectorAll('[data-tab]').forEach(function(t){t.setAttribute('role','tab');t.id='tab-'+t.dataset.tab;t.setAttribute('aria-controls',t.dataset.tab);t.tabIndex=t.getAttribute('aria-selected')==='true'?0:-1});
+    body.querySelectorAll('[data-panel]').forEach(function(p){p.setAttribute('role','tabpanel');p.setAttribute('aria-labelledby','tab-'+p.id);p.tabIndex=0})}
+  body.addEventListener('keydown',function(e){var c=e.target.closest&&e.target.closest('[data-tab]');if(!c)return;
+    var all=[].slice.call(body.querySelectorAll('[data-tab]')),i=all.indexOf(c),k=e.key,
+        j=k==='ArrowRight'?(i+1)%all.length:k==='ArrowLeft'?(i-1+all.length)%all.length:k==='Home'?0:k==='End'?all.length-1:-1;
+    if(j<0)return;e.preventDefault();tab(all[j].dataset.tab);all[j].focus();vault.scrollTop=0});
+  body.addEventListener('click',function(e){var t=e.target.closest('[data-tab]');if(t){tab(t.dataset.tab);vault.scrollTop=0;return}
+    var g=e.target.closest('[data-goto]');if(g){e.preventDefault();tab(g.dataset.goto);var x=document.getElementById(g.getAttribute('href').slice(1));if(x)x.scrollIntoView({block:'start'})}});
+  function show(html){body.innerHTML=html;tabsAria();var first=body.querySelector('[data-panel]:not([hidden])');if(first)pics(first);if(dlg.open)dlg.close();if(vault.showModal)vault.showModal();else vault.setAttribute('open','');
+    vault.scrollTop=0;setTimeout(function(){vault.querySelector('.vault-close').focus()},0)}
+  // Focus goes back to Sign in, or to the Menu button when Sign in is tucked inside the closed mobile menu
+  function back(){var el=btn.offsetParent?btn:t;if(el)el.focus()}
+  function hide(){if(vault.close)vault.close();else vault.removeAttribute('open');back()}
+  function gate(){msg.textContent='';pw.value='';pw.removeAttribute('aria-invalid');sub.disabled=false;if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');setTimeout(function(){pw.focus()},0)}
+  btn.addEventListener('click',async function(){var k=getK();if(t&&n&&n.classList.contains('is-open')&&t.offsetParent)menu(false);
+    if(k){try{show(await open(b64(k),await load()));return}catch(e){setK(null)}}
+    gate()});
+  dlg.querySelector('.signin-cancel').addEventListener('click',function(){dlg.close()});
+  dlg.addEventListener('close',function(){if(!vault.open)back()});
+  pw.addEventListener('input',function(){pw.removeAttribute('aria-invalid')});
+  vault.querySelector('.vault-close').addEventListener('click',hide);
+  vault.querySelector('.vault-lock').addEventListener('click',function(){setK(null);body.innerHTML='';hide()});
+  vault.addEventListener('close',back);
+  form.addEventListener('submit',async function(e){e.preventDefault();if(!pw.value){msg.textContent='Enter the password.';return}
+    if(!window.crypto||!crypto.subtle){msg.textContent='This needs a secure (https) connection.';return}
+    sub.disabled=true;msg.textContent='Unlocking\u2026';var j;
+    try{j=await load()}catch(err){msg.textContent='Couldn\u2019t load the secret section. Check your connection.';sub.disabled=false;return}
+    try{var raw=await derive(pw.value,j),html=await open(raw,j);setK(btoa(String.fromCharCode.apply(null,raw)));show(html)}
+    catch(err){msg.textContent='That password didn\u2019t match. Try again.';pw.setAttribute('aria-invalid','true');pw.select()}
+    sub.disabled=false});
+})();
+</script>
+</body>
+</html>

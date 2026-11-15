@@ -262,12 +262,12 @@ def render(entries):
             head = f'<p class="eyebrow">{esc(s)}</p><h1>{esc(s)}.</h1>'
             inner = "".join(note_html(e) for e in items)
         body = head + (inner or f'<p class="v-empty">{esc(EMPTY.get(s, "Nothing here yet."))}</p>')
-        panels.append(f'<section class="v-panel" id="{sid}" data-panel{"" if s == sections[0] else " hidden"}>{body}</section>')
+        panels.append(f'<section class="v-panel" id="{sid}" data-panel role="tabpanel" aria-labelledby="tab-{sid}" tabindex="0"{"" if s == sections[0] else " hidden"}>{body}</section>')
 
-    tabs = "".join(f'<button type="button" class="v-tab" data-tab="v-{slug(s)}" aria-selected="{"true" if s == sections[0] else "false"}">{esc(s)}</button>'
+    tabs = "".join(f'<button type="button" class="v-tab" role="tab" id="tab-v-{slug(s)}" aria-controls="v-{slug(s)}" data-tab="v-{slug(s)}" aria-selected="{"true" if s == sections[0] else "false"}" tabindex="{"0" if s == sections[0] else "-1"}">{esc(s)}</button>'
                    for s in sections)
     stamp = f"{dt.date.today():%b} {dt.date.today().day}, {dt.date.today().year}"
-    return (f'<nav class="v-tabs" aria-label="Secret sections">{tabs}</nav>\n' + "\n".join(panels) +
+    return (f'<div class="v-tabs" role="tablist" aria-label="Secret sections">{tabs}</div>\n' + "\n".join(panels) +
             f'\n<p class="v-stamp">Updated {stamp}. The password changes every Saturday.</p>')
 
 
