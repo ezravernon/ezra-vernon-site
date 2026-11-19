@@ -71,6 +71,8 @@ a:hover{color:var(--ink)}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:72px}
 .brand{display:flex;align-items:center;gap:var(--s2);text-decoration:none;color:var(--hc);font-family:var(--font-serif);font-size:var(--step-1);transition:color var(--t-slow) var(--ease)}
 .brand img{width:56px;height:32px}
+.brand,.nav a,.nav .nav-signin{white-space:nowrap}
+@media (max-width:1280px){.nav ul{gap:var(--s3)}}
 .nav ul{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:var(--s4)}
 .nav a{color:var(--hc);text-decoration:none;font-size:var(--step-0);padding-block:var(--s1);border-bottom:1px solid transparent;transition:border-color var(--t-med) var(--ease),color var(--t-slow) var(--ease)}
 .nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--hc)}
@@ -86,7 +88,7 @@ a:hover{color:var(--ink)}
 /* Pages that start with a paper header leave room for the fixed bar */
 main > .page-head:first-child{padding-top:calc(72px + var(--s7))}
 .nav-toggle{display:none}
-@media (max-width:960px){
+@media (max-width:1080px){
   .nav-toggle{display:inline-flex;font:500 var(--step-0)/1 var(--font-sans);background:none;border:1px solid var(--hc-line);border-radius:var(--radius);padding:var(--s1) var(--s2);color:var(--hc);cursor:pointer;transition:color var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease)}
   .nav{position:absolute;inset:72px 0 auto 0;background:var(--base);border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(30,42,39,.08);display:none}
   .site-header[data-tone="light"] .nav{background:var(--ink);border-bottom-color:rgba(246,243,238,.08)}
@@ -175,9 +177,6 @@ html:has(.vault[open]){overflow:hidden}
 .v-photo figcaption{margin-top:var(--s1);font-size:var(--step--1);color:var(--v-soft)}
 .v-body blockquote{margin:0 0 var(--s3);padding-left:var(--s2);border-left:2px solid #fff;color:#fff}
 .v-body code{font-size:.9em;background:#141414;padding:2px 6px;border-radius:4px}
-.v-thought{padding-block:var(--s5)}
-.v-thought h2{font-size:var(--step-2);margin:0 0 var(--s2)}
-.vault-body .v-thought .v-body p{color:#fff;font-size:var(--step-1);line-height:1.6;max-width:60ch}
 .vault-body .v-empty{border:1px dashed var(--v-line);border-radius:var(--radius);padding:var(--s4);max-width:none}
 .vault-body .v-stamp{margin-top:var(--s7);font-size:var(--step--1);color:rgba(255,255,255,.4)}
 /* Gentle reveal on scroll (only when JS runs and motion is allowed) */
@@ -277,7 +276,7 @@ SHARED_JS = """
 # Pages that open with a dark photo header: the header starts with light links there
 DARK_HEAD_PAGES = {"index.html", "quotes.html"}
 
-NAV = [("index.html", "Home"), ("dreams.html", "Dreams"), ("sidequests.html", "Sidequests"), ("quotes.html", "Quotes"), ("training.html", "Training")]
+NAV = [("index.html", "Home"), ("dreams.html", "Dreams"), ("sidequests.html", "Sidequests"), ("quotes.html", "Quotes"), ("thoughts.html", "Thoughts"), ("training.html", "Training")]
 
 
 def header(current):
@@ -378,7 +377,8 @@ def page(fname, title, desc, body, page_css="", page_js="", fonts=FONTS, top_com
 # ---------------------------------------------------------------- HOME
 HOME_COMMENT = """<!--
 HANDOVER NOTES — Ezra Vernon personal site (v1, 2026-11-08)
-Pages: index.html (Home), dreams.html, sidequests.html, quotes.html, training.html, socials.html, 404.html; photos in images/.
+Pages: index.html (Home), dreams.html, sidequests.html, quotes.html, thoughts.html, training.html, socials.html, 404.html; photos in images/.
+Thoughts: thoughts.html is built from tools/thoughts/thoughts.json, filled from Ezra's Notion "Thoughts" database by the Saturday update (rows with Hide ticked are left out).
 Policies: privacy.html, terms.html, cookies.html, accessibility.html, linked from the footer of every page.
 Training data: data/activities.json + the log on training.html, generated from Ezra's COROS history (date, sport, time, distance, own titles only;
   no coordinates, place names, heart rate or calories). Refresh by asking Claude to pull new COROS activities.
@@ -1052,6 +1052,52 @@ legal_page("accessibility.html", "Accessibility",
 
     <h2>Tell me about a problem</h2>
     <p>If something on this site is hard to use or doesn’t work with your setup, please let me know through the <a href="socials.html">Socials page</a>, and tell me the page and what went wrong. I will do my best to fix it.</p>""")
+
+
+# ---------------------------------------------------------------- THOUGHTS (public; source tools/thoughts/thoughts.json, filled weekly from Notion)
+import importlib.util as _ilu, re as _re, datetime as _dt
+_spec = _ilu.spec_from_file_location("site_secret", pathlib.Path(__file__).parent / "secret.py")
+_sec = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_sec)
+_tsrc = pathlib.Path(__file__).parent / "thoughts" / "thoughts.json"
+_thoughts = json.loads(_tsrc.read_text(encoding="utf-8")).get("thoughts", []) if _tsrc.exists() else []
+_thoughts = [t for t in _thoughts if (t.get("body_md") or "").strip()]
+_thoughts.sort(key=lambda t: t.get("date") or "", reverse=True)
+
+def _thought(t, i):
+    md = _re.sub(r"\s*(?:<br\s*/?>\s*){2,}\s*", "\n\n", t.get("body_md") or "")   # Notion's double line breaks -> paragraphs
+    d = _sec.nice_date(t.get("date"))
+    iso = (t.get("date") or "")[:10]
+    when = f'<p class="eyebrow"><time datetime="{iso}">{d}</time></p>' if d else ""
+    title = f'<h2>{_sec.esc(t["name"])}</h2>' if t.get("name") else ""
+    return f'<article class="thought reveal" id="t-{_sec.slug(t.get("name") or "thought")}-{i}">{when}{title}<div class="t-body">{_sec.markdown(md)}</div></article>'
+
+t_css = """
+.thoughts{padding-block:0 var(--s8)}
+.thought{padding-block:var(--s5);border-top:1px solid var(--line);max-width:var(--measure)}
+.thought .eyebrow{margin-bottom:var(--s1)}
+.thought h2{font-size:var(--step-2);margin:0 0 var(--s2)}
+.t-body p,.t-body li{font-size:var(--step-0);line-height:1.7}
+.t-body p:last-child{margin-bottom:0}
+.t-body h2,.t-body h3,.t-body h4{font-size:var(--step-1);margin:var(--s4) 0 var(--s1)}
+.t-body blockquote{margin:0 0 var(--s3);padding-left:var(--s2);border-left:2px solid var(--accent)}
+.t-body ul,.t-body ol{padding-left:1.2em;margin:0 0 var(--s3)}
+.t-empty{border:1px dashed var(--line);border-radius:var(--radius);padding:var(--s4);color:var(--ink-soft)}
+"""
+_n = len(_thoughts)
+t_body = f"""<section class="page-head">
+  <div class="wrap reveal">
+    <p class="eyebrow">Page 07</p>
+    <h1>Thoughts</h1>
+    <p>Things I’ve been thinking about, written down as they come. {f"{_n} so far, newest first." if _n > 1 else ""}</p>
+  </div>
+</section>
+<section class="thoughts">
+  <div class="wrap">
+    {"".join(_thought(t, i) for i, t in enumerate(_thoughts)) or '<p class="t-empty">No thoughts yet. Check back soon.</p>'}
+  </div>
+</section>"""
+page("thoughts.html", "Thoughts — Ezra Vernon",
+     "Thoughts and reflections from Ezra Vernon, written as they come.", t_body, t_css)
 
 # ---------------------------------------------------------------- 404
 nf_body = """<section class="page-head" style="padding-bottom:var(--s8)">

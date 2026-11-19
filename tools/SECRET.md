@@ -2,18 +2,14 @@
 
 The "Sign in" button (in the menu on every page; inside "Menu" on phones) opens a password prompt. The right password decrypts
 `site/data/secret.json` in the browser and shows a full-screen black section with tabs:
-**Summit log** (the main one) and **Thoughts**.
+**Summit log**.
 Any new "Section" value used in the Summit Log gets its own tab automatically. The old Dreams, Notes, Wishlist and Gear
-sections were removed (Nov 2026); rows with those Section values are ignored.
+sections were removed (Nov 2026), and Thoughts moved to the public `thoughts.html` page (Nov 19, 2026; see tools/THOUGHTS.md);
+rows with those Section values are ignored.
 
 ## Where the content lives
 
-**Thoughts** come from Ezra's private Notion database **Thoughts**
-(https://app.notion.com/p/8f1a14a9d18d4c81b09a2d993d54ffb6, data source `collection://7b6ff07b-bcd6-48c9-9322-988d9c43e6cb`).
-Every row is shown unless **Hide** is ticked (no Publish box: anything he writes goes up at the next weekly update).
-Name = optional title; Date = date shown (if empty, use the date part of **Created**); page body = the thought.
-
-Everything else comes from Ezra's private Notion database **Summit Log**
+The content comes from Ezra's private Notion database **Summit Log**
 (https://app.notion.com/p/d49a6821dca141bbba1928cd9b0fcc8e, data source `collection://e5bd3954-d98e-42e7-90be-964c5ca33205`).
 
 | Property | Use |
@@ -39,9 +35,6 @@ Nothing from Notion is committed in plain text. The repo is public; only encrypt
      "dream": "Tetrahedron Peak", "photo_keys": "<the Photo keys text, as is>", "body_md": "<page content, as is>"}]}
    ```
    Use "" for empty text fields and null for an empty elevation/date. Copy values exactly; don't rewrite Ezra's text.
-   Then query ALL rows of the **Thoughts** data source where Hide is not ticked, fetch each page, and append to the same
-   `entries` list: `{"name": "<Name or \"\">", "section": "Thoughts", "date": "<Date, else Created, as YYYY-MM-DD>", "body_md": "<page content, as is>"}`.
-   Untitled thoughts are fine; empty pages are skipped.
 2. `python3 tools/secret.py build` — renders the section, encrypts it with a **new** one-word password,
    and prints `PASSWORD: word` (also in `tools/secret/PASSWORD`).
 3. Commit `site/data/secret.json` (and nothing from `tools/secret/`). Report the password at the top of the recap.

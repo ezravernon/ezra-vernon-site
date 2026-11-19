@@ -33,11 +33,10 @@ WORDS = 1
 
 # Tabs, in order. Any other "Section" value found in Notion gets its own tab automatically, after these,
 # except the retired sections in DROPPED, which are never shown.
-SECTIONS = ["Summit log", "Thoughts"]
-DROPPED = {"Dreams", "Notes", "Wishlist", "Gear"}
+SECTIONS = ["Summit log"]
+DROPPED = {"Dreams", "Notes", "Wishlist", "Gear", "Thoughts"}   # Thoughts moved to the public thoughts.html (Nov 19, 2026)
 EMPTY = {
     "Summit log": "No summits published yet. Add a row in the Notion Summit Log with Section “Summit log” and tick Publish.",
-    "Thoughts": "No thoughts yet. Write one in the Notion “Thoughts” database; it appears at the next Saturday update.",
 }
 # COROS sport codes that can be a summit day (outdoor, on foot or ski)
 SUMMIT_SPORTS = {100: "Run", 102: "Trail run", 103: "Mountain climb", 104: "Hike", 500: "Ski", 501: "Ski touring", 900: "Walk"}
@@ -224,21 +223,11 @@ def note_html(e):
 </article>"""
 
 
-def thought_html(e):
-    d = nice_date(e.get("date"))
-    title = f"<h2>{esc(e['name'])}</h2>" if e.get("name") else ""
-    return f"""<article class="v-entry v-thought" id="{esc(e['anchor'])}">
-  {f'<p class="eyebrow">{d}</p>' if d else ''}
-  {title}
-  <div class="v-body">{markdown(e.get('body_md'))}</div>
-</article>"""
-
-
 def render(entries):
     coros = coros_by_date()
     for i, e in enumerate(entries):
         e["section"] = (e.get("section") or "Summit log").strip()
-        e["anchor"] = f"e-{slug(e.get('name') or 'thought')}-{i}"
+        e["anchor"] = f"e-{slug(e.get('name') or 'entry')}-{i}"
         e["photos"] = parse_photo_keys(e.get("photo_keys"))
     entries.sort(key=lambda e: e.get("date") or "", reverse=True)
     entries = [e for e in entries if e["section"] not in DROPPED]
@@ -253,11 +242,6 @@ def render(entries):
                     f'<p class="lede">{len(items)} logged{", newest first" if len(items) > 1 else ""}.</p>' if items else
                     '<p class="eyebrow">Summit log</p><h1>Summits.</h1>')
             inner = "".join(summit_html(e, coros) for e in items)
-        elif s == "Thoughts":
-            head = (f'<p class="eyebrow">Thoughts</p><h1>Thoughts.</h1>'
-                    f'<p class="lede">{len(items)} written{", newest first" if len(items) > 1 else ""}.</p>' if items else
-                    '<p class="eyebrow">Thoughts</p><h1>Thoughts.</h1>')
-            inner = "".join(thought_html(e) for e in items)
         else:
             head = f'<p class="eyebrow">{esc(s)}</p><h1>{esc(s)}.</h1>'
             inner = "".join(note_html(e) for e in items)
@@ -274,7 +258,7 @@ def render(entries):
 # ------------------------------------------------------------------ commands
 def build():
     data = json.loads(ENTRIES.read_text(encoding="utf-8"))
-    entries = [e for e in data.get("entries", []) if e.get("name") or (e.get("section") == "Thoughts" and e.get("body_md"))]
+    entries = [e for e in data.get("entries", []) if e.get("name")]
     markup = render(entries)
     password = os.environ.get("SECRET_PASSWORD") or new_password()
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -299,8 +283,6 @@ DEMO = {"entries": [
     {"name": "Tetrahedron Peak", "section": "Summit log", "date": "2025-07-20", "elevation": 1739, "range": "Tetrahedron",
      "route": "", "partners": "", "conditions": "", "rating": "★★★★★", "dream": "Tetrahedron Peak", "photo_keys": "",
      "body_md": "Sample entry. The S-4.1 scramble near the top."},
-    {"name": "", "section": "Thoughts", "date": "2026-11-09", "body_md": "Sample thought. Short paragraphs read best here.\n\nA second line of the same thought."},
-    {"name": "On early starts", "section": "Thoughts", "date": "2026-11-02", "body_md": "A titled sample thought with *italics* and **bold**."},
     {"name": "Old gear note", "section": "Gear", "date": "2026-11-01", "body_md": "Retired section: must not appear."},
 ]}
 
