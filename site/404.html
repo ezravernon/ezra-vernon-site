@@ -325,7 +325,7 @@ html:has(.vault[open]){overflow:hidden}
     if(!window.crypto||!crypto.subtle){msg.textContent='This needs a secure (https) connection.';return}
     sub.disabled=true;msg.textContent='Unlocking\u2026';var j;
     try{j=await load()}catch(err){msg.textContent='Couldn\u2019t load the secret section. Check your connection.';sub.disabled=false;return}
-    try{var raw=await derive(pw.value,j),html=await open(raw,j);setK(btoa(String.fromCharCode.apply(null,raw)));show(html)}
+    try{var raw=await derive(pw.value.trim().toLowerCase(),j),html=await open(raw,j);setK(btoa(String.fromCharCode.apply(null,raw)));show(html)}
     catch(err){msg.textContent='That password didn\u2019t match. Try again.';pw.setAttribute('aria-invalid','true');pw.select()}
     sub.disabled=false});
 })();

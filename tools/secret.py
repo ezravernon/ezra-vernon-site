@@ -29,7 +29,7 @@ ENTRIES = WORK / "entries.json"
 OUT = ROOT / "site" / "data" / "secret.json"
 PHOTOS = ROOT / "site" / "data" / "secret" / "p"
 ITER = 600_000
-WORDS = 4
+WORDS = 1
 
 # Tabs, in order. Any other "Section" value found in Notion gets its own tab automatically, after these,
 # except the retired sections in DROPPED, which are never shown.

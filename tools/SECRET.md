@@ -42,8 +42,8 @@ Nothing from Notion is committed in plain text. The repo is public; only encrypt
    Then query ALL rows of the **Thoughts** data source where Hide is not ticked, fetch each page, and append to the same
    `entries` list: `{"name": "<Name or \"\">", "section": "Thoughts", "date": "<Date, else Created, as YYYY-MM-DD>", "body_md": "<page content, as is>"}`.
    Untitled thoughts are fine; empty pages are skipped.
-2. `python3 tools/secret.py build` — renders the section, encrypts it with a **new** 4-word password,
-   and prints `PASSWORD: word-word-word-word` (also in `tools/secret/PASSWORD`).
+2. `python3 tools/secret.py build` — renders the section, encrypts it with a **new** one-word password,
+   and prints `PASSWORD: word` (also in `tools/secret/PASSWORD`).
 3. Commit `site/data/secret.json` (and nothing from `tools/secret/`). Report the password at the top of the recap.
 
 Watch stats: for each Summit log entry, the longest outdoor on-foot/ski activity in `tools/coros/activities.tsv`
@@ -63,7 +63,7 @@ re-encrypting when the password changes. To remove a photo: delete its line in N
 ## Security notes
 
 - Page: PBKDF2-SHA256 (600k iterations) -> AES-256-GCM. A wrong password just fails to decrypt; no hash is stored.
-- Passwords: 4 words from the EFF long wordlist (`tools/wordlist.txt`, words of 4–8 letters; EFF, CC BY 3.0), about 50 bits.
+- Passwords: 1 word from the EFF long wordlist (`tools/wordlist.txt`, words of 4–8 letters; EFF, CC BY 3.0). Changed from 4 words at Ezra's request (Nov 2026): easy to type, but only about 12 bits, so it keeps casual visitors out rather than a determined attacker. Pasted input is trimmed and lower-cased.
 - Old versions of `secret.json` stay in git history; an old password only opens the content as it was that week.
 - After unlocking, the page key is kept in `sessionStorage` until the tab closes or "Lock" is pressed.
 - `python3 tools/secret.py demo` writes sample entries for testing the layout; never commit a build made from it.
