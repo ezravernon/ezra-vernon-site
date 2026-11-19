@@ -610,7 +610,6 @@ dreams_css = """
 """
 dreams_body = """<section class="page-head">
   <div class="wrap reveal">
-    <p class="eyebrow">Page 02</p>
     <h1>Future dreams</h1>
     <p>All of these are goals that I want to complete. They all have different timelines — feel free to reach out if you want to plan and join me for one of these adventures.</p>
   </div>
@@ -695,7 +694,6 @@ side_css = """
 """
 side_body = """<section class="page-head">
   <div class="wrap reveal">
-    <p class="eyebrow">Page 03</p>
     <h1>Sidequests</h1>
     <p>Smaller, stranger goals that sit alongside the big mountains.</p>
   </div>
@@ -797,7 +795,6 @@ q_body = f"""<section class="q-head" data-dark-head>
       width="758" height="522" fetchpriority="high" alt="Pink mountain heather blooming among green needle-like leaves"></figure>
   <div class="wrap">
     <div>
-      <p class="eyebrow">Page 04</p>
       <h1>Quotes</h1>
       <p>These quotes, or daily reminders, are all original pieces written by me (mostly late-night pieces), or are pieces that I enjoy, with the proper recognition that they deserve.</p>
     </div>
@@ -834,7 +831,6 @@ s_css = """
 s_body = """<section class="page-head">
   <div class="wrap reveal">
     <img class="s-logo" src="images/logo-480.webp" width="160" height="91" alt="Ezra's pink bird logo">
-    <p class="eyebrow">Page 06</p>
     <h1>Socials</h1>
     <p>Want to join an adventure, share beta on a peak, or just say hi? Find me here.</p>
   </div>
@@ -1086,9 +1082,8 @@ t_css = """
 _n = len(_thoughts)
 t_body = f"""<section class="page-head">
   <div class="wrap reveal">
-    <p class="eyebrow">Page 07</p>
     <h1>Thoughts</h1>
-    <p>Things I’ve been thinking about, written down as they come. {f"{_n} so far, newest first." if _n > 1 else ""}</p>
+    <p>Things I’ve been thinking about.</p>
   </div>
 </section>
 <section class="thoughts">

@@ -251,7 +251,6 @@ details.data td{font-variant-numeric:tabular-nums}
 
 t_body = f"""<section class="page-head">
   <div class="wrap reveal">
-    <p class="eyebrow">Page 05</p>
     <h1>Training log</h1>
     <p>Data and activities from my watch. Updated {_dt.date.fromisoformat(UPDATED).strftime('%B %-d, %Y')}.</p>
   </div>
