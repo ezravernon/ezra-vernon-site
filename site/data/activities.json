@@ -1,7 +1,63 @@
 {
- "updated": "2026-11-14",
+ "updated": "2026-11-21",
  "source": "COROS",
  "activities": [
+  {
+   "date": "2026-11-21",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 7558,
+   "hr": 104,
+   "meters": 3210
+  },
+  {
+   "date": "2026-11-21",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 6569,
+   "hr": 108,
+   "meters": 2580
+  },
+  {
+   "date": "2026-11-20",
+   "sport": "Walk",
+   "group": "other",
+   "seconds": 1491,
+   "hr": 116,
+   "meters": 2000
+  },
+  {
+   "date": "2026-11-20",
+   "sport": "Soccer",
+   "group": "soccer",
+   "seconds": 1290,
+   "hr": 112,
+   "meters": 1270
+  },
+  {
+   "date": "2026-11-19",
+   "sport": "Walk",
+   "group": "other",
+   "seconds": 2719,
+   "hr": 97,
+   "meters": 3840
+  },
+  {
+   "date": "2026-11-17",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 3792,
+   "hr": 120,
+   "meters": 3900
+  },
+  {
+   "date": "2026-11-15",
+   "sport": "Ultimate",
+   "group": "ultimate",
+   "seconds": 10176,
+   "hr": 93,
+   "meters": 8330
+  },
   {
    "date": "2026-11-14",
    "sport": "Run",
