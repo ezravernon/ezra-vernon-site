@@ -681,7 +681,6 @@ def gallery_html():
     return ('<section class="page-head">\n'
             '  <div class="wrap reveal">\n'
             '    <h1>Gallery</h1>\n'
-            '    <p>Moments from outside: mountains, trails and the people I share them with.</p>\n'
             '  </div>\n</section>\n'
             '<!-- Photos come from site/data/gallery.json; add them with tools/add_photos.py -->\n'
             '<section class="section" style="padding-top:0" aria-label="Photos">\n'
