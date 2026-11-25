@@ -13,7 +13,7 @@ DESIGN RECIPE "Alpine field notebook": warm paper base, deep pine ink, one deep-
 Colours: base #F6F3EE, tint #EDE7DE, ink #1E2A27, soft ink #5B6662, accent #1A6E6A. Logo pink is used only inside the logo image.
 How to edit: the "SHARED STYLES" and "SHARED SCRIPT" blocks, header, footer and sign-in dialog must stay identical on every page.
   Page-specific CSS sits in the "PAGE STYLES" block. Change the nav/footer on every page.
-Hero video (from IMG_1798.MOV): hero-mobile.mp4 (720x1280, phones), hero-desktop.mp4 (1080x1920), hero-poster.webp (first frame, shown while loading), hero-backdrop.webp (blurred still behind the video on wide screens).
+Hero video (from IMG_1798.MOV): hero-mobile.mp4 (720x1280, phones), hero-desktop.mp4 (1080x1920), hero-poster.webp (first frame, shown while loading).
 Photos: meadow-{600,900,1220}.webp (no longer used on Home), meadow-wide-{800,1220}.webp (Dreams header), heather-{480,758}.webp (Quotes header background),
   frisbee-{800,1400}.webp (Home photos; credit Dan Tsuji Photography), car-{600,1000}.webp + belay-{600,1000}.webp (Home photos),
   logo-{240,480,960}.webp (header + Socials), favicon-64.png, apple-touch-icon.png. All EXIF stripped.
@@ -273,8 +273,8 @@ html:has(.vault[open]){overflow:hidden}
 .lightbox :focus-visible{outline-color:var(--base)}
 .hero{position:relative;min-height:min(88vh,880px);display:flex;align-items:flex-end;overflow:hidden;background:var(--ink);color:var(--base)}
 /* The hero video is vertical and always shown whole ("contain", no zoom). On phones the hero takes the video's
-   9:16 shape so it fills edge to edge; on wider screens a blurred still of the scene fills the sides. */
-.hero-bg{position:absolute;inset:0;margin:0;background:#3d6f8c url(images/hero-backdrop.webp) center/cover no-repeat}
+   9:16 shape so it fills edge to edge; on wider screens the sides are plain pine (--ink). */
+.hero-bg{position:absolute;inset:0;margin:0;background:var(--ink)}
 .hero-bg video{display:block;width:100%;height:100%;object-fit:contain;object-position:50% 50%}
 @media (max-width:600px){.hero{min-height:0;aspect-ratio:9/16}}
 /* Small pause/play control for the looping background video (bottom-right of the hero) */
