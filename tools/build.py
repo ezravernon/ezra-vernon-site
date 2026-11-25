@@ -61,42 +61,66 @@ a:hover{color:var(--ink)}
 .btn:hover{background:var(--ink);border-color:var(--ink);color:var(--base);transform:translateY(-1px)}
 .btn--ghost{background:transparent;color:var(--accent)}
 .btn--ghost:hover{background:var(--accent);border-color:var(--accent)}
-/* Header + nav — transparent, sits over the top of every page.
-   data-tone="light" = light links (over a dark photo header: Home, Quotes); data-tone="dark" = pine links (over paper).
-   The shared script flips the tone to match whatever is behind the header, and adds .is-scrolled (frosted glass) once you scroll. */
-.site-header{--hc:var(--ink);--hc-line:rgba(30,42,39,.28);position:fixed;inset:0 0 auto 0;z-index:20;background:transparent;border-bottom:1px solid transparent;transition:background var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease),box-shadow var(--t-slow) var(--ease)}
-.site-header[data-tone="light"]{--hc:var(--base);--hc-line:rgba(246,243,238,.4)}
-.site-header.is-scrolled,.site-header.menu-open{background:rgba(246,243,238,.8);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom-color:var(--line);box-shadow:0 4px 24px rgba(30,42,39,.06)}
-.site-header[data-tone="light"].is-scrolled,.site-header[data-tone="light"].menu-open{background:rgba(30,42,39,.5);border-bottom-color:rgba(246,243,238,.12);box-shadow:none}
-.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:72px}
-.brand{display:flex;align-items:center;gap:var(--s2);text-decoration:none;color:var(--hc);font-family:var(--font-serif);font-size:var(--step-1);transition:color var(--t-slow) var(--ease)}
-.brand img{width:56px;height:32px}
-.brand,.nav a,.nav .nav-signin{white-space:nowrap}
-@media (max-width:1280px){.nav ul{gap:var(--s3)}}
-.nav ul{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:var(--s4)}
-.nav a{color:var(--hc);text-decoration:none;font-size:var(--step-0);padding-block:var(--s1);border-bottom:1px solid transparent;transition:border-color var(--t-med) var(--ease),color var(--t-slow) var(--ease)}
-.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--hc)}
-.nav a[aria-current="page"]{color:var(--hc)}
+/* Header — a floating "island": a rounded glass bar sitting just below the top edge of every page.
+   data-tone="light" = light links on dark glass (over a dark photo header: Home, Quotes); data-tone="dark" = pine links on paper glass.
+   The shared script flips the tone to match whatever is behind the island. Pages are grouped into small drop-down menus. */
+.site-header{--hc:var(--ink);--hc-line:rgba(30,42,39,.22);--hc-glass:rgba(246,243,238,.8);--hc-edge:rgba(30,42,39,.1);--hc-panel:var(--base);--hc-hover:rgba(30,42,39,.07);--hc-soft:var(--ink-soft);
+  position:fixed;top:var(--s2);left:0;right:0;z-index:20;width:min(1120px,100% - var(--s3));margin-inline:auto;
+  background:var(--hc-glass);-webkit-backdrop-filter:saturate(1.4) blur(16px);backdrop-filter:saturate(1.4) blur(16px);
+  border:1px solid var(--hc-edge);border-radius:32px;box-shadow:0 10px 30px rgba(30,42,39,.1);
+  transition:background var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease),box-shadow var(--t-slow) var(--ease)}
+.site-header[data-tone="light"]{--hc:var(--base);--hc-line:rgba(246,243,238,.35);--hc-glass:rgba(30,42,39,.4);--hc-edge:rgba(246,243,238,.16);--hc-panel:#24322E;--hc-hover:rgba(246,243,238,.12);--hc-soft:rgba(246,243,238,.72);box-shadow:0 10px 30px rgba(0,0,0,.16)}
+.site-header.is-scrolled{box-shadow:0 14px 36px rgba(30,42,39,.16)}
+.site-header .wrap{width:auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 var(--s2);min-height:62px;padding-inline:var(--s3) 10px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--hc);font-family:var(--font-serif);font-size:1.3rem;transition:color var(--t-slow) var(--ease)}
+.brand img{width:49px;height:28px}
 .brand:hover{color:var(--hc)}
-/* Sign in sits in the menu and looks like the other links (it is a button because it opens a dialog) */
-.nav .nav-signin{font:inherit;line-height:inherit;background:none;border:0;border-bottom:1px solid transparent;border-radius:0;margin:calc(-1 * var(--s1)) 0 calc(-1 * var(--s1) - 1px);padding:var(--s1) 0;color:var(--hc);cursor:pointer;transition:border-color var(--t-med) var(--ease),color var(--t-slow) var(--ease)}
-.nav .nav-signin:hover{border-bottom-color:var(--hc)}
+.brand,.nav a,.nav-group-btn,.nav .nav-signin{white-space:nowrap}
+.nav ul{list-style:none;margin:0;padding:0}
+.nav > ul{display:flex;align-items:center;gap:2px}
+/* Every item is a soft pill; hover and the current page get a faint fill */
+.nav a,.nav-group-btn,.nav .nav-signin{display:inline-flex;align-items:center;gap:8px;font:400 1rem/1.2 var(--font-sans);color:var(--hc);text-decoration:none;background:transparent;border:0;border-radius:999px;padding:10px 16px;margin:0;cursor:pointer;transition:background var(--t-med) var(--ease),color var(--t-slow) var(--ease)}
+.nav a:hover,.nav-group-btn:hover,.nav .nav-signin:hover,.nav-group.is-open > .nav-group-btn{background:var(--hc-hover);color:var(--hc)}
+.nav a[aria-current="page"],.nav-group-btn.is-current{background:var(--hc-hover);font-weight:500}
+.nav-group-btn::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform var(--t-med) var(--ease)}
+.nav-group.is-open > .nav-group-btn::after{transform:translateY(1px) rotate(225deg)}
+/* Drop-down panel */
+.nav-group{position:relative}
+.nav-sub{position:absolute;top:calc(100% + 14px);left:50%;min-width:248px;padding:6px;background:var(--hc-panel);border:1px solid var(--hc-edge);border-radius:20px;box-shadow:0 18px 40px rgba(30,42,39,.18);
+  opacity:0;visibility:hidden;transform:translate(-50%,-6px);transition:opacity var(--t-med) var(--ease),transform var(--t-med) var(--ease),visibility 0s linear var(--t-med)}
+.nav-sub::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px} /* keeps hover alive across the gap */
+.nav-group.is-open .nav-sub{opacity:1;visibility:visible;transform:translate(-50%,0);transition-delay:0s}
+.nav-sub a{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;border-radius:14px;padding:10px 14px}
+.nav-sub small{font-size:var(--step--1);color:var(--hc-soft);font-weight:400}
+/* Sign in looks like the other links (it is a button because it opens a dialog) */
 .no-js .nav-signin-item{display:none}
-.nav .btn{color:var(--base);padding:var(--s1) var(--s3);border-bottom:1px solid var(--accent)}
+.nav .btn{color:var(--base);background:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:10px 20px;margin-left:6px;font-weight:500}
 .nav .btn:hover,.nav .btn[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:var(--base)}
 .site-header[data-tone="light"] .nav .btn:hover,.site-header[data-tone="light"] .nav .btn[aria-current="page"]{background:var(--base);border-color:var(--base);color:var(--ink)}
-/* Pages that start with a paper header leave room for the fixed bar */
-main > .page-head:first-child{padding-top:calc(72px + var(--s7))}
+/* Without JavaScript the groups are simply shown inline */
+.no-js .nav-group-btn{display:none}
+.no-js .nav-sub{position:static;display:flex;opacity:1;visibility:visible;transform:none;min-width:0;padding:0;background:none;border:0;box-shadow:none}
+.no-js .nav-sub small{display:none}
+/* Pages that start with a paper header leave room for the island */
+main > .page-head:first-child{padding-top:calc(78px + var(--s7))}
 .nav-toggle{display:none}
-@media (max-width:1080px){
-  .nav-toggle{display:inline-flex;font:500 var(--step-0)/1 var(--font-sans);background:none;border:1px solid var(--hc-line);border-radius:var(--radius);padding:var(--s1) var(--s2);color:var(--hc);cursor:pointer;transition:color var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease)}
-  .nav{position:absolute;inset:72px 0 auto 0;background:var(--base);border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(30,42,39,.08);display:none}
-  .site-header[data-tone="light"] .nav{background:var(--ink);border-bottom-color:rgba(246,243,238,.08)}
+@media (max-width:900px){
+  .site-header{width:calc(100% - var(--s2));top:var(--s1)}
+  .site-header .wrap{min-height:0;padding-inline:var(--s2) 8px}
+  .brand{min-height:58px}
+  .site-header.menu-open{background:var(--hc-panel)}
+  .nav-toggle{display:inline-flex;font:500 1rem/1 var(--font-sans);background:none;border:1px solid var(--hc-line);border-radius:999px;padding:10px 18px;color:var(--hc);cursor:pointer;transition:color var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease)}
+  .nav{display:none;width:100%;padding:4px 0 12px}
   .nav.is-open{display:block}
-  .no-js .nav{display:block;position:static;border:0}
-  .no-js .site-header .wrap{flex-wrap:wrap;padding-block:var(--s2)}
-  .nav ul{flex-direction:column;align-items:flex-start;gap:var(--s1);padding:var(--s2) var(--s2) var(--s3)}
-  .no-js .nav ul{flex-direction:row;flex-wrap:wrap;padding:0}
+  .nav > ul{flex-direction:column;align-items:stretch;gap:2px}
+  .nav a,.nav-group-btn,.nav .nav-signin{width:100%;justify-content:space-between;font-size:var(--step-0);padding:12px 14px}
+  .nav-sub{position:static;display:none;opacity:1;visibility:visible;transform:none;min-width:0;padding:0 0 4px 12px;background:none;border:0;box-shadow:none}
+  .nav-sub::before{display:none}
+  .nav-group.is-open .nav-sub{display:block;transform:none}
+  .nav .btn{justify-content:center;margin:8px 0 0}
+  .no-js .nav{display:block}
+  .no-js .nav > ul{flex-direction:row;flex-wrap:wrap}
+  .no-js .nav-sub{display:flex;padding:0}
 }
 /* Page header used on inner pages */
 .page-head{padding-block:var(--s7) var(--s5)}
@@ -191,7 +215,8 @@ html:has(.vault[open]){overflow:hidden}
 @media (forced-colors:active){
   .btn,.v-btn,.chip,.v-tab,.nav-toggle{border:1px solid ButtonText}
   .nav a[aria-current="page"],.chip[aria-pressed="true"],.v-tab[aria-selected="true"]{outline:2px solid Highlight;outline-offset:2px}
-  .site-header.is-scrolled,.site-header.menu-open{background:Canvas;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .site-header,.nav-sub{background:Canvas;border:1px solid CanvasText;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .nav-group-btn.is-current{outline:2px solid Highlight;outline-offset:2px}
 }
 """
 
@@ -201,14 +226,29 @@ SHARED_JS = """
   var d=document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
   // Mobile nav
   var hd=document.querySelector('.site-header'), t=document.querySelector('.nav-toggle'), n=document.getElementById('site-nav');
-  function menu(o){n.classList.toggle('is-open',o);t.setAttribute('aria-expanded',o);hd.classList.toggle('menu-open',o)}
-  if(t&&n){t.addEventListener('click',function(){menu(!n.classList.contains('is-open'))});
-    // Escape closes the open menu and hands focus back to the Menu button
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&n.classList.contains('is-open')&&!document.querySelector('dialog[open]')){var inside=n.contains(document.activeElement);menu(false);if(inside)t.focus()}});}
-  // Transparent header: frosted once scrolled; light links while a dark photo header ([data-dark-head]) is behind it
+  var groups=[].slice.call(document.querySelectorAll('.nav-group')), mob=window.matchMedia('(max-width:900px)');
+  function grp(g,o){g.classList.toggle('is-open',o);g.querySelector('.nav-group-btn').setAttribute('aria-expanded',o)}
+  function closeGroups(except){groups.forEach(function(g){if(g!==except)grp(g,false)})}
+  function menu(o){n.classList.toggle('is-open',o);t.setAttribute('aria-expanded',o);hd.classList.toggle('menu-open',o);
+    if(o)groups.forEach(function(g){if(g.querySelector('.is-current'))grp(g,true)});else closeGroups()}
+  if(t&&n){t.addEventListener('click',function(){menu(!n.classList.contains('is-open'))})}
+  // Drop-down groups: click/tap or keyboard opens; on a desktop mouse, hovering opens too
+  groups.forEach(function(g){var b=g.querySelector('.nav-group-btn'),tm;
+    b.addEventListener('click',function(){var o=!g.classList.contains('is-open')||(!mob.matches&&Date.now()-(g._hov||0)<700);if(!mob.matches)closeGroups(g);grp(g,o)});
+    g.addEventListener('mouseenter',function(e){if(mob.matches||e.pointerType==='touch')return;clearTimeout(tm);if(!g.classList.contains('is-open'))g._hov=Date.now();closeGroups(g);grp(g,true)});
+    g.addEventListener('mouseleave',function(){if(mob.matches)return;tm=setTimeout(function(){grp(g,false)},180)});
+    g.addEventListener('focusout',function(e){if(!mob.matches&&!g.contains(e.relatedTarget))grp(g,false)});});
+  document.addEventListener('click',function(e){if(!mob.matches&&!e.target.closest('.nav-group'))closeGroups()});
+  // Escape closes an open drop-down (focus back to its button), then the mobile menu
+  document.addEventListener('keydown',function(e){if(e.key!=='Escape'||document.querySelector('dialog[open]'))return;
+    var g=groups.filter(function(x){return x.classList.contains('is-open')&&x.contains(document.activeElement)})[0];
+    if(g&&!mob.matches){grp(g,false);g.querySelector('.nav-group-btn').focus();return}
+    if(t&&n&&n.classList.contains('is-open')){var inside=n.contains(document.activeElement);menu(false);if(inside)t.focus()}
+    else closeGroups()});
+  // Island tone: light links while a dark photo header ([data-dark-head]) is behind it
   if(hd){var dark=document.querySelector('[data-dark-head]'),busy=false;
-    function hdr(){var y=window.scrollY||0,h=hd.offsetHeight;hd.classList.toggle('is-scrolled',y>8);
-      if(dark)hd.dataset.tone=dark.getBoundingClientRect().bottom>h?'light':'dark';busy=false}
+    function hdr(){var y=window.scrollY||0,r=hd.getBoundingClientRect();hd.classList.toggle('is-scrolled',y>8);
+      if(dark)hd.dataset.tone=dark.getBoundingClientRect().bottom>r.top+r.height/2?'light':'dark';busy=false}
     addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(hdr)}},{passive:true});addEventListener('resize',hdr);hdr();}
   // Scroll reveal
   var els=document.querySelectorAll('.reveal');
@@ -276,13 +316,31 @@ SHARED_JS = """
 # Pages that open with a dark photo header: the header starts with light links there
 DARK_HEAD_PAGES = {"index.html", "quotes.html"}
 
-NAV = [("index.html", "Home"), ("dreams.html", "Dreams"), ("sidequests.html", "Sidequests"), ("quotes.html", "Quotes"), ("thoughts.html", "Thoughts"), ("training.html", "Training")]
+# Main menu. A tuple with a list is a drop-down group: (label, [(href, label, short description), ...])
+NAV = [
+    ("index.html", "Home"),
+    ("Adventures", [("dreams.html", "Dreams", "Peaks I want to stand on"),
+                    ("sidequests.html", "Sidequests", "Costco ultra, guitar and more"),
+                    ("training.html", "Training", "Every run, hike and climb")]),
+    ("Writing", [("quotes.html", "Quotes", "Late-night reminders"),
+                 ("thoughts.html", "Thoughts", "What\u2019s on my mind")]),
+]
 
 
 def header(current):
-    items = "".join(
-        f'<li><a href="{h}"{" aria-current=\"page\"" if h == current else ""}>{l}</a></li>' for h, l in NAV)
-    cur = ' aria-current="page"' if current == "socials.html" else ""
+    def cur(h):
+        return ' aria-current="page"' if h == current else ""
+    parts = []
+    for a, b in NAV:
+        if isinstance(b, list):
+            gid = "nav-" + a.lower()
+            here = " is-current" if any(h == current for h, _, _ in b) else ""
+            subs = "".join(f'<li><a href="{h}"{cur(h)}>{l}<small>{d}</small></a></li>' for h, l, d in b)
+            parts.append(f'<li class="nav-group"><button class="nav-group-btn{here}" type="button" aria-expanded="false" aria-controls="{gid}">{a}</button>'
+                         f'<ul class="nav-sub" id="{gid}">{subs}</ul></li>')
+        else:
+            parts.append(f'<li><a href="{a}"{cur(a)}>{b}</a></li>')
+    items = "".join(parts)
     tone = "light" if current in DARK_HEAD_PAGES else "dark"
     return f"""<a class="skip" href="#main">Skip to content</a>
 <header class="site-header" data-tone="{tone}">
@@ -290,7 +348,7 @@ def header(current):
     <a class="brand" href="index.html"><img src="images/logo-240.webp" width="56" height="32" alt="">Ezra Vernon</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="nav" id="site-nav" aria-label="Main">
-      <ul>{items}<li class="nav-signin-item"><button class="nav-signin signin-btn" type="button" aria-haspopup="dialog" aria-controls="signin">Sign in</button></li><li><a class="btn" href="socials.html"{cur}>Socials</a></li></ul>
+      <ul>{items}<li class="nav-signin-item"><button class="nav-signin signin-btn" type="button" aria-haspopup="dialog" aria-controls="signin">Sign in</button></li><li><a class="btn" href="socials.html"{cur("socials.html")}>Socials</a></li></ul>
     </nav>
   </div>
 </header>"""
@@ -405,13 +463,10 @@ home_css = """
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;transform:scale(1.1)}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,42,39,.55) 0%,rgba(30,42,39,.12) 14%,rgba(30,42,39,.25) 30%,rgba(30,42,39,.72) 52%,rgba(30,42,39,.9) 68%,rgba(30,42,39,.92) 100%);pointer-events:none}
 .hero .wrap{position:relative;z-index:1;padding-block:var(--s8) var(--s7)}
-.hero h1{color:var(--base);margin-bottom:var(--s3);text-shadow:0 2px 24px rgba(30,42,39,.35)}
+.hero h1{color:var(--base);margin-bottom:0;text-shadow:0 2px 24px rgba(30,42,39,.35)}
 .hero .eyebrow{color:var(--base)}
 .hero .lede{color:var(--base);margin:0;max-width:34ch}
-.welcome{padding-bottom:var(--s5)}
-.welcome h2{font-size:clamp(var(--step-4),6vw,var(--step-5))}
-/* Photo strip below the welcome */
-.photos{padding-top:0}
+/* Photo strip below the hero */
 .photo-grid{display:grid;gap:var(--s3);grid-template-columns:1fr}
 @media (min-width:760px){.photo-grid{grid-template-columns:1fr 1fr}.photo-grid .wide{grid-column:1 / -1}}
 .photo{margin:0}
@@ -420,9 +475,10 @@ home_css = """
 .photo img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-slow) var(--ease)}
 .photo:hover img{transform:scale(1.03)}
 .photo figcaption{margin-top:var(--s1);font-size:var(--step--1);color:var(--ink-soft)}
-.about .wrap{display:grid;gap:var(--s4)}
-@media (min-width:900px){.about .wrap{grid-template-columns:1fr 2fr;gap:var(--s7)}}
-.sports{list-style:none;padding:0;margin:var(--s4) 0 0;display:flex;flex-wrap:wrap;gap:var(--s1)}
+.about .wrap{display:grid;gap:var(--s3);justify-items:center;text-align:center;max-width:62rem;margin-inline:auto}
+.about .wrap > *{width:100%}
+.about .wrap p{margin-inline:auto}
+.sports{list-style:none;padding:0;margin:var(--s4) 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s1)}
 .sports li{border:1px solid var(--line);border-radius:999px;padding:var(--s1) var(--s2);font-size:var(--step--1)}
 .sports li:first-child{border-color:var(--accent);color:var(--accent)}
 .facts{display:grid;gap:var(--s4);margin:var(--s5) 0 0;grid-template-columns:1fr}
@@ -493,17 +549,8 @@ home_body = """<!-- HERO: photo as background, text over it -->
   <div class="wrap">
     <div class="reveal">
       <p class="eyebrow">Website designer · Scrambler · Ultra runner</p>
-      <h1>Ezra Vernon</h1>
-      <p class="lede">Getting outside, exploring, and stepping a little further out of my comfort zone every time.</p>
+      <h1>Welcome to my page</h1>
     </div>
-  </div>
-</section>
-
-<!-- WELCOME -->
-<section class="section welcome section--tint">
-  <div class="wrap reveal">
-    <h2>Welcome to my page!</h2>
-    <p class="lede">A home for everything me.</p>
   </div>
 </section>
 
@@ -528,7 +575,7 @@ home_body = """<!-- HERO: photo as background, text over it -->
 <!-- ABOUT ME -->
 <section class="section about" id="about">
   <div class="wrap">
-    <div class="reveal"><p class="eyebrow">About me</p><h2>Outside, mostly.</h2></div>
+    <div class="reveal"><p class="eyebrow">About me</p></div>
     <div class="reveal">
       <p class="lede">I love getting outside, exploring, making new friends, and stepping out of my comfort zone!</p>
       <p>My favourite sport is skiing, but I love ultimate frisbee, soccer, rock climbing, and ultra running as well.</p>
