@@ -442,12 +442,12 @@ Training data: data/activities.json + the log on training.html, generated from E
   no coordinates, place names, heart rate or calories). Refresh by asking Claude to pull new COROS activities.
 Hosting plan: GitHub repo -> Vercel -> custom domain (Wix). Plain static HTML, no build step; Vercel serves 404.html automatically.
 DESIGN RECIPE "Alpine field notebook": warm paper base, deep pine ink, one deep-turquoise accent (Ezra's favourite colour);
-  Fraunces serif headings + DM Sans body; Home has stronger entrance motion (curtain/zoom hero, flying bird, word-by-word mantra); full-bleed looping drone-video hero (forested hills, plays forward then reversed so it loops seamlessly) with text over it; transparent header whose links switch light/dark to suit the background (frosted once scrolled); one calm idea per section; mantra set large and centred.
+  Fraunces serif headings + DM Sans body; Home has stronger entrance motion (curtain/zoom hero, flying bird, word-by-word mantra); full-bleed looping video hero (Ezra's phone clip panning up through trees to a cliff; plays forward then reversed so it loops seamlessly) with text over it; transparent header whose links switch light/dark to suit the background (frosted once scrolled); one calm idea per section; mantra set large and centred.
   Quotes page only adds a third face (Caveat, handwritten) because Ezra asked for multiple font types there.
 Colours: base #F6F3EE, tint #EDE7DE, ink #1E2A27, soft ink #5B6662, accent #1A6E6A. Logo pink is used only inside the logo image.
 How to edit: the "SHARED STYLES" and "SHARED SCRIPT" blocks, header, footer and sign-in dialog must stay identical on every page.
   Page-specific CSS sits in the "PAGE STYLES" block. Change the nav/footer on every page.
-Hero video: hero-1920.mp4 (desktop), hero-1280.mp4 (phones), hero-poster.webp (first frame, shown while loading).
+Hero video (from IMG_5115.MOV, HDR tone-mapped to SDR): hero-mobile.mp4 (full vertical frame, phones), hero-desktop.mp4 (centre landscape band, desktop), hero-poster.webp (first frame, shown while loading).
 Photos: meadow-{600,900,1220}.webp (no longer used on Home), meadow-wide-{800,1220}.webp (Dreams header), heather-{480,758}.webp (Quotes header background),
   frisbee-{800,1400}.webp (Home photos; credit Dan Tsuji Photography), car-{600,1000}.webp + belay-{600,1000}.webp (Home photos),
   logo-{240,480,960}.webp (header + Socials), favicon-64.png, apple-touch-icon.png. All EXIF stripped.
@@ -579,8 +579,8 @@ home_body = """<!-- HERO: photo as background, text over it -->
 <section class="hero" data-dark-head>
   <figure class="hero-bg">
     <video autoplay muted loop playsinline preload="auto" poster="images/hero-poster.webp" aria-hidden="true" tabindex="-1">
-      <source src="images/hero-1280.mp4" type="video/mp4" media="(max-width:900px)">
-      <source src="images/hero-1920.mp4" type="video/mp4">
+      <source src="images/hero-mobile.mp4" type="video/mp4" media="(max-width:900px)">
+      <source src="images/hero-desktop.mp4" type="video/mp4">
     </video>
   </figure>
   <button class="hero-pause" type="button" aria-pressed="false" aria-label="Pause background video"><span aria-hidden="true"></span></button>
