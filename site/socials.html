@@ -91,7 +91,6 @@ a:hover{color:var(--ink)}
 .nav-sub::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px} /* keeps hover alive across the gap */
 .nav-group.is-open .nav-sub{opacity:1;visibility:visible;transform:translate(-50%,0);transition-delay:0s}
 .nav-sub a{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;border-radius:14px;padding:10px 14px}
-.nav-sub small{font-size:var(--step--1);color:var(--hc-soft);font-weight:400}
 /* Sign in looks like the other links (it is a button because it opens a dialog) */
 .no-js .nav-signin-item{display:none}
 .nav .btn{color:var(--base);background:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:10px 20px;margin-left:6px;font-weight:500}
@@ -100,7 +99,6 @@ a:hover{color:var(--ink)}
 /* Without JavaScript the groups are simply shown inline */
 .no-js .nav-group-btn{display:none}
 .no-js .nav-sub{position:static;display:flex;opacity:1;visibility:visible;transform:none;min-width:0;padding:0;background:none;border:0;box-shadow:none}
-.no-js .nav-sub small{display:none}
 /* Pages that start with a paper header leave room for the island */
 main > .page-head:first-child{padding-top:calc(78px + var(--s7))}
 .nav-toggle{display:none}
@@ -240,7 +238,7 @@ html:has(.vault[open]){overflow:hidden}
     <a class="brand" href="index.html"><img src="images/logo-240.webp" width="56" height="32" alt="">Ezra Vernon</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="nav" id="site-nav" aria-label="Main">
-      <ul><li><a href="index.html">Home</a></li><li class="nav-group"><button class="nav-group-btn" type="button" aria-expanded="false" aria-controls="nav-adventures">Adventures</button><ul class="nav-sub" id="nav-adventures"><li><a href="dreams.html">Dreams<small>Peaks I want to stand on</small></a></li><li><a href="sidequests.html">Sidequests<small>Costco ultra, guitar and more</small></a></li><li><a href="training.html">Training<small>Every run, hike and climb</small></a></li></ul></li><li class="nav-group"><button class="nav-group-btn" type="button" aria-expanded="false" aria-controls="nav-writing">Writing</button><ul class="nav-sub" id="nav-writing"><li><a href="quotes.html">Quotes<small>Late-night reminders</small></a></li><li><a href="thoughts.html">Thoughts<small>What’s on my mind</small></a></li></ul></li><li><a href="gallery.html">Gallery</a></li><li class="nav-signin-item"><button class="nav-signin signin-btn" type="button" aria-haspopup="dialog" aria-controls="signin">Sign in</button></li><li><a class="btn" href="socials.html" aria-current="page">Socials</a></li></ul>
+      <ul><li><a href="index.html">Home</a></li><li class="nav-group"><button class="nav-group-btn" type="button" aria-expanded="false" aria-controls="nav-adventures">Adventures</button><ul class="nav-sub" id="nav-adventures"><li><a href="dreams.html">Dreams</a></li><li><a href="sidequests.html">Sidequests</a></li><li><a href="training.html">Training</a></li></ul></li><li class="nav-group"><button class="nav-group-btn" type="button" aria-expanded="false" aria-controls="nav-writing">Writing</button><ul class="nav-sub" id="nav-writing"><li><a href="quotes.html">Quotes</a></li><li><a href="thoughts.html">Thoughts</a></li></ul></li><li><a href="gallery.html">Gallery</a></li><li class="nav-signin-item"><button class="nav-signin signin-btn" type="button" aria-haspopup="dialog" aria-controls="signin">Sign in</button></li><li><a class="btn" href="socials.html" aria-current="page">Socials</a></li></ul>
     </nav>
   </div>
 </header>

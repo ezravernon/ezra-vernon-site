@@ -91,7 +91,6 @@ a:hover{color:var(--ink)}
 .nav-sub::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px} /* keeps hover alive across the gap */
 .nav-group.is-open .nav-sub{opacity:1;visibility:visible;transform:translate(-50%,0);transition-delay:0s}
 .nav-sub a{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;border-radius:14px;padding:10px 14px}
-.nav-sub small{font-size:var(--step--1);color:var(--hc-soft);font-weight:400}
 /* Sign in looks like the other links (it is a button because it opens a dialog) */
 .no-js .nav-signin-item{display:none}
 .nav .btn{color:var(--base);background:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:10px 20px;margin-left:6px;font-weight:500}
@@ -100,7 +99,6 @@ a:hover{color:var(--ink)}
 /* Without JavaScript the groups are simply shown inline */
 .no-js .nav-group-btn{display:none}
 .no-js .nav-sub{position:static;display:flex;opacity:1;visibility:visible;transform:none;min-width:0;padding:0;background:none;border:0;box-shadow:none}
-.no-js .nav-sub small{display:none}
 /* Pages that start with a paper header leave room for the island */
 main > .page-head:first-child{padding-top:calc(78px + var(--s7))}
 .nav-toggle{display:none}
@@ -336,7 +334,7 @@ def header(current):
         if isinstance(b, list):
             gid = "nav-" + a.lower()
             here = " is-current" if any(h == current for h, _, _ in b) else ""
-            subs = "".join(f'<li><a href="{h}"{cur(h)}>{l}<small>{d}</small></a></li>' for h, l, d in b)
+            subs = "".join(f'<li><a href="{h}"{cur(h)}>{l}</a></li>' for h, l, d in b)
             parts.append(f'<li class="nav-group"><button class="nav-group-btn{here}" type="button" aria-expanded="false" aria-controls="{gid}">{a}</button>'
                          f'<ul class="nav-sub" id="{gid}">{subs}</ul></li>')
         else:
