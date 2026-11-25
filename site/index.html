@@ -224,7 +224,7 @@ html:has(.vault[open]){overflow:hidden}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;transform:scale(1.1)}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,42,39,.55) 0%,rgba(30,42,39,.12) 14%,rgba(30,42,39,.25) 30%,rgba(30,42,39,.72) 52%,rgba(30,42,39,.9) 68%,rgba(30,42,39,.92) 100%);pointer-events:none}
 .hero .wrap{position:relative;z-index:1;padding-block:var(--s8) var(--s7)}
-.hero h1{color:var(--base);margin-bottom:var(--s3);text-shadow:0 2px 24px rgba(30,42,39,.35)}
+.hero h1{color:var(--base);margin-bottom:0;max-width:16ch;text-shadow:0 2px 24px rgba(30,42,39,.35)}
 .hero .eyebrow{color:var(--base)}
 .hero .lede{color:var(--base);margin:0;max-width:34ch}
 .welcome{padding-bottom:var(--s5)}
@@ -239,9 +239,10 @@ html:has(.vault[open]){overflow:hidden}
 .photo img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-slow) var(--ease)}
 .photo:hover img{transform:scale(1.03)}
 .photo figcaption{margin-top:var(--s1);font-size:var(--step--1);color:var(--ink-soft)}
-.about .wrap{display:grid;gap:var(--s4)}
-@media (min-width:900px){.about .wrap{grid-template-columns:1fr 2fr;gap:var(--s7)}}
-.sports{list-style:none;padding:0;margin:var(--s4) 0 0;display:flex;flex-wrap:wrap;gap:var(--s1)}
+.about .wrap{display:grid;gap:var(--s3);justify-items:center;text-align:center;max-width:62rem;margin-inline:auto}
+.about .wrap > *{width:100%}
+.about .wrap p{margin-inline:auto}
+.sports{list-style:none;padding:0;margin:var(--s4) 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s1)}
 .sports li{border:1px solid var(--line);border-radius:999px;padding:var(--s1) var(--s2);font-size:var(--step--1)}
 .sports li:first-child{border-color:var(--accent);color:var(--accent)}
 .facts{display:grid;gap:var(--s4);margin:var(--s5) 0 0;grid-template-columns:1fr}
@@ -326,8 +327,7 @@ html:has(.vault[open]){overflow:hidden}
   <div class="wrap">
     <div class="reveal">
       <p class="eyebrow">Website designer · Scrambler · Ultra runner</p>
-      <h1>Ezra Vernon</h1>
-      <p class="lede">Getting outside, exploring, and stepping a little further out of my comfort zone every time.</p>
+      <h1>Be Delusional, Push Your Limits</h1>
     </div>
   </div>
 </section>
@@ -361,7 +361,7 @@ html:has(.vault[open]){overflow:hidden}
 <!-- ABOUT ME -->
 <section class="section about" id="about">
   <div class="wrap">
-    <div class="reveal"><p class="eyebrow">About me</p><h2>Outside, mostly.</h2></div>
+    <div class="reveal"><p class="eyebrow">About me</p></div>
     <div class="reveal">
       <p class="lede">I love getting outside, exploring, making new friends, and stepping out of my comfort zone!</p>
       <p>My favourite sport is skiing, but I love ultimate frisbee, soccer, rock climbing, and ultra running as well.</p>
