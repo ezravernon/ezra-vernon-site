@@ -478,6 +478,8 @@ home_css = """
 .about .wrap{display:grid;gap:var(--s3);justify-items:center;text-align:center;max-width:62rem;margin-inline:auto}
 .about .wrap > *{width:100%}
 .about .wrap p{margin-inline:auto}
+.roles span{white-space:nowrap}
+.roles{font-family:var(--font-serif);font-size:clamp(1.15rem,5.2vw,var(--step-2));line-height:1.2;color:var(--accent);margin-bottom:0}
 .sports{list-style:none;padding:0;margin:var(--s4) 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s1)}
 .sports li{border:1px solid var(--line);border-radius:999px;padding:var(--s1) var(--s2);font-size:var(--step--1)}
 .sports li:first-child{border-color:var(--accent);color:var(--accent)}
@@ -548,7 +550,6 @@ home_body = """<!-- HERO: photo as background, text over it -->
   </figure>
   <div class="wrap">
     <div class="reveal">
-      <p class="eyebrow">Website designer · Scrambler · Ultra runner</p>
       <h1>Welcome to my page</h1>
     </div>
   </div>
@@ -575,7 +576,7 @@ home_body = """<!-- HERO: photo as background, text over it -->
 <!-- ABOUT ME -->
 <section class="section about" id="about">
   <div class="wrap">
-    <div class="reveal"><p class="eyebrow">About me</p></div>
+    <div class="reveal"><p class="eyebrow">About me</p><p class="roles"><span>Website designer ·</span> <span>Scrambler ·</span> <span>Ultra runner</span></p></div>
     <div class="reveal">
       <p class="lede">I love getting outside, exploring, making new friends, and stepping out of my comfort zone!</p>
       <p>My favourite sport is skiing, but I love ultimate frisbee, soccer, rock climbing, and ultra running as well.</p>
