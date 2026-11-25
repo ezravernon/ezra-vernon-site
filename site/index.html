@@ -8,7 +8,7 @@ Training data: data/activities.json + the log on training.html, generated from E
   no coordinates, place names, heart rate or calories). Refresh by asking Claude to pull new COROS activities.
 Hosting plan: GitHub repo -> Vercel -> custom domain (Wix). Plain static HTML, no build step; Vercel serves 404.html automatically.
 DESIGN RECIPE "Alpine field notebook": warm paper base, deep pine ink, one deep-turquoise accent (Ezra's favourite colour);
-  Fraunces serif headings + DM Sans body; Home has stronger entrance motion (curtain/zoom hero, flying bird, word-by-word mantra); looping vertical video hero (Ezra's Venice Grand Canal boat clip; shown whole, never cropped or zoomed; last second cross-fades into the first so it loops seamlessly) with text over it; transparent header whose links switch light/dark to suit the background (frosted once scrolled); one calm idea per section; mantra set large and centred.
+  Fraunces serif headings + DM Sans body; Home has stronger entrance motion (curtain/zoom hero, flying bird, word-by-word mantra); looping vertical video hero (Ezra's Venice Grand Canal boat clip; shown whole on phones, cropped to fill on desktop; last second cross-fades into the first so it loops seamlessly) with text over it; transparent header whose links switch light/dark to suit the background (frosted once scrolled); one calm idea per section; mantra set large and centred.
   Quotes page only adds a third face (Caveat, handwritten) because Ezra asked for multiple font types there.
 Colours: base #F6F3EE, tint #EDE7DE, ink #1E2A27, soft ink #5B6662, accent #1A6E6A. Logo pink is used only inside the logo image.
 How to edit: the "SHARED STYLES" and "SHARED SCRIPT" blocks, header, footer and sign-in dialog must stay identical on every page.
@@ -272,11 +272,11 @@ html:has(.vault[open]){overflow:hidden}
 .lb-next{right:var(--s2);top:50%;transform:translateY(-50%)}
 .lightbox :focus-visible{outline-color:var(--base)}
 .hero{position:relative;min-height:min(88vh,880px);display:flex;align-items:flex-end;overflow:hidden;background:var(--ink);color:var(--base)}
-/* The hero video is vertical and always shown whole ("contain", no zoom). On phones the hero takes the video's
-   9:16 shape so it fills edge to edge; on wider screens the sides are plain pine (--ink). */
+/* The hero video is vertical. On phones the hero takes the video's 9:16 shape and shows it whole;
+   on wider screens it fills the hero edge to edge ("cover"), cropping to a band around the canal's horizon. */
 .hero-bg{position:absolute;inset:0;margin:0;background:var(--ink)}
-.hero-bg video{display:block;width:100%;height:100%;object-fit:contain;object-position:50% 50%}
-@media (max-width:600px){.hero{min-height:0;aspect-ratio:9/16}}
+.hero-bg video{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+@media (max-width:600px){.hero{min-height:0;aspect-ratio:9/16}.hero-bg video{object-fit:contain}}
 /* Small pause/play control for the looping background video (bottom-right of the hero) */
 .hero-pause{position:absolute;right:var(--s3);bottom:var(--s3);z-index:2;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
   background:rgba(30,42,39,.35);border:1px solid rgba(246,243,238,.35);color:var(--base);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background var(--t-med) var(--ease)}
