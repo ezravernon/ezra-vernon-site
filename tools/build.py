@@ -324,6 +324,7 @@ NAV = [
                     ("training.html", "Training", "Every run, hike and climb")]),
     ("Writing", [("quotes.html", "Quotes", "Late-night reminders"),
                  ("thoughts.html", "Thoughts", "What\u2019s on my mind")]),
+    ("gallery.html", "Gallery"),
 ]
 
 
@@ -459,32 +460,6 @@ Sign-in: the "Sign in" item in the menu opens a password prompt; the right passw
 """
 
 home_css = """
-/* Gallery: masonry columns of photos; click one to open it large (lightbox). Until photos are added
-   (tools/add_photos.py) it shows soft placeholder tiles. */
-.gallery-head{text-align:center;margin-bottom:var(--s5)}
-.gallery-head h2{margin-bottom:0}
-.gallery-head p{margin-inline:auto}
-.gallery{columns:2;column-gap:var(--s2)}
-@media (min-width:760px){.gallery{columns:3;column-gap:var(--s3)}}
-.g-item{break-inside:avoid;margin:0 0 var(--s2);display:block;width:100%}
-@media (min-width:760px){.g-item{margin-bottom:var(--s3)}}
-.g-item button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:14px;overflow:hidden}
-.g-item img{display:block;width:100%;height:auto;transition:transform 600ms var(--ease)}
-.g-item button:hover img{transform:scale(1.03)}
-.g-item figcaption{font-size:var(--step--1);color:var(--ink-soft);padding-top:8px}
-.g-ph{display:grid;place-items:center;align-content:center;gap:10px;border-radius:14px;background:rgba(30,42,39,.05);border:1px dashed rgba(30,42,39,.2);color:var(--ink-soft);font-size:var(--step--1)}
-.g-ph svg{width:34px;height:34px;opacity:.55}
-.lightbox{padding:0;border:0;background:transparent;max-width:100vw;max-height:100vh;width:100vw;height:100vh;color:var(--base)}
-.lightbox::backdrop{background:rgba(20,28,26,.92)}
-.lightbox figure{margin:0;height:100%;display:grid;place-items:center;align-content:center;gap:var(--s2);padding:var(--s6) var(--s3)}
-.lightbox img{max-width:min(100%,1600px);max-height:calc(100vh - 160px);width:auto;height:auto;border-radius:10px}
-.lightbox figcaption{font-size:var(--step--1);color:rgba(246,243,238,.8);text-align:center}
-.lb-btn{position:fixed;width:48px;height:48px;border-radius:50%;border:1px solid rgba(246,243,238,.3);background:rgba(246,243,238,.08);color:var(--base);font-size:1.4rem;line-height:1;cursor:pointer;display:grid;place-items:center}
-.lb-btn:hover{background:rgba(246,243,238,.18)}
-.lb-close{top:var(--s2);right:var(--s2)}
-.lb-prev{left:var(--s2);top:50%;transform:translateY(-50%)}
-.lb-next{right:var(--s2);top:50%;transform:translateY(-50%)}
-.lightbox :focus-visible{outline-color:var(--base)}
 .hero{position:relative;min-height:min(88vh,880px);display:flex;align-items:flex-end;overflow:hidden;background:var(--ink);color:var(--base)}
 /* The hero video is vertical. On phones the hero takes the video's 9:16 shape and shows it whole;
    on wider screens it fills the hero edge to edge ("cover"), cropping to a band around the canal's horizon. */
@@ -512,9 +487,10 @@ home_css = """
 .photo img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-slow) var(--ease)}
 .photo:hover img{transform:scale(1.03)}
 .photo figcaption{margin-top:var(--s1);font-size:var(--step--1);color:var(--ink-soft)}
-.about .wrap{display:grid;gap:var(--s3);justify-items:center;text-align:center;max-width:62rem;margin-inline:auto}
-.about .wrap > *{width:100%}
-.about .wrap p{margin-inline:auto}
+.about-corner{text-align:left;margin-bottom:var(--s4)}
+.about .about-body{display:grid;gap:var(--s3);justify-items:center;text-align:center;max-width:62rem;margin-inline:auto}
+.about .about-body > *{width:100%}
+.about .about-body p{margin-inline:auto}
 .roles span{white-space:nowrap}
 .roles{font-family:var(--font-serif);font-size:clamp(1.15rem,5.2vw,var(--step-2));line-height:1.2;color:var(--accent);margin-bottom:0}
 .sports{list-style:none;padding:0;margin:var(--s4) 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s1)}
@@ -611,8 +587,9 @@ home_body = """<!-- HERO: photo as background, text over it -->
 
 <!-- ABOUT ME -->
 <section class="section about" id="about">
-  <div class="wrap">
-    <div class="reveal"><p class="eyebrow">About me</p><p class="roles"><span>Website designer ·</span> <span>Scrambler ·</span> <span>Ultra runner</span></p></div>
+  <div class="wrap about-corner reveal"><p class="eyebrow">About me</p></div>
+  <div class="wrap about-body">
+    <div class="reveal"><p class="roles"><span>Website designer ·</span> <span>Scrambler ·</span> <span>Ultra runner</span></p></div>
     <div class="reveal">
       <p class="lede">I love getting outside, exploring, making new friends, and stepping out of my comfort zone!</p>
       <p>My favourite sport is skiing, but I love ultimate frisbee, soccer, rock climbing, and ultra running as well.</p>
@@ -638,8 +615,6 @@ home_body = """<!-- HERO: photo as background, text over it -->
   </div>
 </section>
 
-<!--GALLERY-->
-
 <!-- WHERE TO NEXT -->
 <section class="section">
   <div class="wrap">
@@ -655,20 +630,6 @@ home_body = """<!-- HERO: photo as background, text over it -->
 
 
 home_js = """(function(){
-  // Gallery lightbox: open a photo large; arrows / buttons step through, Esc or the close button shuts it
-  var lb=document.getElementById('lightbox'),items=[].slice.call(document.querySelectorAll('.g-item button'));
-  if(!lb||!items.length)return;
-  var li=lb.querySelector('img'),lc=lb.querySelector('figcaption'),at=0,from;
-  function show(i){at=(i+items.length)%items.length;var b=items[at];li.src=b.dataset.full;li.alt=b.querySelector('img').alt;lc.textContent=b.dataset.caption||'';lc.hidden=!b.dataset.caption}
-  items.forEach(function(b,i){b.addEventListener('click',function(){from=b;show(i);lb.showModal()})});
-  lb.querySelector('.lb-close').addEventListener('click',function(){lb.close()});
-  lb.querySelector('.lb-prev').addEventListener('click',function(){show(at-1)});
-  lb.querySelector('.lb-next').addEventListener('click',function(){show(at+1)});
-  lb.addEventListener('click',function(e){if(e.target===lb||e.target.tagName==='FIGURE')lb.close()});
-  lb.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')show(at-1);if(e.key==='ArrowRight')show(at+1)});
-  lb.addEventListener('close',function(){if(from)from.focus()});
-})();
-(function(){
   // Background video: loops on its own; the button pauses/plays it, and reduced-motion users start paused
   var img=document.querySelector('.hero-bg video'),pb=document.querySelector('.hero-pause');
   if(!img)return;
@@ -717,14 +678,16 @@ def gallery_html():
         tiles = "\n".join(f'    <div class="g-item g-ph reveal" style="aspect-ratio:{r}">{icon}<span>Photo coming soon</span></div>'
                           for r in ("4/5", "3/2", "1/1", "3/4", "3/2", "4/5"))
         box = ""
-    return ('<!-- GALLERY (photos come from site/data/gallery.json; add them with tools/add_photos.py) -->\n'
-            '<section class="section" id="gallery" aria-labelledby="gallery-title">\n'
+    return ('<section class="page-head">\n'
+            '  <div class="wrap reveal">\n'
+            '    <h1>Gallery</h1>\n'
+            '    <p>Moments from outside: mountains, trails and the people I share them with.</p>\n'
+            '  </div>\n</section>\n'
+            '<!-- Photos come from site/data/gallery.json; add them with tools/add_photos.py -->\n'
+            '<section class="section" style="padding-top:0" aria-label="Photos">\n'
             '  <div class="wrap">\n'
-            '    <div class="gallery-head reveal"><p class="eyebrow">Gallery</p><h2 id="gallery-title">Moments from outside</h2></div>\n'
             '    <div class="gallery">\n' + tiles + '\n    </div>\n  </div>\n</section>' + box)
 
-
-home_body = home_body.replace("<!--GALLERY-->", gallery_html())
 
 page("index.html", "Ezra Vernon — skiing, mountains and side quests",
      "Ezra Vernon's personal site: about me, the mountains I want to climb, side quests like a Costco ultra, and original quotes.",
@@ -732,6 +695,50 @@ page("index.html", "Ezra Vernon — skiing, mountains and side quests",
      jsonld={"@context": "https://schema.org", "@type": "Person", "name": "Ezra Vernon",
              "image": "images/hero-poster.webp",
              "sameAs": ["https://www.instagram.com/ezrav_insta", "https://ca.linkedin.com/in/ezra-vernon-a98a40343"]})
+
+# ---------------------------------------------------------------- GALLERY
+gallery_css = """
+/* Gallery: masonry columns of photos; click one to open it large (lightbox). Until photos are added
+   (tools/add_photos.py) it shows soft placeholder tiles. */
+.gallery{columns:2;column-gap:var(--s2)}
+@media (min-width:760px){.gallery{columns:3;column-gap:var(--s3)}}
+.g-item{break-inside:avoid;margin:0 0 var(--s2);display:block;width:100%}
+@media (min-width:760px){.g-item{margin-bottom:var(--s3)}}
+.g-item button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:14px;overflow:hidden}
+.g-item img{display:block;width:100%;height:auto;transition:transform 600ms var(--ease)}
+.g-item button:hover img{transform:scale(1.03)}
+.g-item figcaption{font-size:var(--step--1);color:var(--ink-soft);padding-top:8px}
+.g-ph{display:grid;place-items:center;align-content:center;gap:10px;border-radius:14px;background:rgba(30,42,39,.05);border:1px dashed rgba(30,42,39,.2);color:var(--ink-soft);font-size:var(--step--1)}
+.g-ph svg{width:34px;height:34px;opacity:.55}
+.lightbox{padding:0;border:0;background:transparent;max-width:100vw;max-height:100vh;width:100vw;height:100vh;color:var(--base)}
+.lightbox::backdrop{background:rgba(20,28,26,.92)}
+.lightbox figure{margin:0;height:100%;display:grid;place-items:center;align-content:center;gap:var(--s2);padding:var(--s6) var(--s3)}
+.lightbox img{max-width:min(100%,1600px);max-height:calc(100vh - 160px);width:auto;height:auto;border-radius:10px}
+.lightbox figcaption{font-size:var(--step--1);color:rgba(246,243,238,.8);text-align:center}
+.lb-btn{position:fixed;width:48px;height:48px;border-radius:50%;border:1px solid rgba(246,243,238,.3);background:rgba(246,243,238,.08);color:var(--base);font-size:1.4rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+.lb-btn:hover{background:rgba(246,243,238,.18)}
+.lb-close{top:var(--s2);right:var(--s2)}
+.lb-prev{left:var(--s2);top:50%;transform:translateY(-50%)}
+.lb-next{right:var(--s2);top:50%;transform:translateY(-50%)}
+.lightbox :focus-visible{outline-color:var(--base)}
+"""
+gallery_js = """(function(){
+  // Gallery lightbox: open a photo large; arrows / buttons step through, Esc or the close button shuts it
+  var lb=document.getElementById('lightbox'),items=[].slice.call(document.querySelectorAll('.g-item button'));
+  if(!lb||!items.length)return;
+  var li=lb.querySelector('img'),lc=lb.querySelector('figcaption'),at=0,from;
+  function show(i){at=(i+items.length)%items.length;var b=items[at];li.src=b.dataset.full;li.alt=b.querySelector('img').alt;lc.textContent=b.dataset.caption||'';lc.hidden=!b.dataset.caption}
+  items.forEach(function(b,i){b.addEventListener('click',function(){from=b;show(i);lb.showModal()})});
+  lb.querySelector('.lb-close').addEventListener('click',function(){lb.close()});
+  lb.querySelector('.lb-prev').addEventListener('click',function(){show(at-1)});
+  lb.querySelector('.lb-next').addEventListener('click',function(){show(at+1)});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target.tagName==='FIGURE')lb.close()});
+  lb.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')show(at-1);if(e.key==='ArrowRight')show(at+1)});
+  lb.addEventListener('close',function(){if(from)from.focus()});
+})();"""
+page("gallery.html", "Gallery — Ezra Vernon",
+     "Photos from Ezra Vernon's adventures: mountains, trails, climbing and skiing.",
+     gallery_html(), gallery_css, gallery_js)
 
 # ---------------------------------------------------------------- DREAMS
 dreams_css = """

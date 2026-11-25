@@ -1,4 +1,4 @@
-"""Add photos to the Home page gallery.
+"""Add photos to the Gallery page (site/gallery.html).
 
     python3 tools/add_photos.py PHOTO [PHOTO ...] [--alt "description" ...] [--caption "text" ...]
 

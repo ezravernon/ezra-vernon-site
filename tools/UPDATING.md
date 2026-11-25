@@ -42,6 +42,6 @@ change the builder or the data, then rebuild.
 9. If there were no new activities, leave the Training files alone, but still do the secret-section password rotation
    (`tools/SECRET.md`) and push that.
 
-## Gallery (Home page)
+## Gallery (gallery.html)
 Add photos with `python3 tools/add_photos.py PHOTO ... --alt "what is in it" [--caption "..."]`, then run `python3 tools/build.py`.
-Photos live in site/images/gallery/ and are listed (in display order) in site/data/gallery.json. With no photos, the section shows placeholder tiles.
+Photos live in site/images/gallery/ and are listed (in display order) in site/data/gallery.json. With no photos, the Gallery page shows placeholder tiles.
