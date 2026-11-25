@@ -245,6 +245,32 @@ html:has(.vault[open]){overflow:hidden}
 <style>
 /* ===== PAGE STYLES: index.html ===== */
 
+/* Gallery: masonry columns of photos; click one to open it large (lightbox). Until photos are added
+   (tools/add_photos.py) it shows soft placeholder tiles. */
+.gallery-head{text-align:center;margin-bottom:var(--s5)}
+.gallery-head h2{margin-bottom:0}
+.gallery-head p{margin-inline:auto}
+.gallery{columns:2;column-gap:var(--s2)}
+@media (min-width:760px){.gallery{columns:3;column-gap:var(--s3)}}
+.g-item{break-inside:avoid;margin:0 0 var(--s2);display:block;width:100%}
+@media (min-width:760px){.g-item{margin-bottom:var(--s3)}}
+.g-item button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:14px;overflow:hidden}
+.g-item img{display:block;width:100%;height:auto;transition:transform 600ms var(--ease)}
+.g-item button:hover img{transform:scale(1.03)}
+.g-item figcaption{font-size:var(--step--1);color:var(--ink-soft);padding-top:8px}
+.g-ph{display:grid;place-items:center;align-content:center;gap:10px;border-radius:14px;background:rgba(30,42,39,.05);border:1px dashed rgba(30,42,39,.2);color:var(--ink-soft);font-size:var(--step--1)}
+.g-ph svg{width:34px;height:34px;opacity:.55}
+.lightbox{padding:0;border:0;background:transparent;max-width:100vw;max-height:100vh;width:100vw;height:100vh;color:var(--base)}
+.lightbox::backdrop{background:rgba(20,28,26,.92)}
+.lightbox figure{margin:0;height:100%;display:grid;place-items:center;align-content:center;gap:var(--s2);padding:var(--s6) var(--s3)}
+.lightbox img{max-width:min(100%,1600px);max-height:calc(100vh - 160px);width:auto;height:auto;border-radius:10px}
+.lightbox figcaption{font-size:var(--step--1);color:rgba(246,243,238,.8);text-align:center}
+.lb-btn{position:fixed;width:48px;height:48px;border-radius:50%;border:1px solid rgba(246,243,238,.3);background:rgba(246,243,238,.08);color:var(--base);font-size:1.4rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+.lb-btn:hover{background:rgba(246,243,238,.18)}
+.lb-close{top:var(--s2);right:var(--s2)}
+.lb-prev{left:var(--s2);top:50%;transform:translateY(-50%)}
+.lb-next{right:var(--s2);top:50%;transform:translateY(-50%)}
+.lightbox :focus-visible{outline-color:var(--base)}
 .hero{position:relative;min-height:min(88vh,880px);display:flex;align-items:flex-end;overflow:hidden;background:var(--ink);color:var(--base)}
 .hero-bg{position:absolute;inset:0;margin:0}
 .hero-bg video{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:scale(1.1)}
@@ -412,6 +438,21 @@ html:has(.vault[open]){overflow:hidden}
   </div>
 </section>
 
+<!-- GALLERY (photos come from site/data/gallery.json; add them with tools/add_photos.py) -->
+<section class="section" id="gallery" aria-labelledby="gallery-title">
+  <div class="wrap">
+    <div class="gallery-head reveal"><p class="eyebrow">Gallery</p><h2 id="gallery-title">Moments from outside</h2></div>
+    <div class="gallery">
+    <div class="g-item g-ph reveal" style="aspect-ratio:4/5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
+    <div class="g-item g-ph reveal" style="aspect-ratio:3/2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
+    <div class="g-item g-ph reveal" style="aspect-ratio:1/1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
+    <div class="g-item g-ph reveal" style="aspect-ratio:3/4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
+    <div class="g-item g-ph reveal" style="aspect-ratio:3/2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
+    <div class="g-item g-ph reveal" style="aspect-ratio:4/5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- WHERE TO NEXT -->
 <section class="section">
   <div class="wrap">
@@ -551,6 +592,20 @@ html:has(.vault[open]){overflow:hidden}
 </script>
 <script>
 /* ===== PAGE SCRIPT: index.html ===== */
+(function(){
+  // Gallery lightbox: open a photo large; arrows / buttons step through, Esc or the close button shuts it
+  var lb=document.getElementById('lightbox'),items=[].slice.call(document.querySelectorAll('.g-item button'));
+  if(!lb||!items.length)return;
+  var li=lb.querySelector('img'),lc=lb.querySelector('figcaption'),at=0,from;
+  function show(i){at=(i+items.length)%items.length;var b=items[at];li.src=b.dataset.full;li.alt=b.querySelector('img').alt;lc.textContent=b.dataset.caption||'';lc.hidden=!b.dataset.caption}
+  items.forEach(function(b,i){b.addEventListener('click',function(){from=b;show(i);lb.showModal()})});
+  lb.querySelector('.lb-close').addEventListener('click',function(){lb.close()});
+  lb.querySelector('.lb-prev').addEventListener('click',function(){show(at-1)});
+  lb.querySelector('.lb-next').addEventListener('click',function(){show(at+1)});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target.tagName==='FIGURE')lb.close()});
+  lb.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')show(at-1);if(e.key==='ArrowRight')show(at+1)});
+  lb.addEventListener('close',function(){if(from)from.focus()});
+})();
 (function(){
   // Background video: loops on its own; the button pauses/plays it, and reduced-motion users start paused
   var img=document.querySelector('.hero-bg video'),pb=document.querySelector('.hero-pause');

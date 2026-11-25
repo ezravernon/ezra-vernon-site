@@ -459,6 +459,32 @@ Sign-in: the "Sign in" item in the menu opens a password prompt; the right passw
 """
 
 home_css = """
+/* Gallery: masonry columns of photos; click one to open it large (lightbox). Until photos are added
+   (tools/add_photos.py) it shows soft placeholder tiles. */
+.gallery-head{text-align:center;margin-bottom:var(--s5)}
+.gallery-head h2{margin-bottom:0}
+.gallery-head p{margin-inline:auto}
+.gallery{columns:2;column-gap:var(--s2)}
+@media (min-width:760px){.gallery{columns:3;column-gap:var(--s3)}}
+.g-item{break-inside:avoid;margin:0 0 var(--s2);display:block;width:100%}
+@media (min-width:760px){.g-item{margin-bottom:var(--s3)}}
+.g-item button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:14px;overflow:hidden}
+.g-item img{display:block;width:100%;height:auto;transition:transform 600ms var(--ease)}
+.g-item button:hover img{transform:scale(1.03)}
+.g-item figcaption{font-size:var(--step--1);color:var(--ink-soft);padding-top:8px}
+.g-ph{display:grid;place-items:center;align-content:center;gap:10px;border-radius:14px;background:rgba(30,42,39,.05);border:1px dashed rgba(30,42,39,.2);color:var(--ink-soft);font-size:var(--step--1)}
+.g-ph svg{width:34px;height:34px;opacity:.55}
+.lightbox{padding:0;border:0;background:transparent;max-width:100vw;max-height:100vh;width:100vw;height:100vh;color:var(--base)}
+.lightbox::backdrop{background:rgba(20,28,26,.92)}
+.lightbox figure{margin:0;height:100%;display:grid;place-items:center;align-content:center;gap:var(--s2);padding:var(--s6) var(--s3)}
+.lightbox img{max-width:min(100%,1600px);max-height:calc(100vh - 160px);width:auto;height:auto;border-radius:10px}
+.lightbox figcaption{font-size:var(--step--1);color:rgba(246,243,238,.8);text-align:center}
+.lb-btn{position:fixed;width:48px;height:48px;border-radius:50%;border:1px solid rgba(246,243,238,.3);background:rgba(246,243,238,.08);color:var(--base);font-size:1.4rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+.lb-btn:hover{background:rgba(246,243,238,.18)}
+.lb-close{top:var(--s2);right:var(--s2)}
+.lb-prev{left:var(--s2);top:50%;transform:translateY(-50%)}
+.lb-next{right:var(--s2);top:50%;transform:translateY(-50%)}
+.lightbox :focus-visible{outline-color:var(--base)}
 .hero{position:relative;min-height:min(88vh,880px);display:flex;align-items:flex-end;overflow:hidden;background:var(--ink);color:var(--base)}
 .hero-bg{position:absolute;inset:0;margin:0}
 .hero-bg video{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:scale(1.1)}
@@ -612,6 +638,8 @@ home_body = """<!-- HERO: photo as background, text over it -->
   </div>
 </section>
 
+<!--GALLERY-->
+
 <!-- WHERE TO NEXT -->
 <section class="section">
   <div class="wrap">
@@ -627,6 +655,20 @@ home_body = """<!-- HERO: photo as background, text over it -->
 
 
 home_js = """(function(){
+  // Gallery lightbox: open a photo large; arrows / buttons step through, Esc or the close button shuts it
+  var lb=document.getElementById('lightbox'),items=[].slice.call(document.querySelectorAll('.g-item button'));
+  if(!lb||!items.length)return;
+  var li=lb.querySelector('img'),lc=lb.querySelector('figcaption'),at=0,from;
+  function show(i){at=(i+items.length)%items.length;var b=items[at];li.src=b.dataset.full;li.alt=b.querySelector('img').alt;lc.textContent=b.dataset.caption||'';lc.hidden=!b.dataset.caption}
+  items.forEach(function(b,i){b.addEventListener('click',function(){from=b;show(i);lb.showModal()})});
+  lb.querySelector('.lb-close').addEventListener('click',function(){lb.close()});
+  lb.querySelector('.lb-prev').addEventListener('click',function(){show(at-1)});
+  lb.querySelector('.lb-next').addEventListener('click',function(){show(at+1)});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target.tagName==='FIGURE')lb.close()});
+  lb.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')show(at-1);if(e.key==='ArrowRight')show(at+1)});
+  lb.addEventListener('close',function(){if(from)from.focus()});
+})();
+(function(){
   // Background video: loops on its own; the button pauses/plays it, and reduced-motion users start paused
   var img=document.querySelector('.hero-bg video'),pb=document.querySelector('.hero-pause');
   if(!img)return;
@@ -650,6 +692,39 @@ home_js = """(function(){
   function par(){var h=hero.offsetHeight,y=Math.min(Math.max(scrollY,0),h);img.style.setProperty('--py',Math.min(y*0.25,h*0.05).toFixed(1)+'px');tick=false}
   addEventListener('scroll',function(){if(fig.classList.contains('is-settled')&&!tick){tick=true;requestAnimationFrame(par)}},{passive:true});
 })();"""
+
+def gallery_html():
+    src = OUT / "data" / "gallery.json"
+    photos = json.loads(src.read_text(encoding="utf-8")).get("photos", []) if src.exists() else []
+    def esc(t):
+        return t.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
+    if photos:
+        tiles = "\n".join(
+            f'    <figure class="g-item reveal"><button type="button" data-full="images/gallery/{p["src"]}-1600.webp"'
+            f' data-caption="{esc(p.get("caption", ""))}" aria-label="Open photo larger">'
+            f'<img src="images/gallery/{p["src"]}-800.webp" width="{p["w"]}" height="{p["h"]}" loading="lazy" decoding="async" alt="{esc(p.get("alt", ""))}">'
+            f'</button>' + (f'<figcaption>{esc(p["caption"])}</figcaption>' if p.get("caption") else "") + '</figure>'
+            for p in photos)
+        box = ('\n<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">\n'
+               '  <figure><img src="" alt=""><figcaption hidden></figcaption></figure>\n'
+               '  <button class="lb-btn lb-close" type="button" aria-label="Close">&times;</button>\n'
+               '  <button class="lb-btn lb-prev" type="button" aria-label="Previous photo">&#8249;</button>\n'
+               '  <button class="lb-btn lb-next" type="button" aria-label="Next photo">&#8250;</button>\n'
+               '</dialog>')
+    else:
+        icon = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">'
+                '<path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg>')
+        tiles = "\n".join(f'    <div class="g-item g-ph reveal" style="aspect-ratio:{r}">{icon}<span>Photo coming soon</span></div>'
+                          for r in ("4/5", "3/2", "1/1", "3/4", "3/2", "4/5"))
+        box = ""
+    return ('<!-- GALLERY (photos come from site/data/gallery.json; add them with tools/add_photos.py) -->\n'
+            '<section class="section" id="gallery" aria-labelledby="gallery-title">\n'
+            '  <div class="wrap">\n'
+            '    <div class="gallery-head reveal"><p class="eyebrow">Gallery</p><h2 id="gallery-title">Moments from outside</h2></div>\n'
+            '    <div class="gallery">\n' + tiles + '\n    </div>\n  </div>\n</section>' + box)
+
+
+home_body = home_body.replace("<!--GALLERY-->", gallery_html())
 
 page("index.html", "Ezra Vernon — skiing, mountains and side quests",
      "Ezra Vernon's personal site: about me, the mountains I want to climb, side quests like a Costco ultra, and original quotes.",
