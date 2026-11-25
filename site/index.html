@@ -8,12 +8,13 @@ Training data: data/activities.json + the log on training.html, generated from E
   no coordinates, place names, heart rate or calories). Refresh by asking Claude to pull new COROS activities.
 Hosting plan: GitHub repo -> Vercel -> custom domain (Wix). Plain static HTML, no build step; Vercel serves 404.html automatically.
 DESIGN RECIPE "Alpine field notebook": warm paper base, deep pine ink, one deep-turquoise accent (Ezra's favourite colour);
-  Fraunces serif headings + DM Sans body; Home has stronger entrance motion (curtain/zoom hero, flying bird, word-by-word mantra); full-bleed meadow hero with text over it; transparent header whose links switch light/dark to suit the background (frosted once scrolled); one calm idea per section; mantra set large and centred.
+  Fraunces serif headings + DM Sans body; Home has stronger entrance motion (curtain/zoom hero, flying bird, word-by-word mantra); full-bleed looping drone-video hero (forested hills, plays forward then reversed so it loops seamlessly) with text over it; transparent header whose links switch light/dark to suit the background (frosted once scrolled); one calm idea per section; mantra set large and centred.
   Quotes page only adds a third face (Caveat, handwritten) because Ezra asked for multiple font types there.
 Colours: base #F6F3EE, tint #EDE7DE, ink #1E2A27, soft ink #5B6662, accent #1A6E6A. Logo pink is used only inside the logo image.
 How to edit: the "SHARED STYLES" and "SHARED SCRIPT" blocks, header, footer and sign-in dialog must stay identical on every page.
   Page-specific CSS sits in the "PAGE STYLES" block. Change the nav/footer on every page.
-Photos: meadow-{600,900,1220}.webp (Home hero background), meadow-wide-{800,1220}.webp (Dreams header), heather-{480,758}.webp (Quotes header background),
+Hero video: hero-1920.mp4 (desktop), hero-1280.mp4 (phones), hero-poster.webp (first frame, shown while loading).
+Photos: meadow-{600,900,1220}.webp (no longer used on Home), meadow-wide-{800,1220}.webp (Dreams header), heather-{480,758}.webp (Quotes header background),
   frisbee-{800,1400}.webp (Home photos; credit Dan Tsuji Photography), car-{600,1000}.webp + belay-{600,1000}.webp (Home photos),
   logo-{240,480,960}.webp (header + Socials), favicon-64.png, apple-touch-icon.png. All EXIF stripped.
   To add/swap a photo: convert to WebP, strip metadata, export the same widths, update width/height/srcset/alt.
@@ -246,7 +247,14 @@ html:has(.vault[open]){overflow:hidden}
 
 .hero{position:relative;min-height:min(88vh,880px);display:flex;align-items:flex-end;overflow:hidden;background:var(--ink);color:var(--base)}
 .hero-bg{position:absolute;inset:0;margin:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;transform:scale(1.1)}
+.hero-bg video{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:scale(1.1)}
+/* Small pause/play control for the looping background video (bottom-right of the hero) */
+.hero-pause{position:absolute;right:var(--s3);bottom:var(--s3);z-index:2;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  background:rgba(30,42,39,.35);border:1px solid rgba(246,243,238,.35);color:var(--base);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background var(--t-med) var(--ease)}
+.hero-pause:hover{background:rgba(30,42,39,.6)}
+.hero-pause span{width:12px;height:14px;border-left:4px solid currentColor;border-right:4px solid currentColor}
+.hero-pause[aria-pressed="true"] span{width:0;height:0;border:0;border-left:13px solid currentColor;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
+.no-js .hero-pause{display:none}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,42,39,.55) 0%,rgba(30,42,39,.12) 14%,rgba(30,42,39,.25) 30%,rgba(30,42,39,.72) 52%,rgba(30,42,39,.9) 68%,rgba(30,42,39,.92) 100%);pointer-events:none}
 .hero .wrap{position:relative;z-index:1;padding-block:var(--s8) var(--s7)}
 .hero h1{color:var(--base);margin-bottom:0;text-shadow:0 2px 24px rgba(30,42,39,.35)}
@@ -302,9 +310,9 @@ html:has(.vault[open]){overflow:hidden}
   /* Hero background: fades up from dark with a slow zoom-out, then parallax on scroll */
   .js .hero-bg{opacity:0;transition:opacity 1200ms var(--ease)}
   .js .hero-bg.is-in{opacity:1}
-  .js .hero-bg img{transform:translateY(var(--py,0px)) scale(var(--sc,1.25));transition:transform 2200ms var(--ease);will-change:transform}
-  .js .hero-bg.is-in img{--sc:1.1}
-  .js .hero-bg.is-settled img{transition:none}
+  .js .hero-bg video{transform:translateY(var(--py,0px)) scale(var(--sc,1.25));transition:transform 2200ms var(--ease);will-change:transform}
+  .js .hero-bg.is-in video{--sc:1.1}
+  .js .hero-bg.is-settled video{transition:none}
   /* Photos: rise in one after another */
   .js .photo.reveal:nth-child(2){transition-delay:150ms}.js .photo.reveal:nth-child(3){transition-delay:300ms}
   /* About: sport pills and favourites pop in one by one */
@@ -327,7 +335,7 @@ html:has(.vault[open]){overflow:hidden}
 }
 
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Ezra Vernon", "image": "images/meadow-1220.webp", "sameAs": ["https://www.instagram.com/ezrav_insta", "https://ca.linkedin.com/in/ezra-vernon-a98a40343"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Ezra Vernon", "image": "images/hero-poster.webp", "sameAs": ["https://www.instagram.com/ezrav_insta", "https://ca.linkedin.com/in/ezra-vernon-a98a40343"]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -344,10 +352,12 @@ html:has(.vault[open]){overflow:hidden}
 <!-- HERO: photo as background, text over it -->
 <section class="hero" data-dark-head>
   <figure class="hero-bg">
-    <img src="images/meadow-1220.webp" srcset="images/meadow-600.webp 600w, images/meadow-900.webp 900w, images/meadow-1220.webp 1220w"
-         sizes="100vw" width="1220" height="1920" fetchpriority="high"
-         alt="Alpine meadow full of white wildflowers below dark conifer forest and a rocky summit under a bright blue sky">
+    <video autoplay muted loop playsinline preload="auto" poster="images/hero-poster.webp" aria-hidden="true" tabindex="-1">
+      <source src="images/hero-1280.mp4" type="video/mp4" media="(max-width:900px)">
+      <source src="images/hero-1920.mp4" type="video/mp4">
+    </video>
   </figure>
+  <button class="hero-pause" type="button" aria-pressed="false" aria-label="Pause background video"><span aria-hidden="true"></span></button>
   <div class="wrap">
     <div class="reveal">
       <h1>Welcome to my page</h1>
@@ -542,13 +552,22 @@ html:has(.vault[open]){overflow:hidden}
 <script>
 /* ===== PAGE SCRIPT: index.html ===== */
 (function(){
+  // Background video: loops on its own; the button pauses/plays it, and reduced-motion users start paused
+  var img=document.querySelector('.hero-bg video'),pb=document.querySelector('.hero-pause');
+  if(!img)return;
+  function vid(play){if(play){var pr=img.play();if(pr&&pr.catch)pr.catch(function(){})}else img.pause();
+    if(pb){pb.setAttribute('aria-pressed',!play);pb.setAttribute('aria-label',(play?'Pause':'Play')+' background video')}}
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){img.removeAttribute('autoplay');vid(false)}
+  if(pb)pb.addEventListener('click',function(){vid(img.paused)});
+})();
+(function(){
   if(!window.matchMedia||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   // Mantra: wrap each word so it can animate in
   var q=document.querySelector('.mantra blockquote p');
   if(q){var full=q.textContent.trim(),words=full.split(/\s+/);
     q.innerHTML='<span class="vh">'+full+'</span>'+words.map(function(w,i){return '<span class="w" aria-hidden="true" style="--i:'+i+'">'+w+'</span>'}).join(' ');}
   // Hero background: reveal on load, then parallax while scrolling
-  var fig=document.querySelector('.hero-bg'),img=fig&&fig.querySelector('img');
+  var fig=document.querySelector('.hero-bg'),img=fig&&fig.querySelector('video');
   if(!fig)return;
   requestAnimationFrame(function(){requestAnimationFrame(function(){fig.classList.add('is-in')})});
   setTimeout(function(){fig.classList.add('is-settled');par()},2300);
