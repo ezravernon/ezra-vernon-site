@@ -267,15 +267,22 @@ html:has(.vault[open]){overflow:hidden}
 <section class="section" style="padding-top:0" aria-label="Photos">
   <div class="wrap">
     <div class="gallery">
-    <div class="g-item g-ph reveal" style="aspect-ratio:4/5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
-    <div class="g-item g-ph reveal" style="aspect-ratio:3/2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
-    <div class="g-item g-ph reveal" style="aspect-ratio:1/1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
-    <div class="g-item g-ph reveal" style="aspect-ratio:3/4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
-    <div class="g-item g-ph reveal" style="aspect-ratio:3/2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
-    <div class="g-item g-ph reveal" style="aspect-ratio:4/5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 19l6-9 4 6 3-4 5 7z"/><circle cx="17" cy="6" r="2"/></svg><span>Photo coming soon</span></div>
+    <figure class="g-item reveal"><button type="button" data-full="images/gallery/summit-snow-portrait-1600.webp" data-caption="" aria-label="Open photo larger"><img src="images/gallery/summit-snow-portrait-800.webp" width="1536" height="2304" loading="lazy" decoding="async" alt="Ezra in a bucket hat and pack, standing on a steep snow slope with misty forested mountainside behind"></button></figure>
+    <figure class="g-item reveal"><button type="button" data-full="images/gallery/heather-flower-1600.webp" data-caption="" aria-label="Open photo larger"><img src="images/gallery/heather-flower-800.webp" width="1600" height="2133" loading="lazy" decoding="async" alt="A hand holding a sprig of pink mountain heather on a forest trail"></button></figure>
+    <figure class="g-item reveal"><button type="button" data-full="images/gallery/fire-lookout-1600.webp" data-caption="" aria-label="Open photo larger"><img src="images/gallery/fire-lookout-800.webp" width="1600" height="2133" loading="lazy" decoding="async" alt="Someone standing on the roof of a fire lookout tower beside a lattice radio mast"></button></figure>
+    <figure class="g-item reveal"><button type="button" data-full="images/gallery/night-ferns-1600.webp" data-caption="" aria-label="Open photo larger"><img src="images/gallery/night-ferns-800.webp" width="1600" height="2133" loading="lazy" decoding="async" alt="Looking down past ferns into a mossy, dim rainforest"></button></figure>
+    <figure class="g-item reveal"><button type="button" data-full="images/gallery/foggy-summit-1600.webp" data-caption="" aria-label="Open photo larger"><img src="images/gallery/foggy-summit-800.webp" width="1536" height="2304" loading="lazy" decoding="async" alt="A hiker with arms raised on a snowy summit above a fog-filled valley and small lake"></button></figure>
+    <figure class="g-item reveal"><button type="button" data-full="images/gallery/rock-scramble-1600.webp" data-caption="" aria-label="Open photo larger"><img src="images/gallery/rock-scramble-800.webp" width="1200" height="1600" loading="lazy" decoding="async" alt="A hiker scrambling up a rocky, green slope with mountains and evergreens behind"></button></figure>
+    <figure class="g-item reveal"><button type="button" data-full="images/gallery/bike-park-1600.webp" data-caption="" aria-label="Open photo larger"><img src="images/gallery/bike-park-800.webp" width="1600" height="2133" loading="lazy" decoding="async" alt="A mountain biker in a full-face helmet at the top of a gravel bike-park trail under blue sky"></button></figure>
     </div>
   </div>
 </section>
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <figure><img src="" alt=""><figcaption hidden></figcaption></figure>
+  <button class="lb-btn lb-close" type="button" aria-label="Close">&times;</button>
+  <button class="lb-btn lb-prev" type="button" aria-label="Previous photo">&#8249;</button>
+  <button class="lb-btn lb-next" type="button" aria-label="Next photo">&#8250;</button>
+</dialog>
 </main>
 <footer class="site-footer">
   <div class="wrap">

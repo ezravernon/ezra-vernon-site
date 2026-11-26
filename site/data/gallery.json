@@ -1,3 +1,53 @@
 {
-  "photos": []
+  "photos": [
+    {
+      "src": "summit-snow-portrait",
+      "w": 1536,
+      "h": 2304,
+      "alt": "Ezra in a bucket hat and pack, standing on a steep snow slope with misty forested mountainside behind",
+      "caption": ""
+    },
+    {
+      "src": "heather-flower",
+      "w": 1600,
+      "h": 2133,
+      "alt": "A hand holding a sprig of pink mountain heather on a forest trail",
+      "caption": ""
+    },
+    {
+      "src": "fire-lookout",
+      "w": 1600,
+      "h": 2133,
+      "alt": "Someone standing on the roof of a fire lookout tower beside a lattice radio mast",
+      "caption": ""
+    },
+    {
+      "src": "night-ferns",
+      "w": 1600,
+      "h": 2133,
+      "alt": "Looking down past ferns into a mossy, dim rainforest",
+      "caption": ""
+    },
+    {
+      "src": "foggy-summit",
+      "w": 1536,
+      "h": 2304,
+      "alt": "A hiker with arms raised on a snowy summit above a fog-filled valley and small lake",
+      "caption": ""
+    },
+    {
+      "src": "rock-scramble",
+      "w": 1200,
+      "h": 1600,
+      "alt": "A hiker scrambling up a rocky, green slope with mountains and evergreens behind",
+      "caption": ""
+    },
+    {
+      "src": "bike-park",
+      "w": 1600,
+      "h": 2133,
+      "alt": "A mountain biker in a full-face helmet at the top of a gravel bike-park trail under blue sky",
+      "caption": ""
+    }
+  ]
 }
