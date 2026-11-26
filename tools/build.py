@@ -1252,6 +1252,82 @@ t_body = f"""<section class="page-head">
 page("thoughts.html", "Thoughts — Ezra Vernon",
      "Thoughts and reflections from Ezra Vernon, written as they come.", t_body, t_css)
 
+# ---------------------------------------------------------------- LINKS (Instagram bio page, ezravernon.ca/links)
+# A stand-alone "link in bio" page: no menu or footer, just the logo and big buttons, made for a phone opened from Instagram.
+# Not in the main menu on purpose. vercel.json rewrites /links -> /links.html. Edit the list below to change the buttons.
+LINKS = [
+    ("https://ezravernon.ca", "My website", "ezravernon.ca", False),
+    ("https://strava.app.link/lBou8jZCg7b", "Strava", "Runs, rides and climbs", True),
+    ("https://ca.linkedin.com/in/ezra-vernon-a98a40343", "LinkedIn", "Ezra Vernon", True),
+]
+LINKS_CSS = """
+body{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;
+  background:radial-gradient(120% 70% at 50% 0%,var(--base) 0%,var(--base-deep) 100%)}
+.lt{flex:1;display:flex;align-items:center;justify-content:center;padding:var(--s7) var(--s3) var(--s5)}
+.lt-card{width:min(460px,100%);text-align:center}
+.lt-logo{width:132px;height:auto;margin:0 auto var(--s3)}
+.lt h1{font-size:clamp(var(--step-3),8vw,var(--step-4));margin:0 0 var(--s1)}
+.lt-tag{font-family:var(--font-serif);font-style:italic;color:var(--ink-soft);margin:0 auto var(--s5);font-size:var(--step-0)}
+.lt-list{list-style:none;margin:0;padding:0;display:grid;gap:var(--s2)}
+.lt-list a{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);min-height:68px;padding:var(--s2) var(--s3);
+  text-align:left;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 2px 10px rgba(30,42,39,.05);transition:transform var(--t-med) var(--ease),background var(--t-med) var(--ease),color var(--t-med) var(--ease),border-color var(--t-med) var(--ease)}
+.lt-list a:hover{transform:translateY(-2px);background:var(--ink);border-color:var(--ink);color:var(--base)}
+.lt-list a:hover span{color:rgba(246,243,238,.72)}
+.lt-list a:active{transform:translateY(0)}
+.lt-list b{display:block;font-weight:500;font-size:var(--step-0)}
+.lt-list span{display:block;font-size:var(--step--1);color:var(--ink-soft);transition:color var(--t-med) var(--ease)}
+.lt-list .lt-primary{background:var(--accent);border-color:var(--accent);color:var(--base)}
+.lt-list .lt-primary span{color:rgba(246,243,238,.8)}
+.lt-arrow{font-size:1.25rem;flex:none}
+.lt-foot{text-align:center;padding:0 var(--s3) var(--s4);font-size:var(--step--1);color:var(--ink-soft)}
+.lt-foot a{color:var(--ink-soft)}
+@media (prefers-reduced-motion:reduce){.lt-list a{transition:none}.lt-list a:hover{transform:none}}
+"""
+
+
+def links_page():
+    PRIMARY, NOOPENER = ' class="lt-primary"', ' rel="noopener"'   # kept out of the f-string so older Pythons can run this
+    items = "".join(
+        f'<li><a{"" if ext else PRIMARY} href="{h}"{NOOPENER if ext else ""}>'
+        f'<div><b>{l}</b><span>{d}</span></div><span class="lt-arrow" aria-hidden="true">{"↗" if ext else "→"}</span></a></li>'
+        for h, l, d, ext in LINKS)
+    html = f"""<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Links — Ezra Vernon</title>
+<meta name="description" content="Ezra Vernon's links: website, Strava and LinkedIn.">
+<meta name="theme-color" content="#F6F3EE">
+<link rel="canonical" href="https://ezravernon.ca/links">
+{FAVICON}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{FONTS}">
+<style>{SHARED_CSS}</style>
+<style>
+/* ===== PAGE STYLES: links.html ===== */
+{LINKS_CSS}
+</style>
+</head>
+<body>
+<main id="main" class="lt">
+  <div class="lt-card">
+    <img class="lt-logo" src="images/logo-480.webp" width="480" height="274" alt="">
+    <h1>Ezra Vernon</h1>
+    <p class="lt-tag">Live in the balance between two extremes.</p>
+    <ul class="lt-list">{items}</ul>
+  </div>
+</main>
+<footer class="lt-foot"><a href="privacy.html">Privacy</a> · Victoria, BC</footer>
+</body>
+</html>
+"""
+    (OUT / "links.html").write_text(html, encoding="utf-8")
+
+
+links_page()
+
 # ---------------------------------------------------------------- 404
 nf_body = """<section class="page-head" style="padding-bottom:var(--s8)">
   <div class="wrap">
