@@ -252,7 +252,7 @@ SHARED_JS = """
   var els=document.querySelectorAll('.reveal');
   var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!('IntersectionObserver' in window)||rm){els.forEach(function(e){e.classList.add('is-in')});}
-  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('is-in',e.isIntersecting)})},{rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)});}
   // Secret section. Its content lives in data/secret.json, encrypted (AES-256-GCM, key from the password via PBKDF2-SHA256),
   // so nothing private is readable in the page source. Wrong password = decryption fails. Made with tools/secret.py.
   var btn=document.querySelector('.signin-btn'), dlg=document.getElementById('signin'), vault=document.getElementById('vault');
@@ -318,7 +318,7 @@ DARK_HEAD_PAGES = {"index.html", "quotes.html"}
 NAV = [
     ("index.html", "Home"),
     ("Adventures", [("dreams.html", "Dreams", "Peaks I want to stand on"),
-                    ("sidequests.html", "Sidequests", "Costco ultra, guitar and more"),
+                    ("sidequests.html", "Sidequests", "Costco ultra, bike rides and more"),
                     ("training.html", "Training", "Every run, hike and climb")]),
     ("Writing", [("quotes.html", "Quotes", "Late-night reminders"),
                  ("thoughts.html", "Thoughts", "What\u2019s on my mind")]),
@@ -560,7 +560,7 @@ home_body = """<!-- HERO: photo as background, text over it -->
   <button class="hero-pause" type="button" aria-pressed="false" aria-label="Pause background video"><span aria-hidden="true"></span></button>
   <div class="wrap">
     <div class="reveal">
-      <h1>Welcome to my page</h1>
+      <h1>Welcome</h1>
     </div>
   </div>
 </section>
@@ -620,7 +620,7 @@ home_body = """<!-- HERO: photo as background, text over it -->
     <h2 class="reveal">Plans, quests and late-night thoughts</h2>
     <div class="paths">
       <a class="path reveal" href="dreams.html"><h3>Future dreams</h3><p>Four peaks I want to stand on, from Tetrahedron to Tantalus.</p><span>Dreams →</span></a>
-      <a class="path reveal" href="sidequests.html"><h3>Sidequests</h3><p>A 55.8 km Costco hot dog ultra, and learning guitar for camp.</p><span>Sidequests →</span></a>
+      <a class="path reveal" href="sidequests.html"><h3>Sidequests</h3><p>A 55.8 km Costco hot dog ultra, 10 tacos in 10 km, and more.</p><span>Sidequests →</span></a>
       <a class="path reveal" href="quotes.html"><h3>Quotes</h3><p>Original daily reminders, mostly written late at night.</p><span>Quotes →</span></a>
     </div>
   </div>
@@ -835,8 +835,16 @@ side_css = """
 .route li.is-start::before{background:var(--accent)}
 .route strong{display:block;font-family:var(--font-serif);font-weight:400;font-size:var(--step-2);line-height:1.2}
 .route span{font-size:var(--step--1);color:var(--ink-soft)}
-.skill{display:grid;gap:var(--s4)}
-@media (min-width:900px){.skill{grid-template-columns:1fr 2fr;gap:var(--s7)}}
+.quests{list-style:none;margin:var(--s5) 0 0;padding:0;display:grid;gap:var(--s4)}
+@media (min-width:700px){.quests{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.quests{grid-template-columns:repeat(3,1fr)}}
+.q-card{border:1px solid var(--line);border-radius:var(--radius);padding:var(--s4);background:var(--base);display:flex;flex-direction:column;gap:var(--s2)}
+.q-card h3{font-family:var(--font-serif);font-weight:400;font-size:var(--step-2);line-height:1.2;margin:0}
+.q-card p{margin:0;color:var(--ink-soft)}
+.q-meta{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s3);margin:auto 0 0;padding:var(--s2) 0 0;border-top:1px solid var(--line);font-size:var(--step--1);color:var(--ink-soft)}
+.q-meta dt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.q-meta dd{margin:0}
+.js .quests .reveal:nth-child(3n+2){transition-delay:120ms}.js .quests .reveal:nth-child(3n+3){transition-delay:240ms}
 """
 side_body = """<section class="page-head">
   <div class="wrap reveal">
@@ -863,17 +871,21 @@ side_body = """<section class="page-head">
     </ol>
   </div>
 </section>
-<section class="section" aria-labelledby="skills">
-  <div class="wrap skill">
-    <div class="reveal"><p class="eyebrow" id="skills">Skills</p><h2>Guitar</h2></div>
-    <div class="reveal">
-      <p class="lede">I want to learn how to play the guitar and get good enough that I can play for camping trips with friends.</p>
-      <a class="btn btn--ghost" href="socials.html">Got a song I should learn?</a>
-    </div>
+<section class="section" aria-labelledby="more-quests">
+  <div class="wrap">
+    <div class="reveal"><p class="eyebrow">Up next</p><h2 id="more-quests">More sidequests</h2></div>
+    <ul class="quests">
+      <li class="q-card reveal"><p class="eyebrow">Athletic</p><h3>Bike to Sidney and Back</h3><p>Ride from Victoria up the peninsula to Sidney and back home.</p><dl class="q-meta"><div><dt>Time</dt><dd>2.5–3 hours</dd></div><div><dt>Cost</dt><dd>Free</dd></div></dl></li>
+      <li class="q-card reveal"><p class="eyebrow">Athletic</p><h3>4-4-48</h3><p>Run 4 miles every 4 hours for 48 hours straight.</p><dl class="q-meta"><div><dt>Time</dt><dd>48 hours</dd></div><div><dt>Cost</dt><dd>Free</dd></div></dl></li>
+      <li class="q-card reveal"><p class="eyebrow">Athletic</p><h3>10 beers, 10 tacos, 10 km, 2 hours</h3><p>Run a kilometre, eat a taco, drink a beer. Repeat ten times inside two hours.</p><dl class="q-meta"><div><dt>Time</dt><dd>About 2 hours</dd></div><div><dt>Cost</dt><dd>$50</dd></div><div><dt>Difficulty</dt><dd>Medium</dd></div></dl></li>
+      <li class="q-card reveal"><p class="eyebrow">With friends</p><h3>Learn a sport I’ve never played</h3><p>Pick a random sport, show up knowing nothing, and learn it. Shortlist: tennis, pickleball, croquet, snowboarding, kickboxing.</p><dl class="q-meta"><div><dt>Time</dt><dd>1 day</dd></div><div><dt>Cost</dt><dd>Free</dd></div><div><dt>Difficulty</dt><dd>Hard</dd></div></dl></li>
+      <li class="q-card reveal"><p class="eyebrow">With friends</p><h3>Make a custom painting</h3><p>Create a custom painting or piece of artwork together, start to finish.</p><dl class="q-meta"><div><dt>Time</dt><dd>6 hours</dd></div><div><dt>Cost</dt><dd>$45</dd></div><div><dt>Difficulty</dt><dd>Hard</dd></div></dl></li>
+      <li class="q-card reveal"><p class="eyebrow">With friends</p><h3>Photos at JCPenney</h3><p>Get a proper studio portrait session done at JCPenney. Only in the States, so it needs a road trip.</p><dl class="q-meta"><div><dt>Time</dt><dd>5 hours</dd></div><div><dt>Cost</dt><dd>$50</dd></div><div><dt>Difficulty</dt><dd>Easy</dd></div></dl></li>
+    </ul>
   </div>
 </section>"""
 page("sidequests.html", "Sidequests — Ezra Vernon",
-     "Ezra Vernon's sidequests: a 55.8 km Vancouver Costco ultra marathon with a hot dog at all five Costcos, and learning guitar.",
+     "Ezra Vernon's sidequests: a 55.8 km Vancouver Costco ultra marathon with a hot dog at all five Costcos, a 4-4-48, a beer-and-taco 10 km and more.",
      side_body, side_css)
 
 # ---------------------------------------------------------------- QUOTES
