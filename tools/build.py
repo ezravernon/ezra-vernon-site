@@ -849,7 +849,7 @@ side_css = """
 side_body = """<section class="page-head">
   <div class="wrap reveal">
     <h1>Sidequests</h1>
-    <p>Smaller, stranger goals that sit alongside the big mountains.</p>
+    <p>you already know we&#8217;re sidequest maxxing</p>
   </div>
 </section>
 <section class="section section--tint" aria-labelledby="costco">
