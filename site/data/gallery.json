@@ -1,31 +1,45 @@
 {
   "photos": [
     {
-      "src": "summit-snow-portrait",
-      "w": 1536,
-      "h": 2304,
-      "alt": "Ezra in a bucket hat and pack, standing on a steep snow slope with misty forested mountainside behind",
+      "src": "forest-trail-thumbs",
+      "w": 1600,
+      "h": 1200,
+      "alt": "Ezra giving two thumbs up on a sunlit forest trail",
       "caption": ""
     },
     {
-      "src": "heather-flower",
+      "src": "ultimate-medal",
       "w": 1600,
-      "h": 2133,
-      "alt": "A hand holding a sprig of pink mountain heather on a forest trail",
+      "h": 2400,
+      "alt": "Ezra and a teammate in blue Chatelech Eagles ultimate jerseys, one holding a medal",
       "caption": ""
     },
     {
-      "src": "fire-lookout",
+      "src": "summit-selfie",
       "w": 1600,
-      "h": 2133,
-      "alt": "Someone standing on the roof of a fire lookout tower beside a lattice radio mast",
+      "h": 1200,
+      "alt": "Ezra in a helmet smiling on a dark volcanic ridge with mountains behind",
       "caption": ""
     },
     {
-      "src": "night-ferns",
+      "src": "crag-scramble",
+      "w": 1512,
+      "h": 2016,
+      "alt": "Ezra in a harness and red cap stepping up a rock face",
+      "caption": ""
+    },
+    {
+      "src": "ferry-car-deck",
+      "w": 1080,
+      "h": 1440,
+      "alt": "Looking out from a ferry car deck toward evergreen trees in evening light",
+      "caption": ""
+    },
+    {
+      "src": "car-selfie",
       "w": 1600,
-      "h": 2133,
-      "alt": "Looking down past ferns into a mossy, dim rainforest",
+      "h": 1200,
+      "alt": "A close-up selfie of Ezra in a black jacket, taken from above",
       "caption": ""
     },
     {
@@ -36,10 +50,213 @@
       "caption": ""
     },
     {
+      "src": "sunglasses",
+      "w": 1512,
+      "h": 2016,
+      "alt": "Ezra in round tinted sunglasses and a patterned shirt, photographed from above",
+      "caption": ""
+    },
+    {
+      "src": "movie-night",
+      "w": 1512,
+      "h": 2016,
+      "alt": "Friends on a couch watching a movie on a laptop in a lamp-lit living room",
+      "caption": ""
+    },
+    {
+      "src": "lake-paddleboard",
+      "w": 1440,
+      "h": 1080,
+      "alt": "Ezra in swim shorts by a lake while a friend pumps up a paddleboard",
+      "caption": ""
+    },
+    {
+      "src": "heather-flower",
+      "w": 1600,
+      "h": 2133,
+      "alt": "A hand holding a sprig of pink mountain heather on a forest trail",
+      "caption": ""
+    },
+    {
+      "src": "locker-room",
+      "w": 1412,
+      "h": 2508,
+      "alt": "Ezra taking a mirror selfie in a locker room",
+      "caption": ""
+    },
+    {
+      "src": "night-ferns",
+      "w": 1600,
+      "h": 2133,
+      "alt": "Looking down past ferns into a mossy, dim rainforest",
+      "caption": ""
+    },
+    {
+      "src": "blue-bedroom",
+      "w": 1440,
+      "h": 1080,
+      "alt": "A made-up bed with folded blankets in a dark blue attic bedroom",
+      "caption": ""
+    },
+    {
+      "src": "car-stretch",
+      "w": 1600,
+      "h": 1200,
+      "alt": "Ezra stretching his legs up to the roof inside a car",
+      "caption": ""
+    },
+    {
+      "src": "night-tongue",
+      "w": 1512,
+      "h": 2016,
+      "alt": "Ezra with windswept hair pulling a face in a bright patterned jacket at night",
+      "caption": ""
+    },
+    {
+      "src": "fern-selfie",
+      "w": 1600,
+      "h": 1200,
+      "alt": "Ezra in a grey hoodie taking a selfie surrounded by ferns",
+      "caption": ""
+    },
+    {
+      "src": "festival",
+      "w": 1440,
+      "h": 1080,
+      "alt": "A busy outdoor festival with long tables, white tents and paper lanterns",
+      "caption": ""
+    },
+    {
+      "src": "ferry-window",
+      "w": 1080,
+      "h": 1440,
+      "alt": "Ferry seats facing a window that looks onto a dock and moored sailboats",
+      "caption": ""
+    },
+    {
+      "src": "irish-pub",
+      "w": 1044,
+      "h": 1392,
+      "alt": "The glowing green sign of the Dubliner Irish Pub on a painted building at night",
+      "caption": ""
+    },
+    {
+      "src": "summit-snow-portrait",
+      "w": 1536,
+      "h": 2304,
+      "alt": "Ezra in a bucket hat and pack, standing on a steep snow slope with misty forested mountainside behind",
+      "caption": ""
+    },
+    {
+      "src": "alpine-lake",
+      "w": 1600,
+      "h": 2133,
+      "alt": "A turquoise alpine lake below snowy peaks, seen past evergreens and wildflowers",
+      "caption": ""
+    },
+    {
       "src": "rock-scramble",
       "w": 1200,
       "h": 1600,
       "alt": "A hiker scrambling up a rocky, green slope with mountains and evergreens behind",
+      "caption": ""
+    },
+    {
+      "src": "gym-mirror",
+      "w": 1391,
+      "h": 2473,
+      "alt": "Ezra taking a mirror selfie in a gym beside a dumbbell rack",
+      "caption": ""
+    },
+    {
+      "src": "party-selfie",
+      "w": 1600,
+      "h": 900,
+      "alt": "Ezra in a flat cap and sunglasses with a friend in a Union Jack hat at a party",
+      "caption": ""
+    },
+    {
+      "src": "hammock",
+      "w": 1600,
+      "h": 1200,
+      "alt": "A blue hammock strung between trees on a rocky bluff",
+      "caption": ""
+    },
+    {
+      "src": "waterfall-cliff",
+      "w": 1600,
+      "h": 2133,
+      "alt": "A hiker standing on river stones below a tall waterfall pouring down a rock face",
+      "caption": ""
+    },
+    {
+      "src": "forest-walk",
+      "w": 1600,
+      "h": 2133,
+      "alt": "Ezra in a cap and shorts walking through a mossy forest of firs and arbutus",
+      "caption": ""
+    },
+    {
+      "src": "tent-viewpoint",
+      "w": 1600,
+      "h": 2133,
+      "alt": "A tent pitched on a rock outcrop overlooking forested valleys and mountains",
+      "caption": ""
+    },
+    {
+      "src": "fire-lookout",
+      "w": 1600,
+      "h": 2133,
+      "alt": "Someone standing on the roof of a fire lookout tower beside a lattice radio mast",
+      "caption": ""
+    },
+    {
+      "src": "glitter",
+      "w": 1170,
+      "h": 1560,
+      "alt": "Ezra covered head to toe in silver glitter, arms out in a hallway",
+      "caption": ""
+    },
+    {
+      "src": "ultimate-rain",
+      "w": 1170,
+      "h": 785,
+      "alt": "Ezra and a friend in rain jackets giving thumbs up on a grass field",
+      "caption": ""
+    },
+    {
+      "src": "blue-bike",
+      "w": 1450,
+      "h": 2576,
+      "alt": "A blue Cannondale bike locked to a rack against a concrete wall",
+      "caption": ""
+    },
+    {
+      "src": "waterfall-dusk",
+      "w": 1600,
+      "h": 2133,
+      "alt": "A figure standing on a rock in front of a roaring waterfall at dusk",
+      "caption": ""
+    },
+    {
+      "src": "road-run",
+      "w": 1450,
+      "h": 2576,
+      "alt": "Ezra in a running vest grinning mid-run on a road beside a rock cut",
+      "caption": ""
+    },
+    {
+      "src": "cliff-hammock",
+      "w": 1512,
+      "h": 2016,
+      "alt": "Ezra in a helmet lounging in a hammock hung on a climbing cliff",
+      "caption": ""
+    },
+    {
+      "src": "night-street-friends",
+      "w": 1512,
+      "h": 2016,
+      "alt": "Ezra and a friend sitting on a sidewalk at night under streetlights",
       "caption": ""
     },
     {
